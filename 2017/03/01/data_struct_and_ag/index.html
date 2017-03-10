@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://nachtz.github.io">
+  <title>数据结构与算法 | 一元硬币</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="整理和自己总结的部分数据结构和算法。
+数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。操作 | 链表实现复杂度 | 数组实现复杂度— | — | —出队 | 1 | n入队 | n | 1扩容 | n | n
+出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法">
+<meta property="og:url" content="https://nachtz.github.io/2017/03/01/data_struct_and_ag/index.html">
+<meta property="og:site_name" content="一元硬币">
+<meta property="og:description" content="整理和自己总结的部分数据结构和算法。
+数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。操作 | 链表实现复杂度 | 数组实现复杂度— | — | —出队 | 1 | n入队 | n | 1扩容 | n | n
+出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201012/31/8394323_1293757535O5W5.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220939_7742.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/10/1357799464_6962.GIF">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220942_6357.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/10/1357793648_7622.GIF">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220944_1498.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220950_4864.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220958_2074.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220964_6225.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220967_7660.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220972_2232.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220962_8346.png">
+<meta property="og:image" content="http://img1.ph.126.net/z7OUHIYlh8DKy4hVeaxQTw==/2746069872806980093.jpg">
+<meta property="og:image" content="http://img1.ph.126.net/lTlHnmZqqcxVti2nnAJJMA==/1374723786354996526.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20130924000026250">
+<meta property="og:image" content="http://img.blog.csdn.net/20130924000843031">
+<meta property="og:image" content="http://img.blog.csdn.net/20160319170757295">
+<meta property="og:updated_time" content="2017-03-10T15:11:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法">
+<meta name="twitter:description" content="整理和自己总结的部分数据结构和算法。
+数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。操作 | 链表实现复杂度 | 数组实现复杂度— | — | —出队 | 1 | n入队 | n | 1扩容 | n | n
+出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201012/31/8394323_1293757535O5W5.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="https://raw.githubusercontent.com/NachtZ/odl_test/master/11970866.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">NachtZ</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">希望能比别人努力一点点，幸运一点点。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/DPDK/">DPDK</a></li>
+	        
+				<li><a href="/tags/Leetcode/">Leetcode</a></li>
+	        
+				<li><a href="/tags/Snort/">Snort</a></li>
+	        
+				<li><a href="/tags/Golang/">Golang</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/NachtZ" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://raw.githubusercontent.com/NachtZ/odl_test/master/11970866.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">NachtZ</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>希望能比别人努力一点点，幸运一点点。<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/NachtZ" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 70%">
+				
+				
+					<li style="width: 20%"><a href="/">主页</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/DPDK/">DPDK</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/Leetcode/">Leetcode</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/Snort/">Snort</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/Golang/">Golang</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-data_struct_and_ag" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法
+    </h1>
+  
+
+        
+        <a href="/2017/03/01/data_struct_and_ag/" class="archive-article-date">
+  	<time datetime="2017-03-01T05:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>整理和自己总结的部分数据结构和算法。</strong></p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>特点是FIFO。是一种常见的数据结构。可用链表和数组实现。<br>操作 | 链表实现复杂度 | 数组实现复杂度<br>— | — | —<br>出队 | 1 | n<br>入队 | n | 1<br>扩容 | n | n</p>
+<p>出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。<br>入队时，链表需要遍历一遍链表，数组则不需要。<br>扩容时，链表是需要遍历一次，而数组需要进行一次拷贝。</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树的子树还是树；<br>度：节点的子树个数；<br>树的度：树中任意节点的度的最大值；<br>兄弟：两节点的parent相同；<br>层：根在第一层，以此类推；<br>高度：叶子节点的高度为1，根节点高度最高；<br>有序树：树中各个节点是有次序的；<br>森林：多个树组成；  </p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>二叉树的数组存储下标公式：第i个节点的左右子节点是2i+1, 2i+2<br>满二叉树的深度为k，节点数是2的k次方-1<br>先序遍历：先访问根节点，再访问左节点，再访问右节点<br>中序遍历：左-&gt;根-&gt;右<br>后序遍历：左-&gt;右-&gt;根<br>中序遍历+另外一种遍历可以还原一棵二叉树。  </p>
+<p>二叉查找树：</p>
+<ol>
+<li>左子树的所有节点值都小于根节点值，右子树所有节点值都大于根节点值。  </li>
+<li>左右子树也为二叉查找树。  </li>
+<li>所有节点值都不重复。  </li>
+<li>先序遍历是递增序，后序是递减序。  </li>
+<li>插入和删除操作。  </li>
+</ol>
+<h4 id="红黑树-有点看不懂-先放着"><a href="#红黑树-有点看不懂-先放着" class="headerlink" title="红黑树 (有点看不懂,先放着)"></a>红黑树 (有点看不懂,先放着)</h4><p><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md" target="_blank" rel="external">某blog</a><br>一种平衡二叉查找树。C++ stl 中set, multiset, map , multimap(muti允许内部有重复元素)用了红黑树。<br>红黑树是每个节点都带有颜色属性的二叉查找树，颜色或红色或黑色。在二叉查找树强制一般要求以外，对于任何有效的红黑树我们增加了如下的额外要求:  </p>
+<ol>
+<li>节点是红色或黑色。    </li>
+<li>根节点是黑色。<br>3 每个叶节点（NIL节点，空节点）是黑色的。<br>4 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)  </li>
+<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。  </li>
+</ol>
+<p>关键性质: 从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。结果是这个树大致上是平衡的。因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。  </p>
+<h5 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h5><p>旋转是为了让失去平衡的红黑树（比如插删操作后，左右子树的高度不一致了。）重新恢复平衡。<br>如图：<br><img src="http://hi.csdn.net/attachment/201012/31/8394323_1293757535O5W5.jpg" alt="i am pic"></p>
+<blockquote>
+<p>左旋，如图所示（左-&gt;右），以x-&gt;y之间的链为“支轴”进行，<br> 使y成为该新子树的根，x成为y的左孩子，而y的左孩子则成为x的右孩子。</p>
+</blockquote>
+<h5 id="重新着色"><a href="#重新着色" class="headerlink" title="重新着色"></a>重新着色</h5><p>旋转后红黑色颜色特性被破坏了。需要重新着色。</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p><a href="http://dongxicheng.org/structure/heap/" target="_blank" rel="external">某blog</a><br>也叫优先队列，是完全二叉树。大顶堆（小顶堆）是父节点大于（小于）两个子节点的值，且两个子节点也都是一个大顶堆（小顶堆）。<br>堆的数组表示：<strong>下标从1开始</strong>。对一个节点t，他的父节点为t/2，左孩子节点是2t，右孩子节点2t+1.<br>保持堆的性质（heapfy）：左右子树都必须已经是堆(这里，只有一个节点的树显然是堆)。将root 与left, right比较，最大的值与root交换，比如是right，然后递归调整右子树。<br>数组转堆：数组长度为n，从堆的最后一个非叶子节点n/2的地方开始，往前进行heapfy操作。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildHeap</span><span class="params">(<span class="keyword">int</span> A[],)</span>  </span></div><div class="line"> &#123;    </div><div class="line">            <span class="keyword">int</span> i;</div><div class="line">            <span class="keyword">for</span>(i = HEAP_SIZE(A)/<span class="number">2</span>; i&gt;=<span class="number">1</span>; i--)    </div><div class="line">               Heapify(A, i); </div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<h4 id="优先队列（priority-queue）"><a href="#优先队列（priority-queue）" class="headerlink" title="优先队列（priority queue）"></a>优先队列（priority queue）</h4><p>优先队列是一种基于堆实现的数据结构。其特性是队列中的元素是按照从大到小排列的。  </p>
+<p><strong>pop操作</strong>：获取队列中的最大值   </p>
+<p>步骤有三步，时间复杂度为o(lg n)：  </p>
+<ol>
+<li>从堆中取堆顶元素，对应的是堆底层数据存储结构数组A[1]（注意，A[0]是不用留空的。）</li>
+<li>将数组A最后一个元素A[n]放在A[1]的位置，同时将数组长度置为n-1.</li>
+<li>对数组从上往下往下进行heapfy操作。</li>
+</ol>
+<p><strong>push 操作</strong>：往队列中加入一个数。<br>步骤有两步，时间复杂度为o(lg n):</p>
+<ol>
+<li>在数组A尾部放入这个树。</li>
+<li>对该数组至下往上进行heapfy操作。<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">void Insert(<span class="keyword">int</span> A[], <span class="keyword">int</span> i)   &#123;  <span class="comment">//i为插入的值</span></div><div class="line">    <span class="keyword">int</span> n=++HEAP_SIZE(A);     </div><div class="line">    A[n] = <span class="number">-99999</span>;<span class="comment">//小无穷</span></div><div class="line">     <span class="keyword">int</span> p = n;</div><div class="line">     <span class="keyword">while</span>(p &gt;<span class="number">1</span> &amp;&amp; A[<span class="keyword">PARENT</span>(p)] &lt; i)  &#123;</div><div class="line">       A[p] = A[<span class="keyword">PARENT</span>(p)];</div><div class="line">       p = <span class="keyword">PARENT</span>(p);</div><div class="line">      &#125;</div><div class="line">      A[p]=i;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><a href="http://wenku.baidu.com/link?url=2EZUKGYzfpAZoYgx7h6SCHNqmBD8DOqHluQbtiVATV4ONrdvBKgQhLBenGjvrMhpSTDbcU-HubODxTKbTwdwC04kTekr0LIKdVRGcKeOq_e" target="_blank" rel="external">某文库</a></p>
+<p>FILO。<br>懒得打字了。线性表的储存罢了。<br>对栈的操作，感觉更像是一种特殊的约定。他们的操作更像是在线性的数组上认为的添加限制。即加入时只能加到数组头，移出时只能移除数组尾部。</p>
+<h3 id="另，计算机的堆区和栈区"><a href="#另，计算机的堆区和栈区" class="headerlink" title="另，计算机的堆区和栈区"></a>另，计算机的堆区和栈区</h3><p><strong>堆区和栈区实际上不属于数据结构与算法的范畴了，应该是操作系统的部分。但是名字一样在这也补一个。懒得提炼直接复制了。</strong><br><a href="http://blog.csdn.net/slj_win/article/details/8608436" target="_blank" rel="external">某blog</a><br>一、预备知识—程序的内存分配<br>一个由c/C++编译的程序占用的内存分为以下几个部分<br>1、栈区（stack）— 由编译器自动分配释放   ，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。<br>2、堆区（heap） — 一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收     。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。<br>3、全局区（静态区）（static）—，全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，      未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。 - 程序结束后有系统释放<br>4、文字常量区—常量字符串就是放在这里的。 程序结束后由系统释放<br>5、程序代码区—存放函数体的二进制代码。   </p>
+<p>二、堆和栈的理论知识<br>2.1申请方式<br>stack:<br>由系统自动分配。 例如，声明在函数中一个局部变量 int b; 系统自动在栈中为b开辟空间<br>heap:<br>需要程序员自己申请，并指明大小，在c中malloc函数<br>如p1 = (char <em>)malloc(10);<br>在C++中用new运算符<br>如p2 = (char </em>)malloc(10);<br>但是注意p1、p2本身是在栈中的。  </p>
+<p>2.2<br>申请后系统的响应<br>栈：只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢出。<br>堆：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，<br>会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表中删除，并将该结点的空间分配给程序，另外，对于大多数系统，会在这块内存空间中的首地址处记录本次分配的大小，这样，代码中的delete语句才能正确的释放本内存空间。另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部分重新放入空闲链表中。   </p>
+<p>2.3申请大小的限制<br>栈：在Windows下,栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意思是栈顶的地址和栈的最大容量是系统预先规定好的，在WINDOWS下，栈的大小是2M（也有的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将提示overflow。因 此，能从栈获得的空间较小。<br>堆：堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。   </p>
+<p>2.4申请效率的比较：<br>栈由系统自动分配，速度较快。但程序员是无法控制的。<br>堆是由new分配的内存，一般速度比较慢，而且容易产生内存碎片,不过用起来最方便.<br>另外，在WINDOWS下，最好的方式是用VirtualAlloc分配内存，他不是在堆，也不是在栈是直接在进程的地址空间中保留一快内存，虽然用起来最不方便。但是速度快，也最灵活。  </p>
+<p>2.5堆和栈中的存储内容<br>栈： 在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈的，然后是函数中的局部变量。注意静态变量是不入栈的。<br>当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地址，也就是主函数中的下一条指令，程序由该点继续运行。<br>堆：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容有程序员安排。  </p>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>思路：在一个有序的序列中，插入一个新的数，让这个序列依然有序。<br>插入排序是稳定的排序，即在一个序列中，如果有两个数相等，那么他们之间的前后顺序在排序后不变。<br>复杂度： 一般情况o(n2)，最优情况排好序的情况o(n),最差情况o(n2)，数列为逆序。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220939_7742.png" alt="pic"><br><img src="http://img.my.csdn.net/uploads/201301/10/1357799464_6962.GIF" alt="递归版">  </p>
+<h3 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h3><p>思想：通过两两交换，像水中的泡泡一样，小的先冒出来，大的后冒出来。是稳定排序。<br>复杂度：o(n2)，没有最优或最差情况。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220942_6357.png" alt="pic">  </p>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>思路：在数列中，每次选择一个最小的值，放到新排列数列的最后面。<br>不稳定排序。<br>复杂度：o(n2)<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/10/1357793648_7622.GIF" alt="pic"></p>
+<h3 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h3><p>思路：分治思想解决排序。<br>是稳定排序。<br>复杂度：o(n lgn)。<br>伪代码：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mergeSort<span class="comment">(A,i,j)</span>&#123;</div><div class="line">    <span class="keyword">if</span> i &lt; j </div><div class="line">     mid = <span class="comment">(i+j)</span>/<span class="number">2</span></div><div class="line">     mergeSort<span class="comment">(A,i,mid)</span></div><div class="line">     mergeSort<span class="comment">(A, mid+1,j)</span></div><div class="line">     merge<span class="comment">(A,i,m,g)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中，merge的操作就是将两个基本有序的数列合并到一起。这个过程需要额外的一个数组来做临时变量。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220944_1498.png" alt="pic"></p>
+<h3 id="快速"><a href="#快速" class="headerlink" title="快速"></a>快速</h3><p><strong>基本是必考的排序。</strong><br>思路：利用分治的思想，将大问题化为两个小问题，然后再合并。首先在一个已排序的序列中，随便选择一个数。然后将比这个数大的放在这个数右边，小的放在左边。然后对这两个子区间再排序。<br>是不稳定的排序。<br>复杂度：o(nlgn) 没有最优情况，最差情况是每次选择都选择到了数组的最值，这个时候分区最不平衡。一般的实现上来讲，会发生在排序的数列是逆序或者所有数列都是相等的时候。<br>解决方法是三值取中法。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220950_4864.png" alt="pic"></p>
+<h3 id="堆-1"><a href="#堆-1" class="headerlink" title="堆"></a>堆</h3><p>思路：利用最大堆和最小堆进行排序。将数组整理为堆，然后每次弹出堆顶即可。<br>复杂度：o(nlg n)  </p>
+<p><img src="http://img.my.csdn.net/uploads/201301/03/1357220958_2074.png" alt="pic"></p>
+<h3 id="基底"><a href="#基底" class="headerlink" title="基底"></a>基底</h3><p>思路：从个位到高位，对于每一位进行排序，而每一位的排序，都视为计数排序。<br>是稳定的排序，需要额外的空间。<br>例图：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220964_6225.png" alt="pic"><br>复杂度：o((n+k)d)  </p>
+<p>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220967_7660.png" alt="pic"></p>
+<h3 id="桶"><a href="#桶" class="headerlink" title="桶"></a>桶</h3><p>思路：先预筛选再进行排序。把一个大的复杂的数列先按大小范围把不同元素放到不同的桶里面。然后对不同桶里面的数进行排序。<br>稳定排序，需要额外的空间。<br>复杂度：最优情况是o(n)，这个时候所有的元素均匀分布到各个桶里面，而且桶内元素正好有序。最坏情况是全部元素都分到一个桶里面，为o(n2)或者o(nlg n)如果桶内排序用的是快排的话。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220972_2232.png" alt="pic"></p>
+<h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><p>思路：利用数组的下标进行统计的排序。这个算法速度快(o(n),基本上这种有一定使用条件的排序算法速度上都会优于通用的排序方法。)，需要额外的空间，不适用于有负数的排序和数组中含有特别大的数的数列。<br>复杂度：o(n+k)，k为数列中最大的数。需要额外的空间复杂度。o(k)<br>是不稳定的排序。本质上是先统计在根据统计还原。和原来的数组已经没有关系了。<br>算法：<br><img src="http://img.my.csdn.net/uploads/201301/03/1357220962_8346.png" alt="pic"></p>
+<h3 id="睡眠"><a href="#睡眠" class="headerlink" title="睡眠"></a><del>睡眠</del></h3><p><del>这是来搞笑的。= =</del><br><del>构造n个线程，它们和这n个数一一对应。初始化后，线程们开始睡眠，等到对应的数那么多个时间单位后各自醒来，然后输出它对应的数。这样最小的数对应的线程最早醒来，这个数最早被输出。</del></p>
+<h2 id="算法补遗"><a href="#算法补遗" class="headerlink" title="算法补遗"></a>算法补遗</h2><p><a href="http://blog.csdn.net/chinabhlt/article/details/47420391" target="_blank" rel="external">查找算法</a></p>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>思路：折办查找，元素必须是有序的才可以。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中没有这样的结点。<br>复杂度: o(lg n)<br>算法：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//二分查找（折半查找），版本1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch1</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> value, <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">int</span> low, high, mid;</div><div class="line">  low = <span class="number">0</span>;</div><div class="line">  high = n<span class="number">-1</span>;</div><div class="line">  <span class="keyword">while</span>(low&lt;=high)</div><div class="line">  &#123;</div><div class="line">    mid = (low+high)/<span class="number">2</span>;</div><div class="line">    <span class="keyword">if</span>(a[mid]==value)</div><div class="line">      <span class="keyword">return</span> mid;</div><div class="line">    <span class="keyword">if</span>(a[mid]&gt;value)</div><div class="line">      high = mid<span class="number">-1</span>;</div><div class="line">    <span class="keyword">if</span>(a[mid]&lt;value)</div><div class="line">      low = mid+<span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//二分查找，递归版本</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch2</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> value, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">int</span> mid = low+(high-low)/<span class="number">2</span>;<span class="comment">//这种求mid的写法是为了防止溢出，因为high+low是有可能溢出的。</span></div><div class="line">  <span class="keyword">if</span>(a[mid]==value)</div><div class="line">    <span class="keyword">return</span> mid;</div><div class="line">  <span class="keyword">if</span>(a[mid]&gt;value)</div><div class="line">    <span class="keyword">return</span> BinarySearch2(a, value, low, mid<span class="number">-1</span>);</div><div class="line">  <span class="keyword">if</span>(a[mid]&lt;value)</div><div class="line">    <span class="keyword">return</span> BinarySearch2(a, value, mid+<span class="number">1</span>, high);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="partition中位数"><a href="#partition中位数" class="headerlink" title="partition中位数"></a>partition中位数</h3><p>这个算法是在乱序的数组中查找中位数的算法。<br>利用快排关键字的查找方法<br>a.随机选取一个关键字key，将序列二分；<br>b.若关键字的下标大于N/2，则继续对序列的左半部分执行partition；<br>c.若关键字的下标小于N/2，则继续对序列的右半部分执行partition；<br>d.若关键字的下标等于N/2，则返回key。<br>算法复杂度是o(nlg n)?.</p>
+<h3 id="基于流的中位数"><a href="#基于流的中位数" class="headerlink" title="基于流的中位数"></a>基于流的中位数</h3><p>提炼一下就是利用大小堆来存储这个流的数。在存储的过程中，大堆保存中位数左边的数，小堆保存中位数右边的数。在拿到流中的数时，动态调整（在新到达的数，大堆顶，小堆顶三个数中比较，然后选则将新的数送到哪个堆中）。需要取中位数数时只要取两个堆顶即可。<br>给一个数据流，找出中位数，由于数据流中的数据并不是有序的，所以我们首先应该想个方法让其有序。如果我们用vector来保存数据流的话，每进来一个新数据都要给数组排序，很不高效。所以之后想到用multiset这个数据结构，是有序保存数据的，但是它不能用下标直接访问元素，找中位数也不高效。这里用到的解法十分巧妙，我们使用大小堆来解决问题，其中大堆保存右半段较大的数字，小堆保存左半段较小的数组。这样整个数组就被中间分为两段了，由于堆的保存方式是由大到小，我们希望大堆里面的数据是从小到大，这样取第一个来计算中位数方便。我们用到一个小技巧，就是存到大堆里的数先取反再存，这样由大到小存下来的顺序就是实际上我们想要的从小到大的顺序。当大堆和小堆中的数字一样多时，我们取出大堆小堆的首元素求平均值，当小堆元素多时，取小堆首元素为中位数</p>
+<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><p>迪杰斯特拉<br><img src="http://img1.ph.126.net/z7OUHIYlh8DKy4hVeaxQTw==/2746069872806980093.jpg" alt="pic"><br><img src="http://img1.ph.126.net/lTlHnmZqqcxVti2nnAJJMA==/1374723786354996526.jpg" alt="pic"></p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>不知道该怎么讲，丢个连接<a href="http://blog.jobbole.com/83949/" target="_blank" rel="external">dp</a></p>
+<h3 id="蓄水池抽样"><a href="#蓄水池抽样" class="headerlink" title="蓄水池抽样"></a>蓄水池抽样</h3><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>从一个长度未知或者很长的序列中随机抽取出k个元素，保证k个元素的输出是完全随机的。<br>构造一个可以放置k个元素的蓄水池，将序列的前k个元素放入蓄水池类，然后从第k+1个元素开始，以k/n的概率来决定钙元素是否需要被替换到水池中。</p>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>伪代码如下：<br><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">Init</span> : a reservoir <span class="keyword">with</span> the size： k</div><div class="line">        <span class="keyword">for</span>    i= k+<span class="number">1</span> <span class="keyword">to</span> <span class="type">N</span></div><div class="line"></div><div class="line">            <span class="type">M</span>=random(<span class="number">1</span>, i);</div><div class="line">            <span class="keyword">if</span>( <span class="type">M</span> &lt; k)</div><div class="line">                 <span class="type">SWAP</span> the <span class="type">Mth</span> <span class="keyword">value</span> <span class="keyword">and</span> ith <span class="keyword">value</span></div><div class="line">       <span class="keyword">end</span> <span class="keyword">for</span></div></pre></td></tr></table></figure></p>
+<h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><ol>
+<li>对于第i个数(i&lt;k)，在前k步被选中的概率是1， 从第k+1步开始，i不被选中的概率为k/k+1,那么读到第n个数时， 第i个数(i&lt;k)被选中的概率 = 被选中的概率 <em> 以后每一步都不被换走的概率,即<br>`1 </em> k/k+1 * k+1/k+2 …n-1/n = k/n`</li>
+<li>对于第j个数(j&gt;=k)被选中的概率为： 在他出现时被选中的概率 <em> 在他出现以后不被换走的概率,即:<br>`k/j </em> j /j+1 。。。n-1/n = k/n`</li>
+</ol>
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p><a href="http://blog.csdn.net/zmazon/article/details/8262185" target="_blank" rel="external">看大佬</a></p>
+<h3 id="拉格朗日四平方和定理"><a href="#拉格朗日四平方和定理" class="headerlink" title="拉格朗日四平方和定理"></a>拉格朗日四平方和定理</h3><p>拉格朗日四平方和定理<br><strong>Leetcode 279 perfect squares</strong><br>四平方和定理说明每个正整数均可表示为4个整数的平方和。</p>
+<p>任何形为4n+1的素数都能表示为两个平方数之和。<br>用dp[i]表示i的正数组成情况时：<br><code>dp[i*i] = 1;</code><br><code>dp[i*i + a] = dp[a]+1;</code><br>利用这个来进行dp递推公式的推导。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">min</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span> (a&gt;b)</div><div class="line">            <span class="keyword">return</span> b;</div><div class="line">        <span class="keyword">return</span> a;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSquares</span>(<span class="params"><span class="keyword">int</span> n</span>) </span>&#123;</div><div class="line">        <span class="keyword">int</span> *dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i!=n+<span class="number">1</span>;++i)dp[i] = <span class="number">4</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i*i&lt;=n;++i)&#123;</div><div class="line">            dp[i*i] = <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">0</span>;a!=n+<span class="number">1</span>;++a)&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">0</span>;b*b&lt;=a;++b)&#123;</div><div class="line">                dp[a] = min(dp[a],dp[a-b*b]+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[n];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="kmp和manacher"><a href="#kmp和manacher" class="headerlink" title="kmp和manacher"></a>kmp和manacher</h3><h4 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h4><h5 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h5><p>kmp算法的思想是利用额外的信息量来避免不必要的匹配。假设我们匹配两个串分别到了i,j时发现不匹配了。正常的算法是将计数器重新计算到匹配的开头加1.但是这么做就浪费了串0~i-1 和串0~j-1之间的串都相等的这个信息量。kmp的思路就是要利用这个额外的信息量将匹配的窗口尽量的滑动到最远。<br><img src="http://img.blog.csdn.net/20130924000026250" alt="kmp1"><br><img src="http://img.blog.csdn.net/20130924000843031" alt="kmp2"></p>
+<h5 id="额外的信息量"><a href="#额外的信息量" class="headerlink" title="额外的信息量"></a>额外的信息量</h5><p>额外的信息量是指前缀函数。<br>比如对于字符串<code>ABCDABD</code>而言。其前缀函数的信息是：</p>
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索词</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>A</td>
+<td>B</td>
+<td>D   </td>
+</tr>
+<tr>
+<td>部分匹配词</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0    </td>
+</tr>
+</tbody>
+</table>
+<p>求取这个next的代码如下：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getNext(String b)  </div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> len=b.length();  </div><div class="line">    <span class="keyword">int</span> j=<span class="number">0</span>;  </div><div class="line">          </div><div class="line">    <span class="keyword">int</span> <span class="keyword">next</span>[]=<span class="keyword">new</span> <span class="keyword">int</span>[len+<span class="number">1</span>];<span class="comment">//next表示长度为i的字符串前缀和后缀的最长公共部分，从1开始  </span></div><div class="line">    <span class="keyword">next</span>[<span class="number">0</span>]=<span class="keyword">next</span>[<span class="number">1</span>]=<span class="number">0</span>;  </div><div class="line">          </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)<span class="comment">//i表示字符串的下标，从0开始  </span></div><div class="line">    &#123;<span class="comment">//j在每次循环开始都表示next[i]的值，同时也表示需要比较的下一个位置  </span></div><div class="line">        <span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;b.charAt(i)!=b.charAt(j))j=<span class="keyword">next</span>[j];  </div><div class="line">        <span class="keyword">if</span>(b.charAt(i)==b.charAt(j))j++;  </div><div class="line">        <span class="keyword">next</span>[i+<span class="number">1</span>]=j;  </div><div class="line">    &#125;  </div><div class="line">          </div><div class="line">    <span class="keyword">return</span> <span class="keyword">next</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h5><p>字符串匹配的过程和获取额外信息的函数是基本一致的。都是依照next[j]来进行（匹配失败时）下标的移动。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public void search(String <span class="keyword">original, </span>String find, int next[]) &#123;  </div><div class="line">    int <span class="keyword">j </span>= <span class="number">0</span><span class="comment">;  </span></div><div class="line">    for (int i = <span class="number">0</span><span class="comment">; i &lt; original.length(); i++) &#123;  </span></div><div class="line">        while (<span class="keyword">j </span>&gt; <span class="number">0</span> &amp;&amp; <span class="keyword">original.charAt(i) </span>!= find.charAt(<span class="keyword">j)) </span> </div><div class="line">            <span class="keyword">j </span>= next[<span class="keyword">j]; </span> </div><div class="line">        if (<span class="keyword">original.charAt(i) </span>== find.charAt(<span class="keyword">j)) </span> </div><div class="line">            <span class="keyword">j++; </span> </div><div class="line">        if (<span class="keyword">j </span>== find.length()) &#123;  </div><div class="line">            System.out.println(<span class="string">"find at position "</span> + (i - <span class="keyword">j)); </span> </div><div class="line">            System.out.println(<span class="keyword">original.subSequence(i </span>- <span class="keyword">j </span>+ <span class="number">1</span>, i + <span class="number">1</span>))<span class="comment">;  </span></div><div class="line">            <span class="keyword">j </span>= next[<span class="keyword">j]; </span> </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="http://blog.csdn.net/yutianzuijin/article/details/11954939/" target="_blank" rel="external">Reference</a></p>
+<h4 id="manacher-回文子串"><a href="#manacher-回文子串" class="headerlink" title="manacher 回文子串"></a>manacher 回文子串</h4><h5 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h5><p>在o(n)的时空复杂度内，求出以每个字符为中心的最长回文有多长。这个算法可以求出包括奇数和偶数的回文串。算法的核心思想就是<strong>利用已经匹配的最右位置和对应的对称中心来跳过已经进行过的比较</strong>。</p>
+<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><ol>
+<li>在每两个字符中插入一个分隔符。这个分隔符在原文中没有出现，一般是用<code>#</code>.</li>
+<li><p>然后用一个辅助数组P来记录以每个中心为最长回文传的信息。</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">before : waaabwswfd</div><div class="line">after : <span class="comment"># w # a # a # a # b # w # s # w # f # d #</span></div><div class="line">P:     <span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 3 </span>2<span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 1 </span>4<span class="number"> 1 </span>2<span class="number"> 1 </span>2<span class="number"> 1 </span>2 1</div></pre></td></tr></table></figure>
+</li>
+<li><p>P[id]-1就是该回文子串在原串中的长度</p>
+</li>
+<li>在扫描的时候，线性的从左往右扫描。在扫描的时候，用mx在记录i在之前的回文串查找过程中，查找到的最右的位置，以及取到这个最右值时的字符位置id。</li>
+<li><p><img src="http://img.blog.csdn.net/20160319170757295" alt="pic"></p>
+</li>
+<li><p>关键的比较：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">i</span> &lt; mx)</div><div class="line">            p[ i ] = min( p[  <span class="number">2</span> * id  -  i ], mx - <span class="built_in">i</span> );</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2*id-i求得是i关于id对称的点。这个对称点上的回文子串的长度在目前以及匹配到的结果中，和i点事一样的。（除非碰到了左边界或右边界）</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;utility&gt;  </span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </div><div class="line">  </div><div class="line"><span class="keyword">char</span> s[<span class="number">1000</span>];  </div><div class="line"><span class="keyword">char</span> s_new[<span class="number">2000</span>];  </div><div class="line"><span class="keyword">int</span> p[<span class="number">2000</span>];  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Init</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s);  </div><div class="line">    s_new[<span class="number">0</span>] = <span class="string">'$'</span>;  </div><div class="line">    s_new[<span class="number">1</span>] = <span class="string">'#'</span>;  </div><div class="line">    <span class="keyword">int</span> j = <span class="number">2</span>;  </div><div class="line">  </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)  </div><div class="line">    &#123;  </div><div class="line">        s_new[j++] = s[i];  </div><div class="line">        s_new[j++] = <span class="string">'#'</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    s_new[j] = <span class="string">'\0'</span>;<span class="comment">//别忘了哦  </span></div><div class="line">  </div><div class="line">    <span class="keyword">return</span> j;<span class="comment">//返回s_new的长度  </span></div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Manacher</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> len = Init();<span class="comment">//取得新字符串长度并完成向s_new的转换  </span></div><div class="line">    <span class="keyword">int</span> maxLen = <span class="number">-1</span>;<span class="comment">//最长回文长度  </span></div><div class="line">      </div><div class="line">    <span class="keyword">int</span> id;  </div><div class="line">    <span class="keyword">int</span> mx = <span class="number">0</span>;  </div><div class="line">  </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (i &lt; mx)  </div><div class="line">            p[i] = min(p[<span class="number">2</span> * id - i], mx - i);<span class="comment">//需搞清楚上面那张图含义,mx,2 * id - i的含义  </span></div><div class="line">        <span class="keyword">else</span>  </div><div class="line">            p[i] = <span class="number">1</span>;  </div><div class="line">  </div><div class="line">        <span class="keyword">while</span> (s_new[i - p[i]] == s_new[i + p[i]])<span class="comment">//不需边界判断，因为左有'$',右有'\0'  </span></div><div class="line">            p[i]++;  </div><div class="line">  </div><div class="line">  </div><div class="line">        <span class="keyword">if</span> (mx &lt; i + p[i])<span class="comment">//我们每走一步i，都要和mx比较，我们希望mx尽可能的远，这样才能更有机会执行if (i &lt; mx) 这句代码，从而提高效率  </span></div><div class="line">        &#123;  </div><div class="line">            id = i;  </div><div class="line">            mx = i + p[i];  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        maxLen = max(maxLen, p[i] - <span class="number">1</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="keyword">return</span> maxLen;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">while</span> (<span class="built_in">printf</span>(<span class="string">"请输入字符串：\n"</span>))  </div><div class="line">    &#123;  </div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"最长回文长度为 %d\n\n"</span>, Manacher());  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://nachtz.github.io/2017/03/01/data_struct_and_ag/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/01/08/SDN_opendaylight_dev_bundle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在OpenDayLight控制器上开发Bundle</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="data_struct_and_ag" data-title="数据结构与算法" data-url="https://nachtz.github.io/2017/03/01/data_struct_and_ag/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 NachtZ
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+        
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">活得&lt;br&gt;比别人幸运一点点&lt;br&gt;就好&lt;br&gt;最上川</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

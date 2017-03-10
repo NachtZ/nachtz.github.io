@@ -6,21 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nachtz.github.io">
-  <title>将DPDK移植到snort上的DAQ | 一元硬币</title>
+  <title>Archives: 2017/3 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DAQ 与Snort在snort-daq中，daq的控制流程是这样的。如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是daq_load_modules。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是pig，或者说更本质的，是pig下">
-<meta property="og:type" content="article">
-<meta property="og:title" content="将DPDK移植到snort上的DAQ">
-<meta property="og:url" content="https://nachtz.github.io/2016/08/06/dpdk_daq/index.html">
+  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一元硬币">
+<meta property="og:url" content="https://nachtz.github.io/archives/2017/03/index.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="DAQ 与Snort在snort-daq中，daq的控制流程是这样的。如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是daq_load_modules。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是pig，或者说更本质的，是pig下">
-<meta property="og:image" content="http://img.blog.csdn.net/20160806194647769">
-<meta property="og:image" content="http://img.blog.csdn.net/20160806194734629">
-<meta property="og:updated_time" content="2017-03-10T13:15:06.000Z">
+<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将DPDK移植到snort上的DAQ">
-<meta name="twitter:description" content="DAQ 与Snort在snort-daq中，daq的控制流程是这样的。如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是daq_load_modules。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是pig，或者说更本质的，是pig下">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160806194647769">
+<meta name="twitter:title" content="一元硬币">
+<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -176,164 +172,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dpdk_daq" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      将DPDK移植到snort上的DAQ
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/03/01/data_struct_and_ag/" class="archive-article-date">
+  	<time datetime="2017-03-01T05:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/03/01/data_struct_and_ag/">数据结构与算法</a>
     </h1>
   
 
-        
-        <a href="/2016/08/06/dpdk_daq/" class="archive-article-date">
-  	<time datetime="2016-08-06T10:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="DAQ-与Snort"><a href="#DAQ-与Snort" class="headerlink" title="DAQ 与Snort"></a>DAQ 与Snort</h2><p>在snort-daq中，daq的控制流程是这样的。<br><img src="http://img.blog.csdn.net/20160806194647769" alt="snort_daq"><br>如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是<code>daq_load_modules</code>。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。<br>在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是<br><code>pig</code>，或者说更本质的，是<code>pig</code>下的<code>analyzer</code>。<br>Snort下面开n个<code>pig</code>线程。<code>pig</code>线程下面调用<code>analyzer</code>来进行包解析。<br>包解析的过程中是在<code>pig</code>线程中多线程并行进行的。每一个<code>analyzer</code>下面都初始化一个<code>daq instance</code>并调用<code>acquire</code>进行抓包并分析。每一个<code>daq instance</code>下面都有一个或多个网卡来获取数据。因为目的主要是介绍daq，所以怎么解析就不提了。<br><img src="http://img.blog.csdn.net/20160806194734629" alt="pig_daq"><br>从上图和上面的介绍就可以看得出来，一个snort下面有多个<code>daq instance</code>并行运行。每一个<code>daq instance</code>都会进行初始化操作，占用系统资源，获取网卡，抓包，调用<code>callback</code>，之间相互独立。并且是<strong>单线程</strong>的。</p>
-<hr>
-<h2 id="DAQ与DPDK"><a href="#DAQ与DPDK" class="headerlink" title="DAQ与DPDK"></a>DAQ与DPDK</h2><p>如上面所介绍的。DAQ在设计的时候是单线程的。在本身的实现的几个模块中（Netmap,pcap等等）完全没有涉及到多线程的事情。在snort中的调用也是单线程并行调用的，相互之间各不影响。而Inter的DPDK在多线程方面则有限制。它所初始化的<code>EAL</code>层只能初始化一次。一个程序中只能运行一个dpdk主程序。所以就没有办法在snort中使用多线程。因为如果在snort中使用了多线程。那么实际上每个线程都会去尝试初始化dpdk的<code>EAL</code>。那么就会出错，导致最后只有一个线程能够成功初始化并启动。<br>所以如果要想实现一个支持snort多线程的daq。就需要修改daq中api的逻辑。<br>在实现中，利用线程id来绑定网卡。<br>在daq的content中加入了一个<code>nic</code>-<code>threadid</code>的映射表。然后每个网卡都有一个独立的<code>instance</code>存储原本在<code>daq_content</code>中的信息。然后在线程调用daq相关函数的时候，都会先利用threadid来进行检索这个<code>instance</code>进行操作。通过这个方法就能够将dpdk中的各个网卡独立运行。</p>
-<hr>
-<h2 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h2><p><a href="https://github.com/NachtZ/daq_dpdk" target="_blank" rel="external">daq_dpdk</a><br>基于的是<code>dpdk16.04</code>, <code>daq2.1.0</code>,<code>snort 3.0 a04</code>.<br>使用方法在项目主页中。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Snort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://nachtz.github.io/2016/08/06/dpdk_daq/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/09/12/leetcode_weekly_contest4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          LeetCode Weekly Contest 4 第四周周赛
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/06/17/dpdk_ring/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">dpdk_ring剥离（单线程版）</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="dpdk_daq" data-title="将DPDK移植到snort上的DAQ" data-url="https://nachtz.github.io/2016/08/06/dpdk_daq/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"nachtz"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -356,8 +252,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
