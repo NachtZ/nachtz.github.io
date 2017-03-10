@@ -174,6 +174,487 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Smarking Algorithm Contest 3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/06/Smarking Algorithm Contest 3/">Smarking Algorithm Contest 3</a>
+    </h1>
+  
+
+        
+        <a href="/2016/11/06/Smarking Algorithm Contest 3/" class="archive-article-date">
+  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##1.  453. Minimum Moves to Equal Array Elements<br>Given a <strong>non-empty</strong> integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[1,2,3]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">3</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Only three moves <span class="keyword">are</span> needed (remember each move increments two elements):</div><div class="line"></div><div class="line"><span class="comment">[1,2,3]</span>  =&gt;  <span class="comment">[2,3,3]</span>  =&gt;  <span class="comment">[3,4,3]</span>  =&gt;  <span class="comment">[4,4,4]</span></div></pre></td></tr></table></figure></p>
+<p>给一个长度为n的非空数组，将这个数组中的其中n-1个元素都+1，称为一次操作。求出将这个数组所有元素都变为相同大小的操作的次数。<br>解法：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">func minMoves(nums []<span class="built_in">int</span>) <span class="built_in">int</span> &#123;</div><div class="line">	<span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">sum</span>,<span class="built_in">min</span>,<span class="built_in">max</span> := nums[<span class="number">0</span>],nums[<span class="number">0</span>],nums[<span class="number">0</span>]</div><div class="line">	for i:=<span class="number">1</span>;i&lt;len(nums);i++&#123;</div><div class="line">		<span class="built_in">sum</span> += nums[i]</div><div class="line">		<span class="keyword">if</span> <span class="built_in">min</span> &gt; nums[i]&#123;</div><div class="line">			<span class="built_in">min</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> <span class="built_in">max</span> &lt; nums[i]&#123;</div><div class="line">			<span class="built_in">max</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">sum</span> - len(nums)*<span class="built_in">min</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-447-Number-of-Boomerangs"><a href="#2-447-Number-of-Boomerangs" class="headerlink" title="2. 447. Number of Boomerangs"></a>2. 447. Number of Boomerangs</h2><p>Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters).</p>
+<p>Find the number of boomerangs. You may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive).<br>Ex:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="string">[[0,0],[1,0],[2,0]]</span></div><div class="line"></div><div class="line">Output:</div><div class="line"><span class="number">2</span></div><div class="line"></div><div class="line">Explanation:</div><div class="line">The two boomerangs are <span class="string">[[1,0],[0,0],[2,0]]</span> <span class="keyword">and</span> <span class="string">[[1,0],[2,0],[0,0]]</span></div></pre></td></tr></table></figure></p>
+<p>给定平面内的坐标。求出这些坐标中，一个点到另外两个点距离相同的组合。<br>这题只要求出每个坐标到其他坐标的距离。然后再遍历就行了。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pow</span><span class="params">(t <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> t*t</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfBoomerangs</span><span class="params">(points [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(points) &lt;<span class="number">3</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	dis := <span class="built_in">make</span>([][]<span class="keyword">int</span>,<span class="built_in">len</span>(points))</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		dis[i] = <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(points))</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(points);j++&#123;</div><div class="line">			t := pow(points[i][<span class="number">0</span>] - points[j][<span class="number">0</span>])+pow(points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>])</div><div class="line">			dis[i][j],dis[j][i] = t,t</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	count := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(points);j++&#123;</div><div class="line">			<span class="keyword">if</span> j == i&#123;</div><div class="line">				<span class="keyword">continue</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> k := j+<span class="number">1</span>;k&lt;<span class="built_in">len</span>(points);k++&#123;</div><div class="line">				<span class="keyword">if</span> dis[i][j] == dis[i][k]&#123;</div><div class="line">					count +=<span class="number">2</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-452-Minimum-Number-of-Arrows-to-Burst-Balloons"><a href="#3-452-Minimum-Number-of-Arrows-to-Burst-Balloons" class="headerlink" title="3. 452. Minimum Number of Arrows to Burst Balloons"></a>3. 452. Minimum Number of Arrows to Burst Balloons</h2><p>There are a number of spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. Since it’s horizontal, y-coordinates don’t matter and hence the x-coordinates of start and end of the diameter suffice. Start is always smaller than end. There will be at most 104 balloons.</p>
+<p>An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with xstart and xend bursts by an arrow shot at x if xstart ≤ x ≤ xend. There is no limit to the number of arrows that can be shot. An arrow once shot keeps travelling up infinitely. The problem is to find the minimum number of arrows that must be shot to burst all balloons.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[<span class="comment">[10,16]</span>, <span class="comment">[2,8]</span>, <span class="comment">[1,6]</span>, <span class="comment">[7,12]</span>]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">One way <span class="keyword">is</span> to shoot one arrow for example at x = 6 (bursting the balloons <span class="comment">[2,8]</span> and <span class="comment">[1,6]</span>) and another arrow at x = 11 (bursting the other two balloons).</div></pre></td></tr></table></figure></p>
+<p>这题把一堆乱七八糟的背景剥开后，题目实际上是这样的：<br>给定一组区间，然后要你给出长度最小的一组数，这组数中所有的点都在区间内而且没有区间被遗漏。<br>用贪心算法就可以做。将区间按起点从小到大排列。<br>然后每一次都选一个点，能够尽量的覆盖到最多的区间。直到不能覆盖为止。依次取点，直到区间都有点落在上面。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> ranges [][]<span class="keyword">int</span> </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(r ranges)</span><span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(r)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(r  ranges)</span><span class="title">Less</span><span class="params">(i,j <span class="keyword">int</span>)</span><span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> r[i][<span class="number">0</span>] != r[j][<span class="number">0</span>]&#123;</div><div class="line">		<span class="keyword">return</span> r[i][<span class="number">0</span>]&lt;r[j][<span class="number">0</span>]</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> r[i][<span class="number">1</span>]&lt;r[j][<span class="number">1</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r  ranges)</span><span class="title">Swap</span><span class="params">(i,j <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	r[i][<span class="number">0</span>],r[j][<span class="number">0</span>] = r[j][<span class="number">0</span>],r[i][<span class="number">0</span>]</div><div class="line">	r[j][<span class="number">1</span>],r[i][<span class="number">1</span>] = r[i][<span class="number">1</span>],r[j][<span class="number">1</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMinArrowShots</span><span class="params">(points [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	p := ranges(points)</div><div class="line">	sort.Sort(p)</div><div class="line">	count := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		count ++</div><div class="line">		j := i+<span class="number">1</span></div><div class="line">		at := p[i][<span class="number">1</span>]</div><div class="line">		<span class="keyword">for</span> j = i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(p) ;j++&#123;</div><div class="line">			<span class="keyword">if</span> p[j][<span class="number">0</span>]&gt;at&#123;</div><div class="line">				i = j<span class="number">-1</span></div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> p[j][<span class="number">1</span>] &lt; at&#123;</div><div class="line">				at = p[j][<span class="number">1</span>]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> j == <span class="built_in">len</span>(p)&#123;</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="4-446-Arithmetic-Slices-II-Subsequence"><a href="#4-446-Arithmetic-Slices-II-Subsequence" class="headerlink" title="4. 446. Arithmetic Slices II - Subsequence"></a>4. 446. Arithmetic Slices II - Subsequence</h2><p>A zero-indexed array A consisting of N numbers is given. A subsequence slice of that array is any sequence of integers (P0, P1, …, Pk) such that 0 ≤ P0 &lt; P1 &lt; … &lt; Pk &lt; N.</p>
+<p>A subsequence slice (P0, P1, …, Pk) of array A is called arithmetic if the sequence A[P0], A[P1], …, A[Pk-1], A[Pk] is arithmetic. In particular, this means that k ≥ 2.</p>
+<p>The function should return the number of arithmetic subsequence slices in the array A.</p>
+<p>Ex:<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Input</span>: [2, 4, 6, 8, 10]</div><div class="line"></div><div class="line"><span class="http"><span class="attribute">Output</span>: 7</span></div><div class="line"></div><div class="line"><span class="inform7">Explanation:</span></div><div class="line">All arithmetic subsequence slices <span class="keyword">are</span>:</div><div class="line"><span class="comment">[2,4,6]</span></div><div class="line"><span class="comment">[4,6,8]</span></div><div class="line"><span class="comment">[6,8,10]</span></div><div class="line"><span class="comment">[2,4,6,8]</span></div><div class="line"><span class="comment">[4,6,8,10]</span></div><div class="line"><span class="comment">[2,4,6,8,10]</span></div><div class="line"><span class="comment">[2,6,10]</span></div></pre></td></tr></table></figure></p>
+<p>这题试了下DFS会超时，用DP做会MLE。最后没做出来。<br>给个别人的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">numberOfArithmeticSlices</span><span class="params">(self, A)</span>:</span></div><div class="line">		<span class="string">"""</span></div><div class="line">		:type A: List[int]</div><div class="line">		:rtype: int</div><div class="line">		"""</div><div class="line">		ans=<span class="number">0</span></div><div class="line">		dp = []</div><div class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</div><div class="line">			a=A[i]</div><div class="line">			dp.append(&#123;&#125;)</div><div class="line">			<span class="keyword">for</span> j <span class="keyword">in</span> range(i):</div><div class="line">				b=A[j]</div><div class="line">				d=a-b</div><div class="line">				<span class="keyword">if</span> d <span class="keyword">in</span> dp[j]:</div><div class="line">					v=<span class="number">1</span>+dp[j][d]</div><div class="line">				<span class="keyword">else</span>:</div><div class="line">					v=<span class="number">1</span></div><div class="line">				<span class="keyword">if</span> d <span class="keyword">in</span> dp[i]:</div><div class="line">					dp[i][d]=dp[i][d]+v</div><div class="line">				<span class="keyword">else</span>:</div><div class="line">					dp[i][d]=v</div><div class="line">			ans += sum([dp[i][x] <span class="keyword">for</span> x <span class="keyword">in</span> dp[i]]) - i</div><div class="line">		<span class="keyword">return</span> ans</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/11/06/Smarking Algorithm Contest 3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Smarking Algorithm Contest 2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/30/Smarking Algorithm Contest 2/">Smarking Algorithm Contest 2</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/30/Smarking Algorithm Contest 2/" class="archive-article-date">
+  	<time datetime="2016-10-30T04:21:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="435-Non-overlapping-Intervals"><a href="#435-Non-overlapping-Intervals" class="headerlink" title="435. Non-overlapping Intervals"></a>435. Non-overlapping Intervals</h2><p>Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.</p>
+<p>Note:</p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>Intervals like [1,2] and [2,3] have borders “touching” but they don’t overlap each other.</li>
+</ol>
+<p>给定一组区间，你可以移除一些区间让这组区间互不重叠。</p>
+<p>做法是：</p>
+<ol>
+<li>首先将区间按照起点大小排序。</li>
+<li>将区间中所有完全覆盖其他区间的区间移除掉。</li>
+<li>在剩下的区间中，如果有区间，和它之前的区间有重叠，就移除它。</li>
+</ol>
+<p>代码如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> arrI []Interval</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(a)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Less</span><span class="params">(i,j <span class="keyword">int</span>)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> a[i].Start!=a[j].Start&#123;</div><div class="line">		<span class="keyword">return</span> a[i].Start&lt;a[j].Start</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> a[i].End&gt;=a[j].End</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Swap</span><span class="params">(i,j <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	a[i],a[j] = a[j],a[i]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">eraseOverlapIntervals</span><span class="params">(intervals []Interval)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(intervals) &lt;= <span class="number">1</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	tmp := arrI(intervals)</div><div class="line">    sort.Sort(tmp)</div><div class="line">	res := tmp[<span class="number">0</span>]</div><div class="line">	count :=<span class="number">0</span></div><div class="line">	ret := []Interval&#123;&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(tmp);i++&#123;</div><div class="line">		flag := <span class="literal">false</span></div><div class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(ret)&gt;<span class="number">0</span> &amp;&amp; tmp[i].Start &lt;=  ret[<span class="built_in">len</span>(ret)<span class="number">-1</span>].Start&#123;</div><div class="line">			flag = <span class="literal">true</span></div><div class="line">			count ++</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">for</span> j:=i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(tmp);j++&#123;</div><div class="line">				<span class="keyword">if</span> tmp[i].End &lt;= tmp[j].Start&#123;</div><div class="line">					<span class="keyword">break</span></div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span> tmp[i].End &gt;= tmp[j].End&#123;</div><div class="line">					flag = <span class="literal">true</span></div><div class="line">					count ++</div><div class="line">					<span class="keyword">break</span></div><div class="line">				&#125;</div><div class="line">				</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> !flag&#123;</div><div class="line">			ret = <span class="built_in">append</span>(ret,tmp[i])</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ret) == <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span> count</div><div class="line">	&#125;</div><div class="line">	res =ret[<span class="number">0</span>]</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>;i&lt;<span class="built_in">len</span>(ret);i++&#123;</div><div class="line">		<span class="keyword">if</span> ret[i].Start &gt;= res.End&#123;</div><div class="line">			res = ret[i]</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			count ++</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="436-Find-Right-Interval"><a href="#436-Find-Right-Interval" class="headerlink" title="436. Find Right Interval"></a>436. Find Right Interval</h2><p>Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the “right” of i.</p>
+<p>For any interval i, you need to store the minimum interval j’s index, which means that the interval j has the minimum start point to build the “right” relationship for interval i. If the interval j doesn’t exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.</p>
+<p>Note:</p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>You may assume none of these intervals have the same start point.<br>给定一组区间，对于每一个区间，如果有其他区间的起点大于等于这个区间的终点，那么就称这个区间有右区间。找出最近的右区间的下标。没有右区间则该区间的最小右区间为-1。</li>
+</ol>
+<p>这题直接用o(n*n)的算法就能过。即一个个找右区间。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findRightInterval</span><span class="params">(intervals []Interval)</span> []<span class="title">int</span></span> &#123;</div><div class="line">    ret := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(intervals))</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(intervals);i++&#123;</div><div class="line">		min := i</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(intervals);j++&#123;</div><div class="line">			<span class="keyword">if</span> j == i&#123;</div><div class="line">				<span class="keyword">continue</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> intervals[j].Start &gt;= intervals[i].End&#123;</div><div class="line">				<span class="keyword">if</span> min == i || intervals[j].Start &lt; intervals[min].Start&#123;</div><div class="line">					 min = j</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> min == i&#123;</div><div class="line">			min = <span class="number">-1</span></div><div class="line">		&#125;</div><div class="line">		ret[i] = min</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="441-Arranging-Coins"><a href="#441-Arranging-Coins" class="headerlink" title="441. Arranging Coins"></a>441. Arranging Coins</h2><p>You have a total of n coins that you want to form in a staircase shape, where every k-th row must have exactly k coins.</p>
+<p>Given n, find the total number of full staircase rows that can be formed.</p>
+<p>n is a non-negative integer and fits within the range of a 32-bit signed integer.</p>
+<p>水题，没啥好说的。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">arrangeCoins</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    idx  :=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (n&gt;=idx)&#123;</div><div class="line">		n -=idx</div><div class="line">		idx ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> idx<span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="444-Sequence-Reconstruction"><a href="#444-Sequence-Reconstruction" class="headerlink" title="444. Sequence Reconstruction"></a>444. Sequence Reconstruction</h2><p>Check whether the original sequence org can be uniquely reconstructed from the sequences in seqs. The org sequence is a permutation of the integers from 1 to n, with 1 ≤ n ≤ 10^4. Reconstruction means building a shortest common supersequence of the sequences in seqs (i.e., a shortest sequence so that all sequences in seqs are subsequences of it). Determine whether there is only one sequence that can be reconstructed from seqs and it is the org sequence.</p>
+<p><a href="https://leetcode.com/contest/11/problems/sequence-reconstruction/" target="_blank" rel="external">link</a><br>没做出来，贴个别人的代码。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">sequenceReconstruction</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; org, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; seqs)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = org.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; to(n), in(n);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vis(n);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; adj(n);</div><div class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : org) &#123;</div><div class="line">            x--;</div><div class="line">            to[x] = k++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;vec : seqs) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;c : vec) &#123;</div><div class="line">                c--;</div><div class="line">                <span class="keyword">if</span> (c &lt; <span class="number">0</span> || c &gt;= n) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">                vis[to[c]] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vec.size(); i++) &#123;</div><div class="line">                <span class="keyword">auto</span> x = to[vec[i - <span class="number">1</span>]], y = to[vec[i]];</div><div class="line">                adj[x].push_back(y);</div><div class="line">                in[y]++;</div><div class="line">                <span class="keyword">if</span> (x &gt; y) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!vis[i]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (!in[i]) &#123;</div><div class="line">                q.push(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sorted;</div><div class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">            <span class="keyword">if</span> (q.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">auto</span> s = q.front();</div><div class="line">            q.pop();</div><div class="line">            sorted.push_back(s);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : adj[s]) &#123;</div><div class="line">                <span class="keyword">if</span> (!--in[v]) &#123;</div><div class="line">                    q.push(v);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i != sorted[i]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/30/Smarking Algorithm Contest 2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-leetcode_weekly_contest10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/23/leetcode_weekly_contest10/">Leetcode第十周周赛Smarking Algorithm Contest</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/23/leetcode_weekly_contest10/" class="archive-article-date">
+  	<time datetime="2016-10-23T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="437-Path-Sum-III"><a href="#437-Path-Sum-III" class="headerlink" title="437. Path Sum III"></a>437. Path Sum III</h2><p>You are given a binary tree in which each node contains an integer value.</p>
+<p>Find the number of paths that sum to a given value.</p>
+<p>The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).</p>
+<p>The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">root = [<span class="number">10</span>,<span class="number">5</span>,-<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="literal">null</span>,<span class="number">11</span>,<span class="number">3</span>,-<span class="number">2</span>,<span class="literal">null</span>,<span class="number">1</span>], sum = <span class="number">8</span></div><div class="line"></div><div class="line">      <span class="number">10</span></div><div class="line">     /  <span class="string">\</span></div><div class="line">    <span class="number">5</span>   -<span class="number">3</span></div><div class="line">   / <span class="string">\</span>    <span class="string">\</span></div><div class="line">  <span class="number">3</span>   <span class="number">2</span>   <span class="number">11</span></div><div class="line"> / <span class="string">\</span>   <span class="string">\</span></div><div class="line"><span class="number">3</span>  -<span class="number">2</span>   <span class="number">1</span></div><div class="line"></div><div class="line">Return <span class="number">3.</span> The paths <span class="literal">that</span> sum <span class="keyword">to</span> <span class="number">8</span> are:</div><div class="line"></div><div class="line"><span class="number">1.</span>  <span class="number">5</span><span class="function"> -&gt;</span> <span class="number">3</span></div><div class="line"><span class="number">2.</span>  <span class="number">5</span><span class="function"> -&gt;</span> <span class="number">2</span><span class="function"> -&gt;</span> <span class="number">1</span></div><div class="line"><span class="number">3.</span> -<span class="number">3</span><span class="function"> -&gt;</span> <span class="number">11</span></div></pre></td></tr></table></figure></p>
+<p>给你个树，求出所有符合路径上的节点的值的和等于给定值这个条件的路径的个数。路径要求是自上而下，但是不要求从根出发，也不要求以叶子节点作为结尾。<br>挂在这道题上面了。<br>给个别人的解法：<br>将路径分为两种走法，每个节点都有两种走法。第一种情况是以这个节点为起点，开始出发。第二种是继承之前的走法接着走下去。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> res <span class="keyword">int</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">go2</span><span class="params">(root *TreeNode, need <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> need == <span class="number">0</span>&#123;</div><div class="line">		res ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> root.Left != <span class="literal">nil</span>&#123;</div><div class="line">		go2(root.Left,need-root.Left.Val)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> root.Right != <span class="literal">nil</span>&#123;</div><div class="line">		go2(root.Right,need-root.Right.Val)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">go1</span><span class="params">(root * TreeNode, need <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	go2(root,need-root.Val)</div><div class="line">	go1(root.Left,need)</div><div class="line">	go1(root.Right,need)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	res = <span class="number">0</span></div><div class="line">	go1(root, sum)</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="438-Find-All-Anagrams-in-a-String"><a href="#438-Find-All-Anagrams-in-a-String" class="headerlink" title="438. Find All Anagrams in a String"></a>438. Find All Anagrams in a String</h2><p>Given a string s and a non-empty string p, find all the start indices of p’s anagrams in s.</p>
+<p>Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.</p>
+<p>The order of output does not matter.<br>Example 1:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: "cbaebabacd" p: "abc"</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 6]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">0</span> <span class="keyword">is</span> <span class="string">"cba"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"abc"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">6</span> <span class="keyword">is</span> <span class="string">"bac"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"abc"</span>.</div></pre></td></tr></table></figure></p>
+<p>Example 2:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: "abab" p: "ab"</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 1, 2]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">0</span> <span class="keyword">is</span> <span class="string">"ab"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">1</span> <span class="keyword">is</span> <span class="string">"ba"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">2</span> <span class="keyword">is</span> <span class="string">"ab"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div></pre></td></tr></table></figure></p>
+<p>给定两个字符串s,p，求出p的所有变形（包括自己）在s中的起点。<br>解法是统计p中的词频，然后统计s中i到<code>i+len(p)</code>中的字符串的词频。相比较，如果相等则说明命中了。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(a,b,c [26]<span class="keyword">int</span>)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++&#123;</div><div class="line">		<span class="keyword">if</span> a[i]-b[i] != c[i]&#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findAnagrams</span><span class="params">(s <span class="keyword">string</span>, p <span class="keyword">string</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(s)&lt;<span class="built_in">len</span>(p)&#123;</div><div class="line">		<span class="keyword">return</span> []<span class="keyword">int</span>&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	ret := []<span class="keyword">int</span>&#123;&#125;</div><div class="line">    start, end, mark := [<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;,[<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;,[<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		mark[p[i]-<span class="string">'a'</span>] ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		end[s[i]-<span class="string">'a'</span>] ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> check(end,start,mark)&#123;</div><div class="line">		ret = <span class="built_in">append</span>(ret,<span class="number">0</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="built_in">len</span>(p);i&lt;<span class="built_in">len</span>(s);i++&#123;</div><div class="line">		start[s[i-<span class="built_in">len</span>(p)]-<span class="string">'a'</span>] ++</div><div class="line">		end[s[i]-<span class="string">'a'</span>]++</div><div class="line">		<span class="keyword">if</span> check(end,start,mark)&#123;</div><div class="line">			ret = <span class="built_in">append</span>(ret,i-<span class="built_in">len</span>(p)+<span class="number">1</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="439-Ternary-Expression-Parser"><a href="#439-Ternary-Expression-Parser" class="headerlink" title="439. Ternary Expression Parser"></a>439. Ternary Expression Parser</h2><p>Given a string representing arbitrarily nested ternary expressions, calculate the result of the expression. You can always assume that the given expression is valid and only consists of digits 0-9, ?, :, T and F (T and F represent True and False respectively).</p>
+<p>Note:</p>
+<ol>
+<li>The length of the given string is ≤ 10000.</li>
+<li>Each number will contain only one digit.</li>
+<li>The conditional expressions group right-to-left (as usual in most languages).</li>
+<li>The condition will always be either T or F. That is, the condition will never be a digit.</li>
+<li>The result of the expression will always evaluate to either a digit 0-9, T or F.<br>Example 1:<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: <span class="string">"T?2:3"</span></div><div class="line">Output: <span class="string">"2"</span></div><div class="line">Explanation: If <span class="literal">true</span>, <span class="keyword">then</span> <span class="literal">result</span> <span class="keyword">is</span> <span class="number">2</span>; otherwise <span class="literal">result</span> <span class="keyword">is</span> <span class="number">3.</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Example 2:<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Input</span>: "F?1:T?4:5"</div><div class="line"><span class="attribute">Output</span>: "4"</div><div class="line"><span class="attribute">Explanation</span>: The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:</div><div class="line"></div><div class="line"><span class="clean"></span></div><div class="line">             <span class="string">"(F ? 1 : (T ? 4 : 5))"</span>                   <span class="string">"(F ? 1 : (T ? 4 : 5))"</span></div><div class="line">          -&gt; <span class="string">"(F ? 1 : 4)"</span>                 or       -&gt; <span class="string">"(T ? 4 : 5)"</span></div><div class="line">          -&gt; <span class="string">"4"</span>                                    -&gt; <span class="string">"4"</span></div><div class="line">```   </div><div class="line"></div><div class="line"></div><div class="line">就是C语言中常见的`?:`语句。</div><div class="line">这题可以利用栈来做，也可以利用递归来做，应该也可以用正则表达式来做。</div><div class="line">下面是递归的做法：</div></pre></td></tr></table></figure></p>
+<p>func parseTernary(e string) string {<br>    if e[0] != ‘T’ &amp;&amp; e[0]!=’F’{<br>        return e<br>    }<br>    c1,c2,i := 0,0,1<br>    for i=1;i<len(e);i++{ if="" e[i]="=" '?'{="" c1="" ++="" }else{="" ':'{="" c2="" c2{="" break;="" }="" i="=" len(e){="" return="" e="" e[0]="=" 't'{="" parseternary(e[2:i])="" parseternary(e[i+1:])="" <figure="" class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## 440. K-th Smallest in Lexicographical Order</span></div><div class="line">Given integers n <span class="keyword">and</span> k, find <span class="keyword">the</span> lexicographically k-th smallest <span class="keyword">integer</span> <span class="keyword">in</span> <span class="keyword">the</span> range <span class="built_in">from</span> <span class="number">1</span> <span class="built_in">to</span> n.</div><div class="line"></div><div class="line">Note: <span class="number">1</span> ≤ k ≤ n ≤ <span class="number">109.</span></div><div class="line"></div><div class="line">Example:</div></pre></td></tr></table></len(e);i++{></p>
+<p>Input:<br>n: 13   k: 2</p>
+<p>Output:<br>10</p>
+<p>Explanation:<br>The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">求字典序的题。和头条的校招面试题一模一样。</div></pre></td></tr></table></figure></p>
+<p>var Len,n,m,ret int<br>var num,ans [20]int</p>
+<p>func valueOfBegin(b int ) int{<br>    cnt :=0<br>    for i:=b;i&lt;=Len;i++{<br>        cnt = cnt <em>10 + num[Len-i+1]<br>    }<br>    return cnt<br>}<br>func countofNum(a [20]int,anslen int) int{<br>    k,cnt :=1,0<br>    for i:=0;i+anslen &lt;Len;i++{<br>        cnt +=k<br>        k</em>=10<br>    }<br>    op :=0<br>    for i:=1;i&lt;=anslen;i++{<br>        id := Len-i+1<br>        if num[id]&gt;a[i]{<br>            op = -1<br>            break<br>        }else if num[id] &lt; a[i]{<br>            op = 1<br>            break<br>        }<br>    }<br>    if op == 0{<br>        if anslen == Len{<br>            return 1<br>        }<br>        return valueOfBegin(anslen+1)+1+cnt<br>    }<br>    if op == 1{<br>        return cnt<br>    }<br>        k = 1<br>        for i:=0;i&lt;Len-anslen;i++{<br>            k*=10</p>
+<pre><code>}
+return cnt +k
+</code></pre><p>}</p>
+<p>func dfs(ans [20]int, cur,m int){<br>    if m == 1{<br>        ret = 0<br>        for i:=1;i&lt;=cur;i++{<br>            ret = ret *10 + ans[i]<br>        }<br>        return<br>    }<br>    m –<br>    for i:=0;i&lt;=9;i++{<br>        ans[cur+1] = i<br>        cnt := countofNum(ans,cur+1)<br>        if cnt &gt;=m{<br>            dfs(ans,cur+1,m)<br>            return<br>        }else{<br>            m -= cnt<br>        }<br>    }<br>}</p>
+<p>func findKthNumber(a int, k int) int {<br>    Len = 0<br>    n = a<br>    m = k<br>    for n&gt;0{<br>        Len ++<br>        num[Len] = n%10<br>        n/=10<br>    }<br>    for i:=1;i&lt;=9;i++{<br>        ans[1] = i<br>        cnt := countofNum(ans,1)<br>        if cnt &gt;=m{<br>            dfs(ans,1,m)<br>            break<br>        }else{<br>            m -= cnt<br>        }<br>    }<br>    return ret<br>}<br>```</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/23/leetcode_weekly_contest10/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-leetcode_weekly_contest9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/16/leetcode_weekly_contest9/">LeetCode Weekly Contest 9 第九周周赛</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/16/leetcode_weekly_contest9/" class="archive-article-date">
+  	<time datetime="2016-10-16T06:11:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="422-Valid-Word-Square"><a href="#422-Valid-Word-Square" class="headerlink" title="422. Valid Word Square"></a>422. Valid Word Square</h2><p>Given a sequence of words, check whether it forms a valid word square.</p>
+<p>A sequence of words forms a valid word square if the kth row and column read the exact same string, where 0 ≤ k &lt; max(numRows, numColumns).<br>Note:</p>
+<pre><code>1. The number of words given is at least 1 and does not exceed 500.
+2. Word length will be at least 1 and does not exceed 500.
+3. Each word contains only lowercase English alphabet a-z.
+</code></pre><p>大致就是讲给定一组string数组，判断string数组是不是符合要求。要求方块横着读和竖着读是一样的。<br>直接判断就行了。<br>golang AC代码：<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">validWordSquare</span><span class="params">(words []<span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	str := <span class="string">""</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span> ;i&lt; <span class="built_in">len</span>(words);i++&#123;</div><div class="line">		str = <span class="string">""</span></div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(words);j++&#123;</div><div class="line">			<span class="keyword">if</span> i &lt; <span class="built_in">len</span>(words[j])&#123;</div><div class="line">				str += <span class="keyword">string</span>(words[j][i])</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> str != words[i]&#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="423-Reconstruct-Original-Digits-from-English"><a href="#423-Reconstruct-Original-Digits-from-English" class="headerlink" title="423. Reconstruct Original Digits from English"></a>423. Reconstruct Original Digits from English</h2><p>Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.</p>
+<p>Note:</p>
+<ol>
+<li>Input contains only lowercase English letters.</li>
+<li>Input is guaranteed to be valid and can be transformed to its original digits. That means invalid inputs such as “abc” or “zerone” are not permitted.</li>
+<li>Input length is less than 50,000.</li>
+</ol>
+<p>给一串乱序的字母序列，求这个字母序列重组之后所代表的数字串。<br>比如：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> <span class="string">"owoztneoer"</span></div><div class="line"></div><div class="line"><span class="symbol">Output:</span> <span class="string">"012"</span></div></pre></td></tr></table></figure></p>
+<p>题目中说给出的字母序列都是必定合法而且唯一的。</p>
+<p>这题主要是根据0-9的英文中独占的字母来进行判断的。判断的顺序如下：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>英文</th>
+<th>字母   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>zero</td>
+<td>z</td>
+</tr>
+<tr>
+<td>6</td>
+<td>six</td>
+<td>s</td>
+</tr>
+<tr>
+<td>2</td>
+<td>two</td>
+<td>w</td>
+</tr>
+<tr>
+<td>7</td>
+<td>seven</td>
+<td>s</td>
+</tr>
+<tr>
+<td>4</td>
+<td>four</td>
+<td>u</td>
+</tr>
+<tr>
+<td>5</td>
+<td>five</td>
+<td>v</td>
+</tr>
+<tr>
+<td>1</td>
+<td>one</td>
+<td>o</td>
+</tr>
+<tr>
+<td>9</td>
+<td>nine</td>
+<td>n</td>
+</tr>
+<tr>
+<td>8</td>
+<td>eight</td>
+<td>i</td>
+</tr>
+<tr>
+<td>3</td>
+<td>three</td>
+<td>t</td>
+</tr>
+</tbody>
+</table>
+<p>从表的第一项开始，我们首先可以通过z的个数确定0的个数，然后通过s确定6的个数。依次类推。需要注意的是9的个数是n的个数的一半。最后就能得到乱序序列的原来的数字组合了。<br>golang AC代码：<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">originalDigits</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    nums := []<span class="keyword">string</span>&#123;<span class="string">"zero"</span>,<span class="string">"one"</span>,<span class="string">"two"</span>,<span class="string">"three"</span>,<span class="string">"four"</span>,<span class="string">"five"</span>,<span class="string">"six"</span>,<span class="string">"seven"</span>,<span class="string">"eight"</span>,<span class="string">"nine"</span>&#125;</div><div class="line">	<span class="keyword">var</span> count [<span class="number">10</span>]<span class="keyword">int</span></div><div class="line">	<span class="keyword">var</span> acount [<span class="number">26</span>]<span class="keyword">int</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(s);i++&#123;</div><div class="line">		acount[<span class="keyword">int</span>(s[i]-<span class="string">'a'</span>)] ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> acount[<span class="number">25</span>]&gt;<span class="number">0</span>&#123;</div><div class="line">		str := nums[<span class="number">0</span>]</div><div class="line">		count[<span class="number">0</span>] = acount[<span class="number">25</span>]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">0</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'x'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">6</span>]</div><div class="line">		count[<span class="number">6</span>] = acount[<span class="keyword">int</span>(<span class="string">'x'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">6</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'w'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">2</span>]</div><div class="line">		count[<span class="number">2</span>] = acount[<span class="keyword">int</span>(<span class="string">'w'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">2</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'s'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">7</span>]</div><div class="line">		count[<span class="number">7</span>] = acount[<span class="keyword">int</span>(<span class="string">'s'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">7</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'u'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">4</span>]</div><div class="line">		count[<span class="number">4</span>] = acount[<span class="keyword">int</span>(<span class="string">'u'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">4</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'v'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">5</span>]</div><div class="line">		count[<span class="number">5</span>] = acount[<span class="keyword">int</span>(<span class="string">'v'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">5</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">		<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'o'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">1</span>]</div><div class="line">		count[<span class="number">1</span>] = acount[<span class="keyword">int</span>(<span class="string">'o'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">1</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;	</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'n'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">9</span>]</div><div class="line">		count[<span class="number">9</span>] = acount[<span class="keyword">int</span>(<span class="string">'n'</span>-<span class="string">'a'</span>)]/<span class="number">2</span></div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">9</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (acount[<span class="keyword">int</span>(<span class="string">'i'</span>-<span class="string">'a'</span>)]&gt;<span class="number">0</span>)&#123;</div><div class="line">		str := nums[<span class="number">8</span>]</div><div class="line">		count[<span class="number">8</span>] = acount[<span class="keyword">int</span>(<span class="string">'i'</span>-<span class="string">'a'</span>)]</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(str);i++&#123;</div><div class="line">			acount[<span class="keyword">int</span>(str[i]-<span class="string">'a'</span>)] -= count[<span class="number">8</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	count[<span class="number">3</span>] = acount[<span class="keyword">int</span>(<span class="string">'r'</span>-<span class="string">'a'</span>)]</div><div class="line">	str := <span class="string">""</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;count[i];j++&#123;</div><div class="line">			str += <span class="keyword">string</span>(i+<span class="string">'0'</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> str</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="424-Longest-Repeating-Character-Replacement"><a href="#424-Longest-Repeating-Character-Replacement" class="headerlink" title="424. Longest Repeating Character Replacement"></a>424. Longest Repeating Character Replacement</h2><p>Given a string that consists of only uppercase English letters, you can replace any letter in the string with another letter at most k times. Find the length of a longest substring containing all repeating letters you can get after performing the above operations.<br>给定一串仅由大写字母组成的字符串，和一个数字k。假定这个字符串最多有k个字母能被替换成其他字母。求这个替换的过程中，最长的连续重复序列的长度。<br>这道题可以用枚举法，先假设以求最长的连续的A,那么在整个序列中，把不是A的点都标出来。然后看看把这些点中的某K个换成A。求出这个换的过程中的最长长度。<br>算法复杂度是o(n).<br>AC golang代码如下：<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">characterReplacement</span><span class="params">(s <span class="keyword">string</span>, k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    dp := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(s)+<span class="number">1</span>)</div><div class="line">	<span class="keyword">var</span> ch [<span class="number">26</span>]<span class="keyword">bool</span></div><div class="line">	max := <span class="number">0</span></div><div class="line">	<span class="keyword">if</span> k == <span class="number">0</span>&#123;</div><div class="line">		length := <span class="number">1</span></div><div class="line">		<span class="keyword">for</span> i :=<span class="number">1</span>;i&lt;<span class="built_in">len</span>(s);i++&#123;</div><div class="line">			<span class="keyword">if</span> s[i<span class="number">-1</span>] == s[i]&#123;</div><div class="line">				length ++</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">if</span> max &lt; length&#123;</div><div class="line">					max = length</div><div class="line">				&#125;</div><div class="line">				length = <span class="number">1</span></div><div class="line">			&#125;</div><div class="line">			</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> max &lt; length&#123;</div><div class="line">					max = length</div><div class="line">				&#125;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//length := 0</span></div><div class="line">	<span class="keyword">for</span> i :=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(s);i++&#123;</div><div class="line">		ch[s[i]-<span class="string">'A'</span>] = <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i :=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++&#123;</div><div class="line">		<span class="keyword">if</span> ch[i] == <span class="literal">false</span>&#123;</div><div class="line">			<span class="keyword">continue</span></div><div class="line">		&#125;</div><div class="line">		c := <span class="string">'A'</span> + i</div><div class="line">	<span class="comment">//	if c == 75&#123;</span></div><div class="line">	<span class="comment">//		fmt.Println("break")</span></div><div class="line">	<span class="comment">//	&#125;</span></div><div class="line">		idx :=<span class="number">0</span></div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(s);j++&#123;</div><div class="line">			<span class="keyword">if</span> <span class="keyword">int</span>(s[j])!=c&#123;</div><div class="line">				dp[idx] = j</div><div class="line">				idx++</div><div class="line">			<span class="comment">//else&#123;</span></div><div class="line">		<span class="comment">//		fmt.Print(j," ")</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//fmt.Println("|",c)</span></div><div class="line">		<span class="keyword">if</span> idx &lt;= k&#123;</div><div class="line">			<span class="keyword">return</span> <span class="built_in">len</span>(s)</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> max &lt; dp[k]&#123;</div><div class="line">			max = dp[k]</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> j:= k+<span class="number">1</span>;j &lt;idx;j++&#123;</div><div class="line">			<span class="keyword">if</span> dp[j] - dp[j-k<span class="number">-1</span>] - <span class="number">1</span> &gt;= max&#123;</div><div class="line">				max = dp[j] - dp[j-k<span class="number">-1</span>] - <span class="number">1</span></div><div class="line">				<span class="comment">//fmt.Println(c)</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> max</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="425-Word-Squares"><a href="#425-Word-Squares" class="headerlink" title="425 Word Squares"></a>425 Word Squares</h2><p>没做出来，贴一个别人的python代码，用了trie树加dfs：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordSquares</span><span class="params">(self, words)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type words: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        self.l = len(words[<span class="number">0</span>])</div><div class="line">        </div><div class="line">        self.trie = self.build(words)</div><div class="line">    </div><div class="line">        self.res = []</div><div class="line">    </div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">            self.dfs(words, self.trie, [word])</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> self.res</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, words, trie, lst)</span>:</span></div><div class="line">        <span class="keyword">if</span> len(lst) == self.l:</div><div class="line">            self.res.append(lst)</div><div class="line">            <span class="keyword">return</span></div><div class="line">        </div><div class="line">        prefix = <span class="string">''</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</div><div class="line">            prefix += lst[i][len(lst)]</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> self.get(trie, prefix):</div><div class="line">            self.dfs(words, trie, lst + [s])</div><div class="line">        </div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, words)</span>:</span></div><div class="line">        trie = &#123;&#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">            t = trie</div><div class="line">            </div><div class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> word:</div><div class="line">                <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> t:</div><div class="line">                    t[c] = &#123;&#125;</div><div class="line">                t = t[c]</div><div class="line">            </div><div class="line">            t[<span class="string">'#'</span>] = <span class="string">'#'</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> trie</div><div class="line">        </div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, trie, prefix)</span>:</span></div><div class="line">        res = []</div><div class="line">        </div><div class="line">        t = trie</div><div class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> prefix:</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">not</span> <span class="keyword">in</span> t:</div><div class="line">                <span class="keyword">return</span> res</div><div class="line">            t = t[c]</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> self.getall(t):</div><div class="line">            res.append(prefix + s)</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> res</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getall</span><span class="params">(self, t)</span>:</span></div><div class="line">        res = []</div><div class="line">        <span class="keyword">if</span> <span class="string">'#'</span> <span class="keyword">in</span> t: <span class="keyword">return</span> [<span class="string">''</span>]</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> t:</div><div class="line">            <span class="keyword">if</span> c != <span class="string">'#'</span>:</div><div class="line">                <span class="keyword">for</span> s <span class="keyword">in</span> self.getall(t[c]):</div><div class="line">                    res.append(c + s)</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/16/leetcode_weekly_contest9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-leetcode_weekly_contest8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/09/leetcode_weekly_contest8/">LeetCode Weekly Contest 8 第八周周赛</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/09/leetcode_weekly_contest8/" class="archive-article-date">
+  	<time datetime="2016-10-09T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不知为何生成该博客会出现内存溢出问题。贴个其他地方的链接。<br><a href="http://blog.csdn.net/nachtz/article/details/52766639" target="_blank" rel="external">LeetCode Weekly Contest 8 第八周周赛</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/09/leetcode_weekly_contest8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-leetcode_weekly_contest6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -386,210 +867,10 @@
 
 
   
-    <article id="post-dpdk_daq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/06/dpdk_daq/">将DPDK移植到snort上的DAQ</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/06/dpdk_daq/" class="archive-article-date">
-  	<time datetime="2016-08-06T10:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="DAQ-与Snort"><a href="#DAQ-与Snort" class="headerlink" title="DAQ 与Snort"></a>DAQ 与Snort</h2><p>在snort-daq中，daq的控制流程是这样的。<br><img src="http://img.blog.csdn.net/20160806194647769" alt="snort_daq"><br>如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是<code>daq_load_modules</code>。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。<br>在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是<br><code>pig</code>，或者说更本质的，是<code>pig</code>下的<code>analyzer</code>。<br>Snort下面开n个<code>pig</code>线程。<code>pig</code>线程下面调用<code>analyzer</code>来进行包解析。<br>包解析的过程中是在<code>pig</code>线程中多线程并行进行的。每一个<code>analyzer</code>下面都初始化一个<code>daq instance</code>并调用<code>acquire</code>进行抓包并分析。每一个<code>daq instance</code>下面都有一个或多个网卡来获取数据。因为目的主要是介绍daq，所以怎么解析就不提了。<br><img src="http://img.blog.csdn.net/20160806194734629" alt="pig_daq"><br>从上图和上面的介绍就可以看得出来，一个snort下面有多个<code>daq instance</code>并行运行。每一个<code>daq instance</code>都会进行初始化操作，占用系统资源，获取网卡，抓包，调用<code>callback</code>，之间相互独立。并且是<strong>单线程</strong>的。</p>
-<hr>
-<h2 id="DAQ与DPDK"><a href="#DAQ与DPDK" class="headerlink" title="DAQ与DPDK"></a>DAQ与DPDK</h2><p>如上面所介绍的。DAQ在设计的时候是单线程的。在本身的实现的几个模块中（Netmap,pcap等等）完全没有涉及到多线程的事情。在snort中的调用也是单线程并行调用的，相互之间各不影响。而Inter的DPDK在多线程方面则有限制。它所初始化的<code>EAL</code>层只能初始化一次。一个程序中只能运行一个dpdk主程序。所以就没有办法在snort中使用多线程。因为如果在snort中使用了多线程。那么实际上每个线程都会去尝试初始化dpdk的<code>EAL</code>。那么就会出错，导致最后只有一个线程能够成功初始化并启动。<br>所以如果要想实现一个支持snort多线程的daq。就需要修改daq中api的逻辑。<br>在实现中，利用线程id来绑定网卡。<br>在daq的content中加入了一个<code>nic</code>-<code>threadid</code>的映射表。然后每个网卡都有一个独立的<code>instance</code>存储原本在<code>daq_content</code>中的信息。然后在线程调用daq相关函数的时候，都会先利用threadid来进行检索这个<code>instance</code>进行操作。通过这个方法就能够将dpdk中的各个网卡独立运行。</p>
-<hr>
-<h2 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h2><p><a href="https://github.com/NachtZ/daq_dpdk" target="_blank" rel="external">daq_dpdk</a><br>基于的是<code>dpdk16.04</code>, <code>daq2.1.0</code>,<code>snort 3.0 a04</code>.<br>使用方法在项目主页中。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Snort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/06/dpdk_daq/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-dpdk_ring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/17/dpdk_ring/">dpdk_ring剥离（单线程版）</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/17/dpdk_ring/" class="archive-article-date">
-  	<time datetime="2016-06-17T10:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DPDK-RING-剥离-sc"><a href="#DPDK-RING-剥离-sc" class="headerlink" title="DPDK_RING 剥离(sc)"></a>DPDK_RING 剥离(sc)</h1><p>dpdk中的ring结构的原理在<a href="http://dpdk.org/doc/guides/prog_guide/ring_lib.html" target="_blank" rel="external">官方的doc</a>中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。<br>此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。<br>目前就剥离了单线程版的。<br>代码如下：</p>
-<ul>
-<li><strong>daq_ring.h</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DAQ_RING_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DAQ_RING_H</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="comment">//#include &lt;pthread.h&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _daq_ring&#123;</div><div class="line">  <span class="comment">//  pthread_mutex_t mutex;</span></div><div class="line">    <span class="keyword">int</span> size;</div><div class="line">    <span class="keyword">int</span> mask;</div><div class="line">    <span class="keyword">int</span> cons_head;</div><div class="line">    <span class="keyword">int</span> cons_tail;</div><div class="line">    <span class="keyword">int</span> prod_head;</div><div class="line">    <span class="keyword">int</span> prod_tail;</div><div class="line">    <span class="keyword">void</span> * ring[<span class="number">0</span>];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _daq_ring daq_ring;</div><div class="line"><span class="comment">//create a ring which can contain size's objects.</span></div><div class="line"><span class="function">daq_ring * <span class="title">daq_ring_create</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</div><div class="line"><span class="comment">//fre a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_free</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see whether a ring is empty.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isEmpty</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see whether a ring is full.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isFull</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see the number of objects in ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_count</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see the size of a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_getSize</span><span class="params">(daq_ring *r)</span></span>;</div><div class="line"><span class="comment">//see the number of objects can be inputed into the ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_freeCount</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//enqueue objects into a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_enqueue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> * <span class="keyword">const</span> *obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>;</div><div class="line"><span class="comment">//dequeue objects from a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_dequeue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> **obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="comment">//end of daq_ring.h</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>-<strong>daq_ring.c</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"daq_ring.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">/*typedef struct _daq_ring&#123;</span></div><div class="line">    pthread_mutex_t mutex;</div><div class="line">    unsigned int size;</div><div class="line">    void * head;</div><div class="line">    void * tail;</div><div class="line">    void * memhead;</div><div class="line">&#125;daq_ring;*/</div><div class="line"></div><div class="line"><span class="function">daq_ring * <span class="title">daq_ring_create</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">    daq_ring * r = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(num &lt;=<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    r = (daq_ring *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(daq_ring) + num*<span class="keyword">sizeof</span>(<span class="keyword">void</span>*));</div><div class="line">    <span class="keyword">if</span>(r == <span class="literal">NULL</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">    &#125;</div><div class="line">    r-&gt;size = num;</div><div class="line">    r-&gt;mask = num<span class="number">-1</span>;</div><div class="line">    r-&gt;prod_head = r-&gt;prod_tail = r-&gt;cons_head = r-&gt;cons_tail = <span class="number">0</span>;</div><div class="line">   <span class="comment">// pthread_mutex_init(&amp;r-&gt;mutex,NULL);</span></div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"><span class="comment">//fre a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_free</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="built_in">free</span>(r);</div><div class="line">&#125;</div><div class="line"><span class="comment">//see whether a ring is empty.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isEmpty</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> r-&gt;cons_tail == r-&gt;prod_tail;</div><div class="line">&#125;</div><div class="line"><span class="comment">//see whether a ring is full.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isFull</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> (((r-&gt;cons_tail - r-&gt;prod_tail <span class="number">-1</span>)&amp;r-&gt;mask)==<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">//see the number of objects in ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_count</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> ((r-&gt;prod_tail - r-&gt;cons_tail)&amp;r-&gt;mask);</div><div class="line">&#125;</div><div class="line"><span class="comment">//see the size of a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_getSize</span><span class="params">(daq_ring *r)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> r-&gt;size;</div><div class="line">&#125;</div><div class="line"><span class="comment">//see the number of objects can be inputed into the ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_freeCount</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> ((r-&gt;cons_tail - r-&gt;prod_tail - <span class="number">1</span>) &amp; r-&gt;mask);</div><div class="line">&#125;</div><div class="line"><span class="comment">//enqueue objects into a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_enqueue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> * <span class="keyword">const</span> *obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> prod_head = r-&gt;prod_head;</div><div class="line">    <span class="keyword">int</span> cons_tail = r-&gt;cons_tail;</div><div class="line">    <span class="keyword">int</span> prod_next = prod_head +<span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> mask = r-&gt;mask;</div><div class="line">    <span class="keyword">int</span> i ;</div><div class="line">    <span class="keyword">int</span> <span class="built_in">free</span> = mask + cons_tail -prod_head;</div><div class="line">    <span class="keyword">if</span>(num &gt;<span class="built_in">free</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">free</span> == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        num = <span class="built_in">free</span>;</div><div class="line">    &#125;</div><div class="line">    prod_next = prod_head +num;</div><div class="line">    r-&gt;prod_head = prod_next;</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">const</span> <span class="keyword">int</span> size = r-&gt;size;</div><div class="line">        <span class="keyword">int</span> idx = prod_head &amp; mask;</div><div class="line">        <span class="keyword">if</span>(idx + num &lt; size)&#123;</div><div class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (num &amp; ((~(<span class="keyword">unsigned</span>)<span class="number">0x3</span>))); i+=<span class="number">4</span>, idx+=<span class="number">4</span>) &#123; </div><div class="line">                r-&gt;ring[idx] = obj_table[i]; </div><div class="line">                r-&gt;ring[idx+<span class="number">1</span>] = obj_table[i+<span class="number">1</span>]; </div><div class="line">                r-&gt;ring[idx+<span class="number">2</span>] = obj_table[i+<span class="number">2</span>]; </div><div class="line">                r-&gt;ring[idx+<span class="number">3</span>] = obj_table[i+<span class="number">3</span>]; </div><div class="line">            &#125;</div><div class="line">            <span class="keyword">switch</span> (num &amp; <span class="number">0x3</span>) &#123; </div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>: r-&gt;ring[idx++] = obj_table[i++]; </div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>: r-&gt;ring[idx++] = obj_table[i++]; </div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>: r-&gt;ring[idx++] = obj_table[i++]; </div><div class="line">            &#125; </div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">for</span> (i =<span class="number">0</span>;idx&lt;size;++i,++idx)</div><div class="line">                r-&gt;ring[idx] = obj_table[i];</div><div class="line">            <span class="keyword">for</span>(idx = <span class="number">0</span>;i&lt;num;++i,++idx)</div><div class="line">                r-&gt;ring[idx] = obj_table[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    r-&gt;prod_tail = prod_next;</div><div class="line">    <span class="keyword">return</span> num;</div><div class="line">&#125;</div><div class="line"><span class="comment">//dequeue objects from a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_dequeue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> **obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> cons_head,prod_tail;</div><div class="line">    <span class="keyword">int</span> cons_next,entries;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> mask = r-&gt;mask;</div><div class="line">    cons_head = r-&gt;cons_head;</div><div class="line">    prod_tail = r-&gt;prod_tail;</div><div class="line">    entries = prod_tail - cons_head;</div><div class="line">    <span class="keyword">if</span>(num &gt; entries)&#123;</div><div class="line">        <span class="keyword">if</span>(entries == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        num = entries;</div><div class="line">    &#125;</div><div class="line">    cons_next = cons_head + num;</div><div class="line">    r -&gt; cons_head = cons_next;</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> idx = cons_head &amp; mask;</div><div class="line">        <span class="keyword">int</span> size = r-&gt; size; </div><div class="line">    <span class="keyword">if</span> (idx + num &lt; size) &#123; </div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (num &amp; (~(<span class="keyword">unsigned</span>)<span class="number">0x3</span>)); i+=<span class="number">4</span>, idx+=<span class="number">4</span>) &#123;</div><div class="line">            obj_table[i] = r-&gt;ring[idx]; </div><div class="line">            obj_table[i+<span class="number">1</span>] = r-&gt;ring[idx+<span class="number">1</span>]; </div><div class="line">            obj_table[i+<span class="number">2</span>] = r-&gt;ring[idx+<span class="number">2</span>]; </div><div class="line">            obj_table[i+<span class="number">3</span>] = r-&gt;ring[idx+<span class="number">3</span>]; </div><div class="line">        &#125; </div><div class="line">        <span class="keyword">switch</span> (num &amp; <span class="number">0x3</span>) &#123; </div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>: obj_table[i++] = r-&gt;ring[idx++]; </div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>: obj_table[i++] = r-&gt;ring[idx++]; </div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>: obj_table[i++] = r-&gt;ring[idx++]; </div><div class="line">        &#125; </div><div class="line">    &#125; <span class="keyword">else</span> &#123; </div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; idx &lt; size; i++, idx++) </div><div class="line">            obj_table[i] = r-&gt;ring[idx]; </div><div class="line">        <span class="keyword">for</span> (idx = <span class="number">0</span>; i &lt; num; i++, idx++) </div><div class="line">            obj_table[i] = r-&gt;ring[idx]; </div><div class="line">    &#125; </div><div class="line">    &#125;</div><div class="line">    r-&gt;cons_tail = cons_next;</div><div class="line">    <span class="keyword">return</span> num;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">daq_ring_stat</span><span class="params">(daq_ring * r)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"***********************************************\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Daq_ring's size is %d\n"</span>,daq_ring_getSize(r));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Daq_ring's objects now is %d.\n"</span>,daq_ring_count(r));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Daq_ring's free space is %d\n"</span>,daq_ring_freeCount(r));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Daq_ring is %s now.\n"</span>,daq_ring_isEmpty(r)?<span class="string">"empty"</span>:<span class="string">"not empty"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Daq_ring is %s now.\n"</span>,daq_ring_isFull(r)?<span class="string">"full"</span>:<span class="string">"not full"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"***********************************************\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_ptr</span><span class="params">(daq_ring *r)</span></span>&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"r-&gt;cons:%p %p\n"</span>, r-&gt;cons_head, r-&gt;cons_tail);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"r-&gt;prod:%p %p\n"</span>,r-&gt;prod_head,r-&gt;prod_tail);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"r-&gt;ring[0]:%p\n"</span>,&amp;r-&gt;ring[<span class="number">0</span>]);</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> * str[] = &#123;</div><div class="line">        <span class="string">"t1"</span>,<span class="string">"t2"</span>,<span class="string">"t3"</span>,<span class="string">"t4"</span>,<span class="string">"t5"</span>,<span class="string">"t6"</span>,<span class="string">"t7"</span>,<span class="string">"t8"</span>,<span class="string">"t9"</span>,<span class="string">"t10"</span>,<span class="string">"t11"</span>,<span class="string">"t12"</span>,<span class="string">"t13"</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">void</span> * ctx[<span class="number">12</span>];</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;<span class="number">10</span>;++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,str[i]);</div><div class="line">    daq_ring * r = daq_ring_create(<span class="number">9</span>);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_enqueue(r,str,<span class="number">8</span>,<span class="number">1</span>);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_dequeue(r,ctx,<span class="number">8</span>,<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;<span class="number">8</span>;++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span> *)ctx[i]);</div><div class="line">    daq_ring_stat(r);</div><div class="line"></div><div class="line">print_ptr(r);</div><div class="line">    daq_ring_enqueue(r,str,<span class="number">8</span>,<span class="number">1</span>);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_dequeue(r,ctx,<span class="number">8</span>,<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;<span class="number">10</span>;++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span> *)ctx[i]);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">char</span> * str[] = &#123;</div><div class="line">		<span class="string">"t1"</span>, <span class="string">"t2"</span>, <span class="string">"t3"</span>, <span class="string">"t4"</span>, <span class="string">"t5"</span>, <span class="string">"t6"</span>, <span class="string">"t7"</span>, <span class="string">"t8"</span>, <span class="string">"t9"</span>, <span class="string">"t10"</span>, <span class="string">"t11"</span>, <span class="string">"t12"</span>, <span class="string">"t13"</span>, <span class="string">"t14"</span>, <span class="string">"t15"</span>, <span class="string">"t16"</span>, <span class="string">"t17"</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">void</span> * ctx[<span class="number">18</span>];</div><div class="line">    daq_ring * r = daq_ring_create(<span class="number">16</span>);</div><div class="line">    daq_ring_enqueue(r,str,<span class="number">14</span>,<span class="number">1</span>);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_dequeue(r,ctx,<span class="number">4</span>,<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;<span class="number">4</span>;++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span> *)ctx[i]);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_enqueue(r,&amp;str[<span class="number">5</span>],<span class="number">5</span>,<span class="number">1</span>);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">    daq_ring_dequeue(r,ctx,<span class="number">15</span>,<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(i =<span class="number">0</span>;i&lt;<span class="number">15</span>;++i)</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,(<span class="keyword">char</span> *)ctx[i]);</div><div class="line">    daq_ring_stat(r);</div><div class="line">    print_ptr(r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    test2();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/17/dpdk_ring/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-dpdk_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/17/dpdk_note/">DPDK杂记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/17/dpdk_note/" class="archive-article-date">
-  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DPDK编译动态库"><a href="#DPDK编译动态库" class="headerlink" title="DPDK编译动态库"></a>DPDK编译动态库</h3><p>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
-<p>改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include $(RTE_SDK)/mk/rte<span class="selector-class">.extshared</span><span class="selector-class">.mk</span></div></pre></td></tr></table></figure></p>
-<p>把binary name中的app改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">SHARED</span> = yourname.so</div></pre></td></tr></table></figure></p>
-<p>最后再加上库：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LDLIBS += -L/home/nachtz/dpdk-<span class="number">2.2</span>.<span class="number">0</span>/x86_64-native-linuxapp-gcc/<span class="class"><span class="keyword">lib</span> -<span class="title">ldpdk</span> -<span class="title">lrt</span> -<span class="title">lm</span> -<span class="title">lgcc_s</span> -<span class="title">ldl</span></span></div></pre></td></tr></table></figure></p>
-<p>就行了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/17/dpdk_note/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -675,19 +956,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
               </li>
             
             <div class="clearfix"></div>
