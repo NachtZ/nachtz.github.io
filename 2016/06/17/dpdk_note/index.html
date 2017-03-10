@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="https://nachtz.github.io">
   <title>DPDK杂记 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时">
+  <meta name="description" content="DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DPDK杂记">
 <meta property="og:url" content="https://nachtz.github.io/2016/06/17/dpdk_note/index.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="###DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时">
-<meta property="og:updated_time" content="2017-03-10T13:18:47.000Z">
+<meta property="og:description" content="DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需">
+<meta property="og:updated_time" content="2017-03-10T14:25:03.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DPDK杂记">
-<meta name="twitter:description" content="###DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时">
+<meta name="twitter:description" content="DPDK编译动态库将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和CONFIG_RTE_BUILD_COMBINE_LIBS都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -46,7 +46,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="null" class="js-avatar">
+			<img src="null" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">NachtZ</a></h1>
@@ -110,7 +110,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="null" class="js-avatar">
+				<img src="null" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">NachtZ</h1>
@@ -193,7 +193,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###DPDK编译动态库<br>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
+        <h3 id="DPDK编译动态库"><a href="#DPDK编译动态库" class="headerlink" title="DPDK编译动态库"></a>DPDK编译动态库</h3><p>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
 <p>改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include $(RTE_SDK)/mk/rte<span class="selector-class">.extshared</span><span class="selector-class">.mk</span></div></pre></td></tr></table></figure></p>
 <p>把binary name中的app改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">SHARED</span> = yourname.so</div></pre></td></tr></table></figure></p>
 <p>最后再加上库：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LDLIBS += -L/home/nachtz/dpdk-<span class="number">2.2</span>.<span class="number">0</span>/x86_64-native-linuxapp-gcc/<span class="class"><span class="keyword">lib</span> -<span class="title">ldpdk</span> -<span class="title">lrt</span> -<span class="title">lm</span> -<span class="title">lgcc_s</span> -<span class="title">ldl</span></span></div></pre></td></tr></table></figure></p>
