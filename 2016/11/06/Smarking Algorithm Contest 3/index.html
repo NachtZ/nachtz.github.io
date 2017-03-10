@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="https://nachtz.github.io">
   <title>Smarking Algorithm Contest 3 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n -">
+  <meta name="description" content="1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Smarking Algorithm Contest 3">
 <meta property="og:url" content="https://nachtz.github.io/2016/11/06/Smarking Algorithm Contest 3/index.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="##1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n -">
-<meta property="og:updated_time" content="2017-03-10T14:47:34.778Z">
+<meta property="og:description" content="1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1">
+<meta property="og:updated_time" content="2017-03-10T14:48:51.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smarking Algorithm Contest 3">
-<meta name="twitter:description" content="##1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n -">
+<meta name="twitter:description" content="1.  453. Minimum Moves to Equal Array ElementsGiven a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -193,7 +193,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##1.  453. Minimum Moves to Equal Array Elements<br>Given a <strong>non-empty</strong> integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[1,2,3]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">3</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Only three moves <span class="keyword">are</span> needed (remember each move increments two elements):</div><div class="line"></div><div class="line"><span class="comment">[1,2,3]</span>  =&gt;  <span class="comment">[2,3,3]</span>  =&gt;  <span class="comment">[3,4,3]</span>  =&gt;  <span class="comment">[4,4,4]</span></div></pre></td></tr></table></figure></p>
+        <h2 id="1-453-Minimum-Moves-to-Equal-Array-Elements"><a href="#1-453-Minimum-Moves-to-Equal-Array-Elements" class="headerlink" title="1.  453. Minimum Moves to Equal Array Elements"></a>1.  453. Minimum Moves to Equal Array Elements</h2><p>Given a <strong>non-empty</strong> integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[1,2,3]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">3</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Only three moves <span class="keyword">are</span> needed (remember each move increments two elements):</div><div class="line"></div><div class="line"><span class="comment">[1,2,3]</span>  =&gt;  <span class="comment">[2,3,3]</span>  =&gt;  <span class="comment">[3,4,3]</span>  =&gt;  <span class="comment">[4,4,4]</span></div></pre></td></tr></table></figure></p>
 <p>给一个长度为n的非空数组，将这个数组中的其中n-1个元素都+1，称为一次操作。求出将这个数组所有元素都变为相同大小的操作的次数。<br>解法：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">func minMoves(nums []<span class="built_in">int</span>) <span class="built_in">int</span> &#123;</div><div class="line">	<span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">sum</span>,<span class="built_in">min</span>,<span class="built_in">max</span> := nums[<span class="number">0</span>],nums[<span class="number">0</span>],nums[<span class="number">0</span>]</div><div class="line">	for i:=<span class="number">1</span>;i&lt;len(nums);i++&#123;</div><div class="line">		<span class="built_in">sum</span> += nums[i]</div><div class="line">		<span class="keyword">if</span> <span class="built_in">min</span> &gt; nums[i]&#123;</div><div class="line">			<span class="built_in">min</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> <span class="built_in">max</span> &lt; nums[i]&#123;</div><div class="line">			<span class="built_in">max</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">sum</span> - len(nums)*<span class="built_in">min</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="2-447-Number-of-Boomerangs"><a href="#2-447-Number-of-Boomerangs" class="headerlink" title="2. 447. Number of Boomerangs"></a>2. 447. Number of Boomerangs</h2><p>Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters).</p>
 <p>Find the number of boomerangs. You may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive).<br>Ex:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="string">[[0,0],[1,0],[2,0]]</span></div><div class="line"></div><div class="line">Output:</div><div class="line"><span class="number">2</span></div><div class="line"></div><div class="line">Explanation:</div><div class="line">The two boomerangs are <span class="string">[[1,0],[0,0],[2,0]]</span> <span class="keyword">and</span> <span class="string">[[1,0],[2,0],[0,0]]</span></div></pre></td></tr></table></figure></p>
@@ -293,6 +293,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/01/08/SDN_opendaylight_dev_bundle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          在OpenDayLight控制器上开发Bundle
+        
+      </div>
+    </a>
   
   
     <a href="/2016/10/30/Smarking Algorithm Contest 2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -414,11 +423,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,6 +432,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
             
             <div class="clearfix"></div>
