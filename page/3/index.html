@@ -59,6 +59,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/tags/Resume/">简历</a></li>
+	        
 				<li><a href="/tags/DPDK/">DPDK</a></li>
 	        
 				<li><a href="/tags/Leetcode/">Leetcode</a></li>
@@ -141,6 +143,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -161,21 +165,23 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 12.5%"><a href="/">主页</a></li>
+					<li style="width: 11.11111111111111%"><a href="/">主页</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/DPDK/">DPDK</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/Resume/">简历</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/Leetcode/">Leetcode</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/DPDK/">DPDK</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/Snort/">Snort</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/Leetcode/">Leetcode</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/Golang/">Golang</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/Snort/">Snort</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/SDN/">SDN</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/Golang/">Golang</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/Docker/">Docker</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/SDN/">SDN</a></li>
 		        
-					<li style="width: 12.5%"><a href="/tags/Algorithm/">算法</a></li>
+					<li style="width: 11.11111111111111%"><a href="/tags/Docker/">Docker</a></li>
+		        
+					<li style="width: 11.11111111111111%"><a href="/tags/Algorithm/">算法</a></li>
 		        
 				</ul>
 			</nav>
@@ -191,6 +197,72 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-dpdk_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/17/dpdk_note/">DPDK杂记</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/17/dpdk_note/" class="archive-article-date">
+  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DPDK编译动态库"><a href="#DPDK编译动态库" class="headerlink" title="DPDK编译动态库"></a>DPDK编译动态库</h3><p>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include $(RTE_SDK)/mk/rte<span class="selector-class">.extshared</span><span class="selector-class">.mk</span></div></pre></td></tr></table></figure></p>
+<p>把binary name中的app改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">SHARED</span> = yourname.so</div></pre></td></tr></table></figure></p>
+<p>最后再加上库：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LDLIBS += -L/home/nachtz/dpdk-<span class="number">2.2</span>.<span class="number">0</span>/x86_64-native-linuxapp-gcc/<span class="class"><span class="keyword">lib</span> -<span class="title">ldpdk</span> -<span class="title">lrt</span> -<span class="title">lm</span> -<span class="title">lgcc_s</span> -<span class="title">ldl</span></span></div></pre></td></tr></table></figure></p>
+<p>就行了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/17/dpdk_note/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-resume" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -405,11 +477,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
