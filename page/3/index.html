@@ -180,6 +180,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-dpdk_daq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/06/dpdk_daq/">将DPDK移植到snort上的DAQ</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/06/dpdk_daq/" class="archive-article-date">
+  	<time datetime="2016-08-06T10:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="DAQ-与Snort"><a href="#DAQ-与Snort" class="headerlink" title="DAQ 与Snort"></a>DAQ 与Snort</h2><p>在snort-daq中，daq的控制流程是这样的。<br><img src="http://img.blog.csdn.net/20160806194647769" alt="snort_daq"><br>如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是<code>daq_load_modules</code>。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。<br>在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是<br><code>pig</code>，或者说更本质的，是<code>pig</code>下的<code>analyzer</code>。<br>Snort下面开n个<code>pig</code>线程。<code>pig</code>线程下面调用<code>analyzer</code>来进行包解析。<br>包解析的过程中是在<code>pig</code>线程中多线程并行进行的。每一个<code>analyzer</code>下面都初始化一个<code>daq instance</code>并调用<code>acquire</code>进行抓包并分析。每一个<code>daq instance</code>下面都有一个或多个网卡来获取数据。因为目的主要是介绍daq，所以怎么解析就不提了。<br><img src="http://img.blog.csdn.net/20160806194734629" alt="pig_daq"><br>从上图和上面的介绍就可以看得出来，一个snort下面有多个<code>daq instance</code>并行运行。每一个<code>daq instance</code>都会进行初始化操作，占用系统资源，获取网卡，抓包，调用<code>callback</code>，之间相互独立。并且是<strong>单线程</strong>的。</p>
+<hr>
+<h2 id="DAQ与DPDK"><a href="#DAQ与DPDK" class="headerlink" title="DAQ与DPDK"></a>DAQ与DPDK</h2><p>如上面所介绍的。DAQ在设计的时候是单线程的。在本身的实现的几个模块中（Netmap,pcap等等）完全没有涉及到多线程的事情。在snort中的调用也是单线程并行调用的，相互之间各不影响。而Inter的DPDK在多线程方面则有限制。它所初始化的<code>EAL</code>层只能初始化一次。一个程序中只能运行一个dpdk主程序。所以就没有办法在snort中使用多线程。因为如果在snort中使用了多线程。那么实际上每个线程都会去尝试初始化dpdk的<code>EAL</code>。那么就会出错，导致最后只有一个线程能够成功初始化并启动。<br>所以如果要想实现一个支持snort多线程的daq。就需要修改daq中api的逻辑。<br>在实现中，利用线程id来绑定网卡。<br>在daq的content中加入了一个<code>nic</code>-<code>threadid</code>的映射表。然后每个网卡都有一个独立的<code>instance</code>存储原本在<code>daq_content</code>中的信息。然后在线程调用daq相关函数的时候，都会先利用threadid来进行检索这个<code>instance</code>进行操作。通过这个方法就能够将dpdk中的各个网卡独立运行。</p>
+<hr>
+<h2 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h2><p><a href="https://github.com/NachtZ/daq_dpdk" target="_blank" rel="external">daq_dpdk</a><br>基于的是<code>dpdk16.04</code>, <code>daq2.1.0</code>,<code>snort 3.0 a04</code>.<br>使用方法在项目主页中。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Snort</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/06/dpdk_daq/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-dpdk_ring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -518,10 +589,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
               </li>
              
@@ -530,15 +597,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
