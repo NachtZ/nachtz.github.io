@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/11 | 一元硬币</title>
+  <title>Smarking Algorithm Contest 2 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/11/index.html">
+  <meta name="description" content="435. Non-overlapping IntervalsGiven a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+Note:
+
+You may assume the inte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Smarking Algorithm Contest 2">
+<meta property="og:url" content="http://nachtz.top/Smarking Algorithm Contest 2.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:description" content="435. Non-overlapping IntervalsGiven a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+Note:
+
+You may assume the inte">
+<meta property="og:updated_time" content="2017-03-10T14:47:01.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta name="twitter:title" content="Smarking Algorithm Contest 2">
+<meta name="twitter:description" content="435. Non-overlapping IntervalsGiven a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+Note:
+
+You may assume the inte">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -178,36 +188,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Smarking Algorithm Contest 2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Smarking Algorithm Contest 3.html" class="archive-article-date">
-  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Smarking Algorithm Contest 3.html">Smarking Algorithm Contest 3</a>
+    <h1 class="article-title" itemprop="name">
+      Smarking Algorithm Contest 2
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Smarking Algorithm Contest 2.html" class="archive-article-date">
+  	<time datetime="2016-10-30T04:21:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="435-Non-overlapping-Intervals"><a href="#435-Non-overlapping-Intervals" class="headerlink" title="435. Non-overlapping Intervals"></a>435. Non-overlapping Intervals</h2><p>Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.</p>
+<p>Note:</p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>Intervals like [1,2] and [2,3] have borders “touching” but they don’t overlap each other.</li>
+</ol>
+<p>给定一组区间，你可以移除一些区间让这组区间互不重叠。</p>
+<p>做法是：</p>
+<ol>
+<li>首先将区间按照起点大小排序。</li>
+<li>将区间中所有完全覆盖其他区间的区间移除掉。</li>
+<li>在剩下的区间中，如果有区间，和它之前的区间有重叠，就移除它。</li>
+</ol>
+<p>代码如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> arrI []Interval</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(a)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Less</span><span class="params">(i,j <span class="keyword">int</span>)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> a[i].Start!=a[j].Start&#123;</div><div class="line">		<span class="keyword">return</span> a[i].Start&lt;a[j].Start</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> a[i].End&gt;=a[j].End</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a arrI)</span><span class="title">Swap</span><span class="params">(i,j <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	a[i],a[j] = a[j],a[i]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">eraseOverlapIntervals</span><span class="params">(intervals []Interval)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(intervals) &lt;= <span class="number">1</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	tmp := arrI(intervals)</div><div class="line">    sort.Sort(tmp)</div><div class="line">	res := tmp[<span class="number">0</span>]</div><div class="line">	count :=<span class="number">0</span></div><div class="line">	ret := []Interval&#123;&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(tmp);i++&#123;</div><div class="line">		flag := <span class="literal">false</span></div><div class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(ret)&gt;<span class="number">0</span> &amp;&amp; tmp[i].Start &lt;=  ret[<span class="built_in">len</span>(ret)<span class="number">-1</span>].Start&#123;</div><div class="line">			flag = <span class="literal">true</span></div><div class="line">			count ++</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">for</span> j:=i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(tmp);j++&#123;</div><div class="line">				<span class="keyword">if</span> tmp[i].End &lt;= tmp[j].Start&#123;</div><div class="line">					<span class="keyword">break</span></div><div class="line">				&#125;</div><div class="line">				<span class="keyword">if</span> tmp[i].End &gt;= tmp[j].End&#123;</div><div class="line">					flag = <span class="literal">true</span></div><div class="line">					count ++</div><div class="line">					<span class="keyword">break</span></div><div class="line">				&#125;</div><div class="line">				</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> !flag&#123;</div><div class="line">			ret = <span class="built_in">append</span>(ret,tmp[i])</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ret) == <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span> count</div><div class="line">	&#125;</div><div class="line">	res =ret[<span class="number">0</span>]</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>;i&lt;<span class="built_in">len</span>(ret);i++&#123;</div><div class="line">		<span class="keyword">if</span> ret[i].Start &gt;= res.End&#123;</div><div class="line">			res = ret[i]</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			count ++</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="436-Find-Right-Interval"><a href="#436-Find-Right-Interval" class="headerlink" title="436. Find Right Interval"></a>436. Find Right Interval</h2><p>Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the “right” of i.</p>
+<p>For any interval i, you need to store the minimum interval j’s index, which means that the interval j has the minimum start point to build the “right” relationship for interval i. If the interval j doesn’t exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.</p>
+<p>Note:</p>
+<ol>
+<li>You may assume the interval’s end point is always bigger than its start point.</li>
+<li>You may assume none of these intervals have the same start point.<br>给定一组区间，对于每一个区间，如果有其他区间的起点大于等于这个区间的终点，那么就称这个区间有右区间。找出最近的右区间的下标。没有右区间则该区间的最小右区间为-1。</li>
+</ol>
+<p>这题直接用o(n*n)的算法就能过。即一个个找右区间。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findRightInterval</span><span class="params">(intervals []Interval)</span> []<span class="title">int</span></span> &#123;</div><div class="line">    ret := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(intervals))</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(intervals);i++&#123;</div><div class="line">		min := i</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(intervals);j++&#123;</div><div class="line">			<span class="keyword">if</span> j == i&#123;</div><div class="line">				<span class="keyword">continue</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> intervals[j].Start &gt;= intervals[i].End&#123;</div><div class="line">				<span class="keyword">if</span> min == i || intervals[j].Start &lt; intervals[min].Start&#123;</div><div class="line">					 min = j</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> min == i&#123;</div><div class="line">			min = <span class="number">-1</span></div><div class="line">		&#125;</div><div class="line">		ret[i] = min</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="441-Arranging-Coins"><a href="#441-Arranging-Coins" class="headerlink" title="441. Arranging Coins"></a>441. Arranging Coins</h2><p>You have a total of n coins that you want to form in a staircase shape, where every k-th row must have exactly k coins.</p>
+<p>Given n, find the total number of full staircase rows that can be formed.</p>
+<p>n is a non-negative integer and fits within the range of a 32-bit signed integer.</p>
+<p>水题，没啥好说的。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">arrangeCoins</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    idx  :=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (n&gt;=idx)&#123;</div><div class="line">		n -=idx</div><div class="line">		idx ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> idx<span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="444-Sequence-Reconstruction"><a href="#444-Sequence-Reconstruction" class="headerlink" title="444. Sequence Reconstruction"></a>444. Sequence Reconstruction</h2><p>Check whether the original sequence org can be uniquely reconstructed from the sequences in seqs. The org sequence is a permutation of the integers from 1 to n, with 1 ≤ n ≤ 10^4. Reconstruction means building a shortest common supersequence of the sequences in seqs (i.e., a shortest sequence so that all sequences in seqs are subsequences of it). Determine whether there is only one sequence that can be reconstructed from seqs and it is the org sequence.</p>
+<p><a href="https://leetcode.com/contest/11/problems/sequence-reconstruction/" target="_blank" rel="external">link</a><br>没做出来，贴个别人的代码。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">sequenceReconstruction</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; org, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; seqs)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = org.size();</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; to(n), in(n);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vis(n);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; adj(n);</div><div class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : org) &#123;</div><div class="line">            x--;</div><div class="line">            to[x] = k++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;vec : seqs) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;c : vec) &#123;</div><div class="line">                c--;</div><div class="line">                <span class="keyword">if</span> (c &lt; <span class="number">0</span> || c &gt;= n) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">                vis[to[c]] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; vec.size(); i++) &#123;</div><div class="line">                <span class="keyword">auto</span> x = to[vec[i - <span class="number">1</span>]], y = to[vec[i]];</div><div class="line">                adj[x].push_back(y);</div><div class="line">                in[y]++;</div><div class="line">                <span class="keyword">if</span> (x &gt; y) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!vis[i]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (!in[i]) &#123;</div><div class="line">                q.push(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sorted;</div><div class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">            <span class="keyword">if</span> (q.size() &gt; <span class="number">1</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">auto</span> s = q.front();</div><div class="line">            q.pop();</div><div class="line">            sorted.push_back(s);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> v : adj[s]) &#123;</div><div class="line">                <span class="keyword">if</span> (!--in[v]) &#123;</div><div class="line">                    q.push(v);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i != sorted[i]) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -223,19 +260,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/Smarking Algorithm Contest 2.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/Smarking Algorithm Contest 3.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Smarking Algorithm Contest 3
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/leetcode_weekly_contest10.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode第十周周赛Smarking Algorithm Contest</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Smarking Algorithm Contest 2" data-title="Smarking Algorithm Contest 2" data-url="http://nachtz.top/Smarking Algorithm Contest 2.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -258,8 +391,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

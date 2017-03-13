@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/11 | 一元硬币</title>
+  <title>LeetCode Weekly Contest 5 第五周周赛 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/11/index.html">
+  <meta name="description" content="第一题: 400. Nth Digit这道题用暴力的直接写出从1到n的所有数字组合而成的字符串会超时。一种解法是：先计算出第n个字符是属于哪个数字的。边计算边统计之前的字符个数total。然后得到这个数字后，将这个数字转为字符串，并取n-total-1这个下标的字符，就是所求。123456789101112131415161718func findNthDigit(n int) int &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 5 第五周周赛">
+<meta property="og:url" content="http://nachtz.top/leetcode_weekly_contest5.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:description" content="第一题: 400. Nth Digit这道题用暴力的直接写出从1到n的所有数字组合而成的字符串会超时。一种解法是：先计算出第n个字符是属于哪个数字的。边计算边统计之前的字符个数total。然后得到这个数字后，将这个数字转为字符串，并取n-total-1这个下标的字符，就是所求。123456789101112131415161718func findNthDigit(n int) int &amp;#123">
+<meta property="og:updated_time" content="2017-03-10T13:17:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta name="twitter:title" content="LeetCode Weekly Contest 5 第五周周赛">
+<meta name="twitter:description" content="第一题: 400. Nth Digit这道题用暴力的直接写出从1到n的所有数字组合而成的字符串会超时。一种解法是：先计算出第n个字符是属于哪个数字的。边计算边统计之前的字符个数total。然后得到这个数字后，将这个数字转为字符串，并取n-total-1这个下标的字符，就是所求。123456789101112131415161718func findNthDigit(n int) int &amp;#123">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -178,36 +179,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-leetcode_weekly_contest5" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Smarking Algorithm Contest 3.html" class="archive-article-date">
-  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Smarking Algorithm Contest 3.html">Smarking Algorithm Contest 3</a>
+    <h1 class="article-title" itemprop="name">
+      LeetCode Weekly Contest 5 第五周周赛
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/leetcode_weekly_contest5.html" class="archive-article-date">
+  	<time datetime="2016-09-18T10:10:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一题-400-Nth-Digit"><a href="#第一题-400-Nth-Digit" class="headerlink" title="第一题: 400. Nth Digit"></a>第一题: 400. Nth Digit</h2><p>这道题用暴力的直接写出从1到n的所有数字组合而成的字符串会超时。<br>一种解法是：<br>先计算出第n个字符是属于哪个数字的。边计算边统计之前的字符个数total。<br>然后得到这个数字后，将这个数字转为字符串，并取n-total-1这个下标的字符，就是所求。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findNthDigit</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	i := <span class="number">0</span></div><div class="line">	mark, l := <span class="number">1</span>, <span class="number">0</span></div><div class="line">	total := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i = <span class="number">1</span>; total &lt; n; i++ &#123;</div><div class="line">		<span class="keyword">if</span> i &gt;= mark &#123;</div><div class="line">			total += l + <span class="number">1</span></div><div class="line">			l++</div><div class="line">			mark *= <span class="number">10</span></div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			total += l</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	i--</div><div class="line">	total -= l</div><div class="line">	t := strconv.Itoa(i)</div><div class="line">	<span class="keyword">return</span> <span class="keyword">int</span>(t[n-total<span class="number">-1</span>] - <span class="string">'0'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="第二题：401-Binary-Watch"><a href="#第二题：401-Binary-Watch" class="headerlink" title="第二题：401. Binary Watch"></a>第二题：401. Binary Watch</h2><p>没过，应该是题目有问题。题目中说顺序无所谓但是实际上顺序貌似还是有关系的。<br>用二进制来进行计算。<br>先递归的计算出所有可能的num情况。然后将对应的num读为时间即可。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">512</span>&#125;</div><div class="line"><span class="keyword">var</span> ret []<span class="keyword">string</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">readTime</span><span class="params">(num <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	str := <span class="string">""</span></div><div class="line">	t := num &gt;&gt; <span class="number">6</span></div><div class="line">	<span class="keyword">if</span> t &gt;= <span class="number">12</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	str += strconv.Itoa(t) + <span class="string">":"</span></div><div class="line">	t = num &amp; <span class="number">63</span></div><div class="line">	<span class="keyword">if</span> t &gt;= <span class="number">60</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> t &lt; <span class="number">10</span> &#123;</div><div class="line">		str += <span class="string">"0"</span> + strconv.Itoa(t)</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		str += strconv.Itoa(t)</div><div class="line">	&#125;</div><div class="line">	ret = <span class="built_in">append</span>(ret, str)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(now, num, idx <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</div><div class="line">		readTime(now)</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> idx &gt;= <span class="number">10</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	help(now, num, idx+<span class="number">1</span>)</div><div class="line">	help(now|b[idx], num<span class="number">-1</span>, idx+<span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">readBinaryWatch</span><span class="params">(num <span class="keyword">int</span>)</span> []<span class="title">string</span></span> &#123;</div><div class="line">	ret = []<span class="keyword">string</span>&#123;&#125;</div><div class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> []<span class="keyword">string</span>&#123;<span class="string">"0:00"</span>&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(b); i++ &#123;</div><div class="line">		help(b[i], num<span class="number">-1</span>, i+<span class="number">1</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="第三题：402-Remove-K-Digits"><a href="#第三题：402-Remove-K-Digits" class="headerlink" title="第三题：402. Remove K Digits"></a>第三题：402. Remove K Digits</h2><p>在裁剪的过程中，如果要裁剪掉k个字符，那么在一个字符串中，前k+1一个字符中一定会有至少一个字符被保留下来。所以算法的目的就是递归的找到这个字符，并对这个字符之后的字符串继续进行裁剪，直到得到最后的结果。<br>另外，题目中要求不能有0，所以在得到结果之后还要去掉首部的0。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> res <span class="keyword">string</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(num <span class="keyword">string</span>, k <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> k &lt;= <span class="number">0</span>&#123;</div><div class="line">		res = res + num</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> k &gt;= <span class="built_in">len</span>(num)&#123;</div><div class="line">		<span class="keyword">return</span> ;</div><div class="line">	&#125;</div><div class="line">	minIdx := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>;i&lt;=k;i++&#123;</div><div class="line">		<span class="keyword">if</span> num[i] &lt; num[minIdx]&#123;</div><div class="line">			minIdx = i</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	res = res + <span class="keyword">string</span>(num[minIdx])</div><div class="line">	<span class="built_in">new</span> := num[minIdx+<span class="number">1</span>:]</div><div class="line">	help(<span class="built_in">new</span>,k - minIdx)</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeKdigits</span><span class="params">(num <span class="keyword">string</span>, k <span class="keyword">int</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    res = <span class="string">""</span></div><div class="line">	help(num,k)</div><div class="line">	i:=<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(res)&amp;&amp;res[i]==<span class="string">'0'</span>;i++&#123;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> i&lt;<span class="built_in">len</span>(res)&#123;</div><div class="line">		res = res[i:]</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		res = <span class="string">"0"</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="第四题：403-Frog-Jump"><a href="#第四题：403-Frog-Jump" class="headerlink" title="第四题：403. Frog Jump"></a>第四题：403. Frog Jump</h2><p>很明显的递归的例子。<br>用一个映射来讲stones[下标]距离 改成 map[距离]下标.<br>然后从0开始起跳。距离为1。<br>每一次进行判断，首先是是不是最后一个石头了，是则返回true。程序over。<br>然后判断判断下目前所在的石头是哪一个。（检索map[stone[idx]+stp]即可知道，为0即不存在，返回false。）<br>接下来就是继续进行跳跃，分别尝试跳跃stp,stp+1,stp-1的距离即可。需要注意stp==0的时候是没有意义的，直接返回false.<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(stones []<span class="keyword">int</span>, idx <span class="keyword">int</span>, stp <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> stp == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> idx == <span class="built_in">len</span>(stones)<span class="number">-1</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> m[stones[idx]+stp] == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	idx = m[stones[idx]+stp]</div><div class="line">	<span class="keyword">return</span> help(stones, idx, stp<span class="number">-1</span>) || help(stones, idx, stp+<span class="number">1</span>) || help(stones, idx, stp)</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">canCross</span><span class="params">(stones []<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(stones); i++ &#123;</div><div class="line">		m[stones[i]] = i</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> help(stones, <span class="number">0</span>, <span class="number">1</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -223,19 +227,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/leetcode_weekly_contest5.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/leetcode_weekly_contest6.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          LeetCode Weekly Contest 6 第六周周赛
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/leetcode_weekly_contest4.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode Weekly Contest 4 第四周周赛</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="leetcode_weekly_contest5" data-title="LeetCode Weekly Contest 5 第五周周赛" data-url="http://nachtz.top/leetcode_weekly_contest5.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -258,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/11 | 一元硬币</title>
+  <title>LeetCode Weekly Contest 6 第六周周赛 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/11/index.html">
+  <meta name="description" content="404. Sum of Left Leaves不解释123456789101112131415161718func isLeaf(root * TreeNode) bool&amp;#123;	if root == nil || root.Left!=nil || root.Right!=nil&amp;#123;		return false	&amp;#125;	return true;&amp;#125;func sumOf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 6 第六周周赛">
+<meta property="og:url" content="http://nachtz.top/leetcode_weekly_contest6.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:description" content="404. Sum of Left Leaves不解释123456789101112131415161718func isLeaf(root * TreeNode) bool&amp;#123;	if root == nil || root.Left!=nil || root.Right!=nil&amp;#123;		return false	&amp;#125;	return true;&amp;#125;func sumOf">
+<meta property="og:updated_time" content="2017-03-10T13:19:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta name="twitter:title" content="LeetCode Weekly Contest 6 第六周周赛">
+<meta name="twitter:description" content="404. Sum of Left Leaves不解释123456789101112131415161718func isLeaf(root * TreeNode) bool&amp;#123;	if root == nil || root.Left!=nil || root.Right!=nil&amp;#123;		return false	&amp;#125;	return true;&amp;#125;func sumOf">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -178,36 +179,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-leetcode_weekly_contest6" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Smarking Algorithm Contest 3.html" class="archive-article-date">
-  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Smarking Algorithm Contest 3.html">Smarking Algorithm Contest 3</a>
+    <h1 class="article-title" itemprop="name">
+      LeetCode Weekly Contest 6 第六周周赛
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/leetcode_weekly_contest6.html" class="archive-article-date">
+  	<time datetime="2016-09-25T06:08:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="404-Sum-of-Left-Leaves"><a href="#404-Sum-of-Left-Leaves" class="headerlink" title="404. Sum of Left Leaves"></a>404. Sum of Left Leaves</h2><p>不解释<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isLeaf</span><span class="params">(root * TreeNode)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> || root.Left!=<span class="literal">nil</span> || root.Right!=<span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOfLeftLeaves</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line">    res := <span class="number">0</span></div><div class="line">	<span class="keyword">if</span> root != <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">if</span> isLeaf(root.Left)&#123;</div><div class="line">			res += root.Left.Val</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			res += sumOfLeftLeaves(root.Left)</div><div class="line">		&#125;</div><div class="line">		res += sumOfLeftLeaves(root.Right)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="405-Convert-a-Number-to-Hexadecimal"><a href="#405-Convert-a-Number-to-Hexadecimal" class="headerlink" title="405. Convert a Number to Hexadecimal"></a>405. Convert a Number to Hexadecimal</h2><p>常规的10进制转16进制。<br>负数的转换需要先转为补码再计算。注意用long long int 防止溢出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="built_in">string</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="built_in">string</span> a[] = &#123; <span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"7"</span>, <span class="string">"8"</span>, <span class="string">"9"</span>, <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>, <span class="string">"f"</span> &#125;;</div><div class="line">		<span class="built_in">string</span> res;</div><div class="line">		<span class="keyword">if</span> (num == <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> t;</div><div class="line">		<span class="keyword">if</span> (num &lt;<span class="number">0</span>)&#123;</div><div class="line">			t = <span class="keyword">unsigned</span>(num);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			t = num;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span> (t&gt;<span class="number">0</span>)&#123;</div><div class="line">			res = a[t % <span class="number">16</span>] + res;</div><div class="line">			t /= <span class="number">16</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> res;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="406-Queue-Reconstruction-by-Height"><a href="#406-Queue-Reconstruction-by-Height" class="headerlink" title="406. Queue Reconstruction by Height"></a>406. Queue Reconstruction by Height</h2><p>o(n*n)的复杂度。<br>1.将人排序，以前置比他高的人数大小排列，相等的时候按照高度从低到高。<br>2.取排列完第一位，将其取出队列。然后更新下排列中的人情况。即将比他矮的人中，front的人数-1。<br>3.重复操作1，2直到队列中的人都被取出。<br>4.还原队列中的front的情况。因为在第二步中，front的情况会被改写，所以需要恢复。<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">type P <span class="string">[]</span><span class="string">[]</span>int </div><div class="line">func(p P) Len()int&#123;</div><div class="line">	return len(p)</div><div class="line">&#125;</div><div class="line">func(p P)Swap(i,j int)&#123;</div><div class="line">	p<span class="string">[i]</span><span class="string">[0]</span>,p<span class="string">[i]</span><span class="string">[1]</span>,p<span class="string">[j]</span><span class="string">[0]</span>,p<span class="string">[j]</span><span class="string">[1]</span> = p<span class="string">[j]</span><span class="string">[0]</span>,p<span class="string">[j]</span><span class="string">[1]</span>,p<span class="string">[i]</span><span class="string">[0]</span>,p<span class="string">[i]</span><span class="string">[1]</span></div><div class="line">&#125;</div><div class="line">func (p P)Less(i,j int)bool&#123;</div><div class="line">	if p<span class="string">[i]</span><span class="string">[1]</span>!=p<span class="string">[j]</span><span class="string">[1]</span>&#123;</div><div class="line">		return p<span class="string">[i]</span><span class="string">[1]</span> &lt; p<span class="string">[j]</span><span class="string">[1]</span></div><div class="line">	&#125;</div><div class="line">	return p<span class="string">[i]</span><span class="string">[0]</span> &lt; p<span class="string">[j]</span><span class="string">[0]</span></div><div class="line">&#125;</div><div class="line">//<span class="number">1</span>.sort</div><div class="line">//<span class="number">2</span>.取当前队列</div><div class="line">func reconstructQueue(people <span class="string">[]</span><span class="string">[]</span>int) <span class="string">[]</span><span class="string">[]</span>int &#123;</div><div class="line">	res := make(<span class="string">[]</span><span class="string">[]</span>int,len(people))</div><div class="line">	for i:=<span class="number">0</span>;i&lt;len(res);i++&#123;</div><div class="line">		res<span class="string">[i]</span>  = make(<span class="string">[]</span>int,<span class="number">2</span>)</div><div class="line">	&#125;</div><div class="line">	n := len(people)</div><div class="line">	for  i:=<span class="number">0</span>;i&lt;n;i++&#123;</div><div class="line">		</div><div class="line">		sort.Sort(P(people))</div><div class="line">		res<span class="string">[i]</span><span class="string">[0]</span>,res<span class="string">[i]</span><span class="string">[1]</span> = people<span class="string">[0]</span><span class="string">[0]</span>,people<span class="string">[0]</span><span class="string">[1]</span></div><div class="line">		for j:=<span class="number">1</span>;j&lt;len(people);j++&#123;</div><div class="line">			if people<span class="string">[0]</span><span class="string">[0]</span> &gt;=people<span class="string">[j]</span><span class="string">[0]</span>&#123;</div><div class="line">				people<span class="string">[j]</span><span class="string">[1]</span> --;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		people = people<span class="string">[1:]</span></div><div class="line">	&#125;</div><div class="line">	for i :=<span class="number">1</span>;i&lt;len(res);i++ &#123;</div><div class="line">		count :=<span class="number">0</span></div><div class="line">		for j :=<span class="number">0</span>;j&lt;i;j++ &#123;</div><div class="line">			if res<span class="string">[i]</span><span class="string">[0]</span> &lt;= res<span class="string">[j]</span><span class="string">[0]</span>&#123;</div><div class="line">				count ++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		res<span class="string">[i]</span><span class="string">[1]</span> = count</div><div class="line">	&#125;</div><div class="line">	return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="407-Trapping-Rain-Water-II"><a href="#407-Trapping-Rain-Water-II" class="headerlink" title="407. Trapping Rain Water II"></a>407. Trapping Rain Water II</h2><p>下面的做法超时了。正解网上找了一个。<a href="http://www.cnblogs.com/easonliu/p/4743644.html" target="_blank" rel="external">1</a><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(heightMap [][]<span class="keyword">int</span>, x,y <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> x &lt; <span class="number">0</span> || x &gt;= <span class="built_in">len</span>(heightMap) || y &lt;<span class="number">0</span> || y &gt;= <span class="built_in">len</span>(heightMap[<span class="number">0</span>])&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> heightMap[x][y] != <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	heightMap[x][y] = <span class="number">65535</span></div><div class="line">	dfs(heightMap,x+<span class="number">1</span>,y)</div><div class="line">	dfs(heightMap,x<span class="number">-1</span>,y)</div><div class="line">	dfs(heightMap,x,y+<span class="number">1</span>)</div><div class="line">	dfs(heightMap,x,y<span class="number">-1</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getArea</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap[<span class="number">0</span>]);i++&#123;</div><div class="line">		dfs(heightMap,<span class="number">0</span>,i)</div><div class="line">		dfs(heightMap,<span class="built_in">len</span>(heightMap)<span class="number">-1</span>,i)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap);i++&#123;</div><div class="line">		dfs(heightMap,i,<span class="number">0</span>)</div><div class="line">		dfs(heightMap,i,<span class="built_in">len</span>(heightMap[<span class="number">0</span>])<span class="number">-1</span>)</div><div class="line">	&#125;</div><div class="line">	count :=<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i :=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(heightMap[<span class="number">0</span>]);j++&#123;</div><div class="line">			<span class="keyword">if</span> heightMap[i][j] == <span class="number">0</span>&#123;</div><div class="line">				count ++</div><div class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> heightMap[i][j] ==<span class="number">65535</span>&#123;</div><div class="line">				heightMap[i][j] = <span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">func getMin(heightMap [][]int) int&#123;</div><div class="line">	min := 65535</div><div class="line">	m,n := len(heightMap),len(heightMap[0])</div><div class="line">	for i:=1;i&lt;m-1;i++&#123;</div><div class="line">		for j:=1;j&lt;n-1;j++&#123;</div><div class="line">			if heightMap[i][j] == 0&#123;</div><div class="line">				continue;</div><div class="line">			&#125;</div><div class="line">			if min &gt; heightMap[i][j]&#123;</div><div class="line">				min = heightMap[i][j]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return min</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMin2</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	min := <span class="number">65535</span></div><div class="line">	m,n := <span class="built_in">len</span>(heightMap),<span class="built_in">len</span>(heightMap[<span class="number">0</span>])</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;m;i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;n;j++&#123;</div><div class="line">			<span class="keyword">if</span> heightMap[i][j] == <span class="number">0</span>&#123;</div><div class="line">				<span class="keyword">continue</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> min &gt; heightMap[i][j]&#123;</div><div class="line">				min = heightMap[i][j]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> min</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">trapRainWater</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    res ,tmp:= <span class="number">0</span>,<span class="number">1</span></div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(heightMap) == <span class="number">0</span> || <span class="built_in">len</span>(heightMap[<span class="number">0</span>]) == <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">for</span> <span class="literal">true</span>&#123;</div><div class="line">		m,n := <span class="built_in">len</span>(heightMap),<span class="built_in">len</span>(heightMap[<span class="number">0</span>])</div><div class="line">		min := getMin2(heightMap)</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;m;i++&#123;</div><div class="line">			<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;n;j++&#123;</div><div class="line">				<span class="keyword">if</span> heightMap[i][j] &lt; min&#123;</div><div class="line">					heightMap[i][j] = <span class="number">0</span></div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;</div><div class="line">				heightMap[i][j] -= min</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		min = getMin2(heightMap)</div><div class="line">		<span class="keyword">if</span> min == <span class="number">65535</span>&#123;</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">		tmp  = min* getArea(heightMap)</div><div class="line">		res += tmp</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -223,19 +226,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/leetcode_weekly_contest6.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/leetcode_weekly_contest8.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          LeetCode Weekly Contest 8 第八周周赛
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/leetcode_weekly_contest5.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode Weekly Contest 5 第五周周赛</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="leetcode_weekly_contest6" data-title="LeetCode Weekly Contest 6 第六周周赛" data-url="http://nachtz.top/leetcode_weekly_contest6.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -258,8 +357,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

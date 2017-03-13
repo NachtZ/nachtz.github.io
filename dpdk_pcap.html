@@ -6,17 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/11 | 一元硬币</title>
+  <title>手写一个Pcap捕包工具及性能优化 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/11/index.html">
+  <meta name="description" content="前言这是在项目上遇到的问题。因为项目的缘故，需要实现pcap捕包的功能，在使用后发现libpcap自身API使用比较复杂，就手写了一个API并尝试进行性能优化。部分代码在githuab上。pcapDumper
+pcap文件格式一个pcap文件的结构如下：(图片来自博客)
+如上图，一个pcap文件，有两个部分组成，一个Pcap 头部，和一堆包。其中每一个包都有两个字段，分别是Packet Head和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写一个Pcap捕包工具及性能优化">
+<meta property="og:url" content="http://nachtz.top/dpdk_pcap.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:description" content="前言这是在项目上遇到的问题。因为项目的缘故，需要实现pcap捕包的功能，在使用后发现libpcap自身API使用比较复杂，就手写了一个API并尝试进行性能优化。部分代码在githuab上。pcapDumper
+pcap文件格式一个pcap文件的结构如下：(图片来自博客)
+如上图，一个pcap文件，有两个部分组成，一个Pcap 头部，和一堆包。其中每一个包都有两个字段，分别是Packet Head和">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201003/27/4633639_1269693284d53M.png">
+<meta property="og:updated_time" content="2017-03-11T01:58:21.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta name="twitter:title" content="手写一个Pcap捕包工具及性能优化">
+<meta name="twitter:description" content="前言这是在项目上遇到的问题。因为项目的缘故，需要实现pcap捕包的功能，在使用后发现libpcap自身API使用比较复杂，就手写了一个API并尝试进行性能优化。部分代码在githuab上。pcapDumper
+pcap文件格式一个pcap文件的结构如下：(图片来自博客)
+如上图，一个pcap文件，有两个部分组成，一个Pcap 头部，和一堆包。其中每一个包都有两个字段，分别是Packet Head和">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201003/27/4633639_1269693284d53M.png">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -178,64 +187,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-dpdk_pcap" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Smarking Algorithm Contest 3.html" class="archive-article-date">
-  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Smarking Algorithm Contest 3.html">Smarking Algorithm Contest 3</a>
+    <h1 class="article-title" itemprop="name">
+      手写一个Pcap捕包工具及性能优化
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/dpdk_pcap.html" class="archive-article-date">
+  	<time datetime="2016-10-19T04:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是在项目上遇到的问题。因为项目的缘故，需要实现pcap捕包的功能，在使用后发现libpcap自身API使用比较复杂，就手写了一个API并尝试进行性能优化。部分代码在githuab上。<a href="https://github.com/NachtZ/pcapDumper" target="_blank" rel="external">pcapDumper</a></p>
+<h2 id="pcap文件格式"><a href="#pcap文件格式" class="headerlink" title="pcap文件格式"></a>pcap文件格式</h2><p>一个pcap文件的结构如下：<br><img src="http://hi.csdn.net/attachment/201003/27/4633639_1269693284d53M.png" alt="pic">(图片来自<a href="http://www.cnblogs.com/caoguoping100/p/3658792.html" target="_blank" rel="external">博客</a>)</p>
+<p>如上图，一个pcap文件，有两个部分组成，一个Pcap 头部，和一堆包。其中每一个包都有两个字段，分别是Packet Head和 Packet Data。它们的数据结构如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> _pcap_file_header &#123;</div><div class="line">	<span class="keyword">uint32_t</span> magic;</div><div class="line">	<span class="keyword">uint16_t</span> version_major;</div><div class="line">	<span class="keyword">uint16_t</span> version_minor;</div><div class="line">	<span class="keyword">int32_t</span> thiszone;     <span class="comment">/* gmt to local correction */</span></div><div class="line">	<span class="keyword">uint32_t</span> sigfigs;    <span class="comment">/* accuracy of timestamps */</span></div><div class="line">	<span class="keyword">uint32_t</span> snaplen;    <span class="comment">/* max length saved portion of each pkt */</span></div><div class="line">	<span class="keyword">uint32_t</span> linktype;   <span class="comment">/* data link type (LINKTYPE_*) */</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _pcap_pkthdr &#123;</div><div class="line">	<span class="keyword">struct</span> _timeval ts;      <span class="comment">/* time stamp using 32 bits fields */</span></div><div class="line">	<span class="keyword">uint32_t</span> caplen;     <span class="comment">/* length of portion present */</span></div><div class="line">	<span class="keyword">uint32_t</span> len;        <span class="comment">/* length this packet (off wire) */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><code>pcap_file_header</code>存储着包结构的头，<code>magic</code>字段是字节顺序。<code>version_major</code> <code>version_minor</code>分别是主版本号和次版本号。 <code>thiszone</code>代表时区， <code>snaplen</code>是数据包的最大长度，一般设置为65535. <code>linktype</code>表示链路类型。<br>可以看到<code>pcap_file_header</code>存储的是，录制这个包的时候的网络状态。</p>
+<p><code>pcap_pkthdr</code> 储存的是数据包的结构。包括数据包的时间戳和包长。在这个结构之后，紧跟着就是一段长为<code>len</code>的数据字段，表示的是这个pkthdr所指的数据包，是二层数据包结构。这个<code>len</code>同时也指向了下一个数据包的位置，即偏移到<code>len+1</code>的位置。</p>
+<p>在写入的时候，就是按照上图所示，一个<code>pcap_file_hdr</code>,然后<code>pcap_pkthdr1</code>,<code>pkt_data1</code>,<code>pcap_pkthdr2</code>,<code>pkt_data2</code>,这么写入的。<br><figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">pcap_file_hdr</span>-&gt;</span><span class="function"><span class="title">pcap_pkthdr</span>-&gt;</span><span class="function"><span class="title">pkt_data</span>-&gt;</span><span class="function"><span class="title">pcap_pkthdr</span>-&gt;</span><span class="function"><span class="title">pkt_data</span>-&gt;</span><span class="function"><span class="title">pcap_pkthdr</span>-&gt;</span><span class="function"><span class="title">pkt_data</span>-&gt;</span><span class="function"><span class="title">pcap_pkthdr</span>-&gt;</span><span class="function"><span class="title">pkt_data</span>-&gt;</span>...</div></pre></td></tr></table></figure></p>
+<p>所以在读取pcap文件的时候，实际上是线性的访问数据包的。只有读取了第n个数据包，你才能访问的到底n+1个数据包。</p>
+<h2 id="注意的坑"><a href="#注意的坑" class="headerlink" title="注意的坑"></a>注意的坑</h2><p><code>pcap_pkthdr</code>中的<code>timeval</code>是32位。它的实际结构应该是这样的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> _timeval &#123;</div><div class="line">        <span class="keyword">uint32_t</span> tv_sec;     <span class="comment">/* seconds */</span></div><div class="line">        <span class="keyword">uint32_t</span> tv_usec;    <span class="comment">/* microseconds */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在64位系统中，<code>timeval</code>中两个字段都是<code>uint64_t</code>的值。所以如果没有注意到这一点，会出现字段错误。导致保存的pcap包无法被wireshark等工具正常识别。</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>在性能上，主要的瓶颈在于写入硬盘。如果程序在每次拿到一个包就写入到硬盘中，就会造成频繁的小文件的写入。这样发挥不了硬盘的最大速度。可以使用一个内存buf来把数据先缓存在内存中，等到了一定大小（比如16M）或者pcap文件写入完毕后再写入硬盘。</p>
+<h2 id="架构上的优化"><a href="#架构上的优化" class="headerlink" title="架构上的优化"></a>架构上的优化</h2><p>程序上的优化最高能够让写包速度达到100Mbps。而相对的，硬盘的最高速度应该是在1000Mbps以上，网卡的性能则可以达到10000Mbps上。所以实际上写包速率是满足不了高性能捕包的写包需求的。这个时候就需要从架构上优化了。</p>
+<p>有两种思路可以从架构上优化，第一种是使用多线程<strong>并行</strong>。每个线程都进行<code>捕包-&gt;解析包-&gt;写入包-&gt;再捕包</code>的过程。这个过程能够提升一定的性能。但是会有几个问题：</p>
+<ol>
+<li>频繁的中断。</li>
+<li>资源争用。</li>
+</ol>
+<p>每个线程在写入一个包的时候，在三个过程，需要申请不同的资源，分别是网卡资源，CPU计算资源和硬盘IO资源。系统的中断和切换资源需要消耗一定的时间。此外，资源争用的问题也会发生，这主要体现在硬盘的资源上。在录制包的场景下，硬盘资源是瓶颈资源。这个时候多个线程在频繁请求硬盘资源，会导致硬盘的写入性能下降。比如我有100的时间片，这100的时间片中，可能只有80的时间片用在了真正的写入硬盘中，其他的时间片都花费在了资源调度上。这会使每个线程的性能不及原来单线程的时候，而且硬盘也无法发挥自己百分百的性能。</p>
+<p>另一种是使用多线程<strong>并发</strong>。每个线程都只干一件事情。捕包有捕包的线程，解析包有解析包的线程，写入包有写入包的线程。这样在线程间的资源竞争就能够被避免。在实际的项目中，甚至把写入包之后的内存释放都单独分出一个线程。就是为了让硬盘IO的效率达到最大。实际的效果，能够使程序支持1000Mbps的录包速度。如果需要再提高性能，就可能需要使用SSD，或者分布式存储，磁盘阵列等来解决了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/dpdk_pcap.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/leetcode_weekly_contest10.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode第十周周赛Smarking Algorithm Contest
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/leetcode_weekly_contest9.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode Weekly Contest 9 第九周周赛</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="dpdk_pcap" data-title="手写一个Pcap捕包工具及性能优化" data-url="http://nachtz.top/dpdk_pcap.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-    
+
 
 
           </div>
@@ -258,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>一元硬币</title>
+  <title>dpdk_ring剥离（单线程版） | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/page/3/index.html">
+  <meta name="description" content="DPDK_RING 剥离(sc)dpdk中的ring结构的原理在官方的doc中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。目前就剥离了单线程版的。代码如下：
+
+daq_ring.h12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dpdk_ring剥离（单线程版）">
+<meta property="og:url" content="http://nachtz.top/dpdk_ring.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:description" content="DPDK_RING 剥离(sc)dpdk中的ring结构的原理在官方的doc中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。目前就剥离了单线程版的。代码如下：
+
+daq_ring.h12345678910111213">
+<meta property="og:updated_time" content="2017-03-10T13:19:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta name="twitter:title" content="dpdk_ring剥离（单线程版）">
+<meta name="twitter:description" content="DPDK_RING 剥离(sc)dpdk中的ring结构的原理在官方的doc中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。目前就剥离了单线程版的。代码如下：
+
+daq_ring.h12345678910111213">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -178,87 +185,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-dpdk_daq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-dpdk_ring" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/dpdk_daq.html">将DPDK移植到snort上的DAQ</a>
-    </h1>
-  
-
-        
-        <a href="/dpdk_daq.html" class="archive-article-date">
-  	<time datetime="2016-08-06T10:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="DAQ-与Snort"><a href="#DAQ-与Snort" class="headerlink" title="DAQ 与Snort"></a>DAQ 与Snort</h2><p>在snort-daq中，daq的控制流程是这样的。<br><img src="http://img.blog.csdn.net/20160806194647769" alt="snort_daq"><br>如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是<code>daq_load_modules</code>。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。<br>在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是<br><code>pig</code>，或者说更本质的，是<code>pig</code>下的<code>analyzer</code>。<br>Snort下面开n个<code>pig</code>线程。<code>pig</code>线程下面调用<code>analyzer</code>来进行包解析。<br>包解析的过程中是在<code>pig</code>线程中多线程并行进行的。每一个<code>analyzer</code>下面都初始化一个<code>daq instance</code>并调用<code>acquire</code>进行抓包并分析。每一个<code>daq instance</code>下面都有一个或多个网卡来获取数据。因为目的主要是介绍daq，所以怎么解析就不提了。<br><img src="http://img.blog.csdn.net/20160806194734629" alt="pig_daq"><br>从上图和上面的介绍就可以看得出来，一个snort下面有多个<code>daq instance</code>并行运行。每一个<code>daq instance</code>都会进行初始化操作，占用系统资源，获取网卡，抓包，调用<code>callback</code>，之间相互独立。并且是<strong>单线程</strong>的。</p>
-<hr>
-<h2 id="DAQ与DPDK"><a href="#DAQ与DPDK" class="headerlink" title="DAQ与DPDK"></a>DAQ与DPDK</h2><p>如上面所介绍的。DAQ在设计的时候是单线程的。在本身的实现的几个模块中（Netmap,pcap等等）完全没有涉及到多线程的事情。在snort中的调用也是单线程并行调用的，相互之间各不影响。而Inter的DPDK在多线程方面则有限制。它所初始化的<code>EAL</code>层只能初始化一次。一个程序中只能运行一个dpdk主程序。所以就没有办法在snort中使用多线程。因为如果在snort中使用了多线程。那么实际上每个线程都会去尝试初始化dpdk的<code>EAL</code>。那么就会出错，导致最后只有一个线程能够成功初始化并启动。<br>所以如果要想实现一个支持snort多线程的daq。就需要修改daq中api的逻辑。<br>在实现中，利用线程id来绑定网卡。<br>在daq的content中加入了一个<code>nic</code>-<code>threadid</code>的映射表。然后每个网卡都有一个独立的<code>instance</code>存储原本在<code>daq_content</code>中的信息。然后在线程调用daq相关函数的时候，都会先利用threadid来进行检索这个<code>instance</code>进行操作。通过这个方法就能够将dpdk中的各个网卡独立运行。</p>
-<hr>
-<h2 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h2><p><a href="https://github.com/NachtZ/daq_dpdk" target="_blank" rel="external">daq_dpdk</a><br>基于的是<code>dpdk16.04</code>, <code>daq2.1.0</code>,<code>snort 3.0 a04</code>.<br>使用方法在项目主页中。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Snort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/dpdk_daq.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-dpdk_ring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/dpdk_ring.html">dpdk_ring剥离（单线程版）</a>
+    <h1 class="article-title" itemprop="name">
+      dpdk_ring剥离（单线程版）
     </h1>
   
 
@@ -299,84 +233,83 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/dpdk_ring.html">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/dpdk_ring.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-dpdk_note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+<nav id="article-nav">
+  
+    <a href="/dpdk_daq.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/dpdk_note.html">DPDK杂记</a>
-    </h1>
-  
-
+          将DPDK移植到snort上的DAQ
         
-        <a href="/dpdk_note.html" class="archive-article-date">
-  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="DPDK编译动态库"><a href="#DPDK编译动态库" class="headerlink" title="DPDK编译动态库"></a>DPDK编译动态库</h3><p>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
-<p>改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include $(RTE_SDK)/mk/rte<span class="selector-class">.extshared</span><span class="selector-class">.mk</span></div></pre></td></tr></table></figure></p>
-<p>把binary name中的app改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">SHARED</span> = yourname.so</div></pre></td></tr></table></figure></p>
-<p>最后再加上库：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LDLIBS += -L/home/nachtz/dpdk-<span class="number">2.2</span>.<span class="number">0</span>/x86_64-native-linuxapp-gcc/<span class="class"><span class="keyword">lib</span> -<span class="title">ldpdk</span> -<span class="title">lrt</span> -<span class="title">lm</span> -<span class="title">lgcc_s</span> -<span class="title">ldl</span></span></div></pre></td></tr></table></figure></p>
-<p>就行了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/dpdk_note.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
+      </div>
+    </a>
+  
+  
+    <a href="/dpdk_note.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DPDK杂记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -384,115 +317,28 @@
 
 
   
-    <article id="post-resume" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/resume.html">个人简历</a>
-    </h1>
-  
-
-        
-        <a href="/resume.html" class="archive-article-date">
-  	<time datetime="2016-06-17T03:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="如果您有意向，请联系邮箱索要正式简历和其他信息。"><a href="#如果您有意向，请联系邮箱索要正式简历和其他信息。" class="headerlink" title="如果您有意向，请联系邮箱索要正式简历和其他信息。"></a>如果您有意向，请联系邮箱索要正式简历和其他信息。</h2><h2 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h2><hr>
-<ul>
-<li>男/1993 </li>
-<li>研究生/北京邮电大学 软件工程学院 可信分布式计算与服务教育部重点实验室</li>
-<li>本科/北京邮电大学 计算机科学与技术学院 信息安全专业</li>
-<li>期望职位：C/C++后台开发， Golang 后台开发</li>
-<li>联系方式：nachtz@outlook.com</li>
-</ul>
-<h2 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h2><hr>
-<h4 id="国家科技支撑项目-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8194-C-Linux-涉密科研项目"><a href="#国家科技支撑项目-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8194-C-Linux-涉密科研项目" class="headerlink" title="国家科技支撑项目 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;C/Linux/涉密科研项目"></a>国家科技支撑项目 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8194;C/Linux/涉密科研项目</h4><ul>
-<li>系统能够捕获攻击流量并保存为样本，且能够利用保存的攻击流量样本生成攻击流量。在本系统中负责底层收发包接口，以及录制流量样本的功能的开发。  </li>
-<li>底层收发包平台基于DPDK实现，采用无锁Ring环将底层与API分离，使底层支持10Gbps流量的收发。</li>
-<li>攻击流量样本捕获基于Snort实现，通过改造snort使其支持数据库配置以及输出攻击流量相关信息的功能，并添加基于TCP/UDP的攻击流缓存功能。</li>
-<li>支持录制样本为pcap格式，写样本功能参照pcap格式手动实现，同时利用多线程分阶段并行处理报文提升录制性能。将写入样本性能从单线程最多80Mbps提升至多线程最高1000Mbps。</li>
-</ul>
-<h4 id="国家242信息安全计划-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-C-Linux-涉密科研项目"><a href="#国家242信息安全计划-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-C-Linux-涉密科研项目" class="headerlink" title="国家242信息安全计划&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;C/Linux/涉密科研项目"></a>国家242信息安全计划&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;C/Linux/涉密科研项目</h4><ul>
-<li>系统利用采集到的现网流量进行特征分析，依照所得到的特征进行高精度流量仿真。旨在模拟现网流量中背景流量的波动特性。  </li>
-<li>底层流量采集和发送功能基于DPDK实现，利用网卡的多队列功能，并发完成任务。</li>
-<li>发送功能依据日志中记录的流量参数（三四层协议分布，五元组，包长分布，错包比例等）手动构造数据包并发送。最高能够支持8Gbps的流量的收发。</li>
-</ul>
-<h4 id="用户行为模拟系统-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-C-Linux-CNCERT合作项目"><a href="#用户行为模拟系统-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-8195-C-Linux-CNCERT合作项目" class="headerlink" title="用户行为模拟系统 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195; C++/Linux/CNCERT合作项目"></a>用户行为模拟系统 &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195; C++/Linux/CNCERT合作项目</h4><ul>
-<li>系统基于配置好的行为序列生成用户流量，支持多种协议的真实用户流量的模拟以及并发操作。在本系统中负责后期维护和Debug。  </li>
-<li>系统于2016年12月验收，本人于10月被临时要求加入项目。加入时系统无法正常运行，多线程时数据库交互存在问题，并且不支持多线程并发，存在严重多线程不安全问题和其他严重bug。</li>
-<li>通过利用C11 thread local关键字解决多线程时数据库断开连接问题。通过调用线程安全的API解决线程不安全问题，并解决了其他诸多问题。使系统成功通过验收。</li>
-</ul>
-<h2 id="实习经历"><a href="#实习经历" class="headerlink" title="实习经历"></a>实习经历</h2><hr>
-<h4 id="2016年11月-2016年12月-搜狗弹性云平台实习"><a href="#2016年11月-2016年12月-搜狗弹性云平台实习" class="headerlink" title="2016年11月-2016年12月 搜狗弹性云平台实习"></a>2016年11月-2016年12月 搜狗弹性云平台实习</h4><ul>
-<li>学习了Docker及K8S的相关操作即dockerfile的编写，为云平台一期开发搭建了Jenkins平台，并编写自动编译脚本配合打通CI流程。  </li>
-<li>负责将测试部门部分服务迁移至Docker容器内部并通过测试。通过编写shell脚本和Dockerfile，在Docker镜像中自动安装服务依赖和服务配置，并加载服务通过测试，完成从编译中心到交付测试的过程。最终完成三个无状态服务的迁移以及一个基本测试数据库镜像的制作。  </li>
-</ul>
-<h2 id="获奖经历"><a href="#获奖经历" class="headerlink" title="获奖经历"></a>获奖经历</h2><hr>
-<ul>
-<li>北京邮电大学2016年研究生国家奖学金</li>
-</ul>
-<h2 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h2><hr>
-<ul>
-<li>开发语言：C, Golang, C++</li>
-<li>开源工具：DPDK, Docker, k8s</li>
-<li>数据库相关：MySQL</li>
-<li>操作系统：Linux, Windows</li>
-<li>测试仪表：Spirent TestCenter, Spirent Avalanche</li>
-<li>语言：英语 CET6 </li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Resume</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/resume.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="dpdk_ring" data-title="dpdk_ring剥离（单线程版）" data-url="http://nachtz.top/dpdk_ring.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nachtz"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
+
+
 
 
           </div>
@@ -514,8 +360,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

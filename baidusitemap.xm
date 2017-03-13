@@ -4,7 +4,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2017/03/12/leetcode_cati/</loc>
+    <loc>http://nachtz.top/leetcode_cati.html</loc>
     <lastmod>2017-03-12T15:29:03.066Z</lastmod>
     <data>
         <display>
@@ -23,7 +23,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/12/18/SDN_conclusion/</loc>
+    <loc>http://nachtz.top/SDN_conclusion.html</loc>
     <lastmod>2017-03-11T02:31:53.743Z</lastmod>
     <data>
         <display>
@@ -40,7 +40,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/19/dpdk_pcap/</loc>
+    <loc>http://nachtz.top/dpdk_pcap.html</loc>
     <lastmod>2017-03-11T01:58:21.068Z</lastmod>
     <data>
         <display>
@@ -61,7 +61,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/06/17/resume/</loc>
+    <loc>http://nachtz.top/resume.html</loc>
     <lastmod>2017-03-11T00:47:24.705Z</lastmod>
     <data>
         <display>
@@ -78,7 +78,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2017/03/01/data_struct_and_ag/</loc>
+    <loc>http://nachtz.top/data_struct_and_ag.html</loc>
     <lastmod>2017-03-10T15:20:20.668Z</lastmod>
     <data>
         <display>
@@ -97,7 +97,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2017/02/23/SDN_defense4all/</loc>
+    <loc>http://nachtz.top/SDN_defense4all.html</loc>
     <lastmod>2017-03-10T15:18:52.368Z</lastmod>
     <data>
         <display>
@@ -114,7 +114,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2017/01/08/SDN_Link/</loc>
+    <loc>http://nachtz.top/SDN_Link.html</loc>
     <lastmod>2017-03-10T15:13:04.524Z</lastmod>
     <data>
         <display>
@@ -131,7 +131,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/16/dpdk_docker/</loc>
+    <loc>http://nachtz.top/dpdk_docker.html</loc>
     <lastmod>2017-03-10T14:56:13.367Z</lastmod>
     <data>
         <display>
@@ -150,7 +150,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2017/01/08/SDN_opendaylight_dev_bundle/</loc>
+    <loc>http://nachtz.top/SDN_opendaylight_dev_bundle.html</loc>
     <lastmod>2017-03-10T14:54:41.938Z</lastmod>
     <data>
         <display>
@@ -167,7 +167,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/11/06/Smarking%20Algorithm%20Contest%203/</loc>
+    <loc>http://nachtz.top/Smarking%20Algorithm%20Contest%203.html</loc>
     <lastmod>2017-03-10T14:48:51.023Z</lastmod>
     <data>
         <display>
@@ -186,7 +186,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/30/Smarking%20Algorithm%20Contest%202/</loc>
+    <loc>http://nachtz.top/Smarking%20Algorithm%20Contest%202.html</loc>
     <lastmod>2017-03-10T14:47:01.837Z</lastmod>
     <data>
         <display>
@@ -205,7 +205,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/16/leetcode_weekly_contest9/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest9.html</loc>
     <lastmod>2017-03-10T14:45:52.915Z</lastmod>
     <data>
         <display>
@@ -224,7 +224,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/23/leetcode_weekly_contest10/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest10.html</loc>
     <lastmod>2017-03-10T14:44:34.618Z</lastmod>
     <data>
         <display>
@@ -243,7 +243,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/10/09/leetcode_weekly_contest8/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest8.html</loc>
     <lastmod>2017-03-10T14:42:28.049Z</lastmod>
     <data>
         <display>
@@ -262,7 +262,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/06/17/dpdk_note/</loc>
+    <loc>http://nachtz.top/dpdk_note.html</loc>
     <lastmod>2017-03-10T14:25:03.803Z</lastmod>
     <data>
         <display>
@@ -279,7 +279,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/09/25/leetcode_weekly_contest6/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest6.html</loc>
     <lastmod>2017-03-10T13:19:21.000Z</lastmod>
     <data>
         <display>
@@ -298,7 +298,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/06/17/dpdk_ring/</loc>
+    <loc>http://nachtz.top/dpdk_ring.html</loc>
     <lastmod>2017-03-10T13:19:01.000Z</lastmod>
     <data>
         <display>
@@ -315,7 +315,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/09/18/leetcode_weekly_contest5/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest5.html</loc>
     <lastmod>2017-03-10T13:17:37.000Z</lastmod>
     <data>
         <display>
@@ -334,7 +334,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/09/12/leetcode_weekly_contest4/</loc>
+    <loc>http://nachtz.top/leetcode_weekly_contest4.html</loc>
     <lastmod>2017-03-10T13:17:10.000Z</lastmod>
     <data>
         <display>
@@ -353,7 +353,7 @@
 
     
   <url>
-    <loc>http://nachtz.top/2016/08/06/dpdk_daq/</loc>
+    <loc>http://nachtz.top/dpdk_daq.html</loc>
     <lastmod>2017-03-10T13:15:06.000Z</lastmod>
     <data>
         <display>
