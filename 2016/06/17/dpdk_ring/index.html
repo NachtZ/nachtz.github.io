@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://nachtz.github.io">
+  <link rel="dns-prefetch" href="http://nachtz.top">
   <title>dpdk_ring剥离（单线程版） | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="DPDK_RING 剥离(sc)dpdk中的ring结构的原理在官方的doc中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。目前就剥离了单线程版的。代码如下：
@@ -13,7 +13,7 @@
 daq_ring.h12345678910111213">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dpdk_ring剥离（单线程版）">
-<meta property="og:url" content="https://nachtz.github.io/2016/06/17/dpdk_ring/index.html">
+<meta property="og:url" content="http://nachtz.top/2016/06/17/dpdk_ring/index.html">
 <meta property="og:site_name" content="一元硬币">
 <meta property="og:description" content="DPDK_RING 剥离(sc)dpdk中的ring结构的原理在官方的doc中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。目前就剥离了单线程版的。代码如下：
 
@@ -280,7 +280,7 @@ daq_ring.h12345678910111213">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://nachtz.github.io/2016/06/17/dpdk_ring/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/2016/06/17/dpdk_ring/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -319,7 +319,7 @@ daq_ring.h12345678910111213">
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="dpdk_ring" data-title="dpdk_ring剥离（单线程版）" data-url="https://nachtz.github.io/2016/06/17/dpdk_ring/"></div>
+	<div class="ds-thread" data-thread-key="dpdk_ring" data-title="dpdk_ring剥离（单线程版）" data-url="http://nachtz.top/2016/06/17/dpdk_ring/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -435,11 +435,15 @@ daq_ring.h12345678910111213">
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,10 +456,6 @@ daq_ring.h12345678910111213">
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">

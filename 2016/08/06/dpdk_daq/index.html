@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://nachtz.github.io">
+  <link rel="dns-prefetch" href="http://nachtz.top">
   <title>将DPDK移植到snort上的DAQ | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="DAQ 与Snort在snort-daq中，daq的控制流程是这样的。如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是daq_load_modules。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是pig，或者说更本质的，是pig下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将DPDK移植到snort上的DAQ">
-<meta property="og:url" content="https://nachtz.github.io/2016/08/06/dpdk_daq/index.html">
+<meta property="og:url" content="http://nachtz.top/2016/08/06/dpdk_daq/index.html">
 <meta property="og:site_name" content="一元硬币">
 <meta property="og:description" content="DAQ 与Snort在snort-daq中，daq的控制流程是这样的。如上所述，Snort在初始化的时候载入了daq。这个时候snort的所调用的api是daq_load_modules。也就是说，这个时候在主线程没有启动网卡，初始化实例的操作。在初始化整个snort之后（载入配置，载入daq及其他各个模块等等）。snort就进入了分析的阶段了。这个阶段的主角是pig，或者说更本质的，是pig下">
 <meta property="og:image" content="http://img.blog.csdn.net/20160806194647769">
@@ -281,7 +281,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://nachtz.github.io/2016/08/06/dpdk_daq/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/2016/08/06/dpdk_daq/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,7 +320,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="dpdk_daq" data-title="将DPDK移植到snort上的DAQ" data-url="https://nachtz.github.io/2016/08/06/dpdk_daq/"></div>
+	<div class="ds-thread" data-thread-key="dpdk_daq" data-title="将DPDK移植到snort上的DAQ" data-url="http://nachtz.top/2016/08/06/dpdk_daq/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -436,11 +436,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,10 +457,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
