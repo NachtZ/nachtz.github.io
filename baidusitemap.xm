@@ -4,8 +4,8 @@
 
     
   <url>
-    <loc>http://nachtz.top/leetcode_cati.html</loc>
-    <lastmod>2017-03-12T15:29:03.066Z</lastmod>
+    <loc>http://nachtz.top/leetcode_answer.html</loc>
+    <lastmod>2017-03-13T11:58:42.276Z</lastmod>
     <data>
         <display>
         <title>LeetCode Golang 答案</title>
