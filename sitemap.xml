@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://nachtz.top/data_struct_and_ag.html</loc>
+    
+    <lastmod>2017-03-14T08:50:44.083Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://nachtz.top/leetcode_answer.html</loc>
     
     <lastmod>2017-03-13T11:58:42.276Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://nachtz.top/resume.html</loc>
     
     <lastmod>2017-03-11T00:47:24.705Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nachtz.top/data_struct_and_ag.html</loc>
-    
-    <lastmod>2017-03-10T15:20:20.668Z</lastmod>
     
   </url>
   

@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://nachtz.top/data_struct_and_ag.html</loc>
+    <lastmod>2017-03-14T08:50:44.083Z</lastmod>
+    <data>
+        <display>
+        <title>数据结构与算法</title>
+        <pubTime>2017-03-01T05:19:02.000Z</pubTime>
+        
+        <tag>Leetcode</tag>
+         
+        <tag>Algorithm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://nachtz.top/leetcode_answer.html</loc>
     <lastmod>2017-03-13T11:58:42.276Z</lastmod>
     <data>
@@ -69,25 +88,6 @@
         <pubTime>2016-06-17T03:19:02.000Z</pubTime>
         
         <tag>Resume</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://nachtz.top/data_struct_and_ag.html</loc>
-    <lastmod>2017-03-10T15:20:20.668Z</lastmod>
-    <data>
-        <display>
-        <title>数据结构与算法</title>
-        <pubTime>2017-03-01T05:19:02.000Z</pubTime>
-        
-        <tag>Leetcode</tag>
-         
-        <tag>Algorithm</tag>
          
          
            
