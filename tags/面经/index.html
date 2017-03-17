@@ -6,24 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Leetcode第十周周赛Smarking Algorithm Contest | 一元硬币</title>
+  <title>Tag: 面经 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="437. Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a l">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode第十周周赛Smarking Algorithm Contest">
-<meta property="og:url" content="http://nachtz.top/leetcode_weekly_contest10.html">
+  <meta name="description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一元硬币">
+<meta property="og:url" content="http://nachtz.top/tags/面经/index.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="437. Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a l">
-<meta property="og:updated_time" content="2017-03-10T14:44:34.618Z">
+<meta property="og:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode第十周周赛Smarking Algorithm Contest">
-<meta name="twitter:description" content="437. Path Sum IIIYou are given a binary tree in which each node contains an integer value.
-Find the number of paths that sum to a given value.
-The path does not need to start or end at the root or a l">
+<meta name="twitter:title" content="一元硬币">
+<meta name="twitter:description" content="北京邮电大学本科11级，目前研究生就读于北京邮电大学可信分布式计算与服务教育部重点实验室。">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -185,190 +178,64 @@ The path does not need to start or end at the root or a l">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode_weekly_contest10" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Leetcode第十周周赛Smarking Algorithm Contest
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/interview_ali.html" class="archive-article-date">
+  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/interview_ali.html">阿里2017暑期实习内推面经</a>
     </h1>
   
 
-        
-        <a href="/leetcode_weekly_contest10.html" class="archive-article-date">
-  	<time datetime="2016-10-23T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="437-Path-Sum-III"><a href="#437-Path-Sum-III" class="headerlink" title="437. Path Sum III"></a>437. Path Sum III</h2><p>You are given a binary tree in which each node contains an integer value.</p>
-<p>Find the number of paths that sum to a given value.</p>
-<p>The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).</p>
-<p>The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">root = [<span class="number">10</span>,<span class="number">5</span>,-<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="literal">null</span>,<span class="number">11</span>,<span class="number">3</span>,-<span class="number">2</span>,<span class="literal">null</span>,<span class="number">1</span>], sum = <span class="number">8</span></div><div class="line"></div><div class="line">      <span class="number">10</span></div><div class="line">     /  <span class="string">\</span></div><div class="line">    <span class="number">5</span>   -<span class="number">3</span></div><div class="line">   / <span class="string">\</span>    <span class="string">\</span></div><div class="line">  <span class="number">3</span>   <span class="number">2</span>   <span class="number">11</span></div><div class="line"> / <span class="string">\</span>   <span class="string">\</span></div><div class="line"><span class="number">3</span>  -<span class="number">2</span>   <span class="number">1</span></div><div class="line"></div><div class="line">Return <span class="number">3.</span> The paths <span class="literal">that</span> sum <span class="keyword">to</span> <span class="number">8</span> are:</div><div class="line"></div><div class="line"><span class="number">1.</span>  <span class="number">5</span><span class="function"> -&gt;</span> <span class="number">3</span></div><div class="line"><span class="number">2.</span>  <span class="number">5</span><span class="function"> -&gt;</span> <span class="number">2</span><span class="function"> -&gt;</span> <span class="number">1</span></div><div class="line"><span class="number">3.</span> -<span class="number">3</span><span class="function"> -&gt;</span> <span class="number">11</span></div></pre></td></tr></table></figure></p>
-<p>给你个树，求出所有符合路径上的节点的值的和等于给定值这个条件的路径的个数。路径要求是自上而下，但是不要求从根出发，也不要求以叶子节点作为结尾。<br>挂在这道题上面了。<br>给个别人的解法：<br>将路径分为两种走法，每个节点都有两种走法。第一种情况是以这个节点为起点，开始出发。第二种是继承之前的走法接着走下去。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> res <span class="keyword">int</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">go2</span><span class="params">(root *TreeNode, need <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> need == <span class="number">0</span>&#123;</div><div class="line">		res ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> root.Left != <span class="literal">nil</span>&#123;</div><div class="line">		go2(root.Left,need-root.Left.Val)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> root.Right != <span class="literal">nil</span>&#123;</div><div class="line">		go2(root.Right,need-root.Right.Val)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">go1</span><span class="params">(root * TreeNode, need <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	go2(root,need-root.Val)</div><div class="line">	go1(root.Left,need)</div><div class="line">	go1(root.Right,need)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathSum</span><span class="params">(root *TreeNode, sum <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	res = <span class="number">0</span></div><div class="line">	go1(root, sum)</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="438-Find-All-Anagrams-in-a-String"><a href="#438-Find-All-Anagrams-in-a-String" class="headerlink" title="438. Find All Anagrams in a String"></a>438. Find All Anagrams in a String</h2><p>Given a string s and a non-empty string p, find all the start indices of p’s anagrams in s.</p>
-<p>Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.</p>
-<p>The order of output does not matter.<br>Example 1:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: "cbaebabacd" p: "abc"</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 6]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">0</span> <span class="keyword">is</span> <span class="string">"cba"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"abc"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">6</span> <span class="keyword">is</span> <span class="string">"bac"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"abc"</span>.</div></pre></td></tr></table></figure></p>
-<p>Example 2:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">s: "abab" p: "ab"</div><div class="line"></div><div class="line">Output:</div><div class="line">[0, 1, 2]</div><div class="line"></div><div class="line">Explanation:</div><div class="line">The substring with <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">0</span> <span class="keyword">is</span> <span class="string">"ab"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">1</span> <span class="keyword">is</span> <span class="string">"ba"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div><div class="line">The <span class="keyword">substring</span> <span class="keyword">with</span> <span class="keyword">start</span> <span class="keyword">index</span> = <span class="number">2</span> <span class="keyword">is</span> <span class="string">"ab"</span>, which <span class="keyword">is</span> an anagram <span class="keyword">of</span> <span class="string">"ab"</span>.</div></pre></td></tr></table></figure></p>
-<p>给定两个字符串s,p，求出p的所有变形（包括自己）在s中的起点。<br>解法是统计p中的词频，然后统计s中i到<code>i+len(p)</code>中的字符串的词频。相比较，如果相等则说明命中了。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(a,b,c [26]<span class="keyword">int</span>)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++&#123;</div><div class="line">		<span class="keyword">if</span> a[i]-b[i] != c[i]&#123;</div><div class="line">			<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findAnagrams</span><span class="params">(s <span class="keyword">string</span>, p <span class="keyword">string</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(s)&lt;<span class="built_in">len</span>(p)&#123;</div><div class="line">		<span class="keyword">return</span> []<span class="keyword">int</span>&#123;&#125;</div><div class="line">	&#125;</div><div class="line">	ret := []<span class="keyword">int</span>&#123;&#125;</div><div class="line">    start, end, mark := [<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;,[<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;,[<span class="number">26</span>]<span class="keyword">int</span>&#123;&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		mark[p[i]-<span class="string">'a'</span>] ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		end[s[i]-<span class="string">'a'</span>] ++</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> check(end,start,mark)&#123;</div><div class="line">		ret = <span class="built_in">append</span>(ret,<span class="number">0</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="built_in">len</span>(p);i&lt;<span class="built_in">len</span>(s);i++&#123;</div><div class="line">		start[s[i-<span class="built_in">len</span>(p)]-<span class="string">'a'</span>] ++</div><div class="line">		end[s[i]-<span class="string">'a'</span>]++</div><div class="line">		<span class="keyword">if</span> check(end,start,mark)&#123;</div><div class="line">			ret = <span class="built_in">append</span>(ret,i-<span class="built_in">len</span>(p)+<span class="number">1</span>)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="439-Ternary-Expression-Parser"><a href="#439-Ternary-Expression-Parser" class="headerlink" title="439. Ternary Expression Parser"></a>439. Ternary Expression Parser</h2><p>Given a string representing arbitrarily nested ternary expressions, calculate the result of the expression. You can always assume that the given expression is valid and only consists of digits 0-9, ?, :, T and F (T and F represent True and False respectively).</p>
-<p>Note:</p>
-<ol>
-<li>The length of the given string is ≤ 10000.</li>
-<li>Each number will contain only one digit.</li>
-<li>The conditional expressions group right-to-left (as usual in most languages).</li>
-<li>The condition will always be either T or F. That is, the condition will never be a digit.</li>
-<li>The result of the expression will always evaluate to either a digit 0-9, T or F.<br>Example 1:<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: <span class="string">"T?2:3"</span></div><div class="line">Output: <span class="string">"2"</span></div><div class="line">Explanation: If <span class="literal">true</span>, <span class="keyword">then</span> <span class="literal">result</span> <span class="keyword">is</span> <span class="number">2</span>; otherwise <span class="literal">result</span> <span class="keyword">is</span> <span class="number">3.</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>Example 2:<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Input</span>: "F?1:T?4:5"</div><div class="line"><span class="attribute">Output</span>: "4"</div><div class="line"><span class="attribute">Explanation</span>: The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:</div><div class="line"></div><div class="line"><span class="clean"></span></div><div class="line">             <span class="string">"(F ? 1 : (T ? 4 : 5))"</span>                   <span class="string">"(F ? 1 : (T ? 4 : 5))"</span></div><div class="line">          -&gt; <span class="string">"(F ? 1 : 4)"</span>                 or       -&gt; <span class="string">"(T ? 4 : 5)"</span></div><div class="line">          -&gt; <span class="string">"4"</span>                                    -&gt; <span class="string">"4"</span></div><div class="line">```   </div><div class="line"></div><div class="line"></div><div class="line">就是C语言中常见的`?:`语句。</div><div class="line">这题可以利用栈来做，也可以利用递归来做，应该也可以用正则表达式来做。</div><div class="line">下面是递归的做法：</div></pre></td></tr></table></figure></p>
-<p>func parseTernary(e string) string {<br>    if e[0] != ‘T’ &amp;&amp; e[0]!=’F’{<br>        return e<br>    }<br>    c1,c2,i := 0,0,1<br>    for i=1;i<len(e);i++{ if="" e[i]="=" '?'{="" c1="" ++="" }else{="" ':'{="" c2="" c2{="" break;="" }="" i="=" len(e){="" return="" e="" e[0]="=" 't'{="" parseternary(e[2:i])="" parseternary(e[i+1:])="" <figure="" class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">## 440. K-th Smallest in Lexicographical Order</span></div><div class="line">Given integers n <span class="keyword">and</span> k, find <span class="keyword">the</span> lexicographically k-th smallest <span class="keyword">integer</span> <span class="keyword">in</span> <span class="keyword">the</span> range <span class="built_in">from</span> <span class="number">1</span> <span class="built_in">to</span> n.</div><div class="line"></div><div class="line">Note: <span class="number">1</span> ≤ k ≤ n ≤ <span class="number">109.</span></div><div class="line"></div><div class="line">Example:</div></pre></td></tr></table></len(e);i++{></p>
-<p>Input:<br>n: 13   k: 2</p>
-<p>Output:<br>10</p>
-<p>Explanation:<br>The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the second smallest number is 10.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">求字典序的题。和头条的校招面试题一模一样。</div></pre></td></tr></table></figure></p>
-<p>var Len,n,m,ret int<br>var num,ans [20]int</p>
-<p>func valueOfBegin(b int ) int{<br>    cnt :=0<br>    for i:=b;i&lt;=Len;i++{<br>        cnt = cnt <em>10 + num[Len-i+1]<br>    }<br>    return cnt<br>}<br>func countofNum(a [20]int,anslen int) int{<br>    k,cnt :=1,0<br>    for i:=0;i+anslen &lt;Len;i++{<br>        cnt +=k<br>        k</em>=10<br>    }<br>    op :=0<br>    for i:=1;i&lt;=anslen;i++{<br>        id := Len-i+1<br>        if num[id]&gt;a[i]{<br>            op = -1<br>            break<br>        }else if num[id] &lt; a[i]{<br>            op = 1<br>            break<br>        }<br>    }<br>    if op == 0{<br>        if anslen == Len{<br>            return 1<br>        }<br>        return valueOfBegin(anslen+1)+1+cnt<br>    }<br>    if op == 1{<br>        return cnt<br>    }<br>        k = 1<br>        for i:=0;i&lt;Len-anslen;i++{<br>            k*=10</p>
-<pre><code>}
-return cnt +k
-</code></pre><p>}</p>
-<p>func dfs(ans [20]int, cur,m int){<br>    if m == 1{<br>        ret = 0<br>        for i:=1;i&lt;=cur;i++{<br>            ret = ret *10 + ans[i]<br>        }<br>        return<br>    }<br>    m –<br>    for i:=0;i&lt;=9;i++{<br>        ans[cur+1] = i<br>        cnt := countofNum(ans,cur+1)<br>        if cnt &gt;=m{<br>            dfs(ans,cur+1,m)<br>            return<br>        }else{<br>            m -= cnt<br>        }<br>    }<br>}</p>
-<p>func findKthNumber(a int, k int) int {<br>    Len = 0<br>    n = a<br>    m = k<br>    for n&gt;0{<br>        Len ++<br>        num[Len] = n%10<br>        n/=10<br>    }<br>    for i:=1;i&lt;=9;i++{<br>        ans[1] = i<br>        cnt := countofNum(ans,1)<br>        if cnt &gt;=m{<br>            dfs(ans,1,m)<br>            break<br>        }else{<br>            m -= cnt<br>        }<br>    }<br>    return ret<br>}<br>```</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简历</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面经</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/leetcode_weekly_contest10.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/Smarking Algorithm Contest 2.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Smarking Algorithm Contest 2
-        
-      </div>
-    </a>
   
   
-    <a href="/dpdk_pcap.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">手写一个Pcap捕包工具及性能优化</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="leetcode_weekly_contest10" data-title="Leetcode第十周周赛Smarking Algorithm Contest" data-url="http://nachtz.top/leetcode_weekly_contest10.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"nachtz"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -391,9 +258,9 @@ return cnt +k
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

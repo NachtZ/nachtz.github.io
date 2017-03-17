@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://nachtz.top/interview_ali.html</loc>
+    <lastmod>2017-03-17T13:16:15.160Z</lastmod>
+    <data>
+        <display>
+        <title>阿里2017暑期实习内推面经</title>
+        <pubTime>2016-06-17T10:19:02.000Z</pubTime>
+        
+        <tag>简历</tag>
+         
+        <tag>面经</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://nachtz.top/data_struct_and_ag.html</loc>
     <lastmod>2017-03-14T08:50:44.083Z</lastmod>
     <data>
