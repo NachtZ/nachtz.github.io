@@ -5,13 +5,13 @@
     
   <url>
     <loc>http://nachtz.top/interview_ali.html</loc>
-    <lastmod>2017-03-17T13:16:15.160Z</lastmod>
+    <lastmod>2017-03-17T13:19:31.435Z</lastmod>
     <data>
         <display>
         <title>阿里2017暑期实习内推面经</title>
-        <pubTime>2016-06-17T10:19:02.000Z</pubTime>
+        <pubTime>2017-03-17T13:19:02.000Z</pubTime>
         
-        <tag>简历</tag>
+        <tag>Resume</tag>
          
         <tag>面经</tag>
          

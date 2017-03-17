@@ -180,6 +180,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode_weekly_contest4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/leetcode_weekly_contest4.html">LeetCode Weekly Contest 4 第四周周赛</a>
+    </h1>
+  
+
+        
+        <a href="/leetcode_weekly_contest4.html" class="archive-article-date">
+  	<time datetime="2016-09-12T04:10:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用golang做了1，2，4题，第3题golang总是有问题换成c++来做。<br>代码地址：<a href="https://github.com/NachtZ/leetcode" target="_blank" rel="external">leetcode solution(golang)</a></p>
+<p>###396. Rotate Function###<br>最暴力的方法莫过于一遍一遍计算。可以得到结果。<br>第二种方法就是利用了前一次的结果。<br>假设数组为<br><code>[a,b,c,d]</code><br>那么第一次计算的结果就是：<br><code>0*a + 1*b + 2*c + 3*d</code><br>第二次计算的结果是（从右往左旋转）：<br><code>1*a + 2*b + 3*c + 0*d</code><br>和之前的结果比：差值为：<br><code>1*a+1*a+1*a-3*d == 1*a+1*a+1*a+1*d - 3*d</code><br>所以基于前一次的结果f,可以得到下一次的结果的计算公式：<br><code>t :=f+sum - A[len(A)-i]*len(A)</code>  </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxRotateFunction</span><span class="params">(A []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    sum,f:= <span class="number">0</span>,<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(A);i++&#123;</div><div class="line">		sum += A[i]</div><div class="line">		f += i*A[i]</div><div class="line">	&#125;</div><div class="line">	m := f</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>;i&lt;<span class="built_in">len</span>(A);i++&#123;</div><div class="line">		t :=f+sum - A[<span class="built_in">len</span>(A)-i]*<span class="built_in">len</span>(A)</div><div class="line">		<span class="keyword">if</span> m &lt; t&#123;</div><div class="line">			m = t</div><div class="line">		&#125;</div><div class="line">		f += sum - A[<span class="built_in">len</span>(A)-i]*<span class="built_in">len</span>(A)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> m</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###397. Integer Replacement###<br>很简单的递归计算题目。不过这么做复杂度比较高，能过也说明Leetcode的test case 有点简单了。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">integerReplacement</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> n %<span class="number">2</span> == <span class="number">0</span>&#123;</div><div class="line">        <span class="keyword">return</span> integerReplacement(n/<span class="number">2</span>)+<span class="number">1</span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        t1,t2 := integerReplacement(n+<span class="number">1</span>),integerReplacement(n<span class="number">-1</span>)</div><div class="line">        <span class="keyword">if</span> t1 &lt;t2&#123;</div><div class="line">            <span class="keyword">return</span> t1 +<span class="number">1</span></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> t2 +<span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###398. Random Pick Index###<br>这道题的解法，第一种是创建一个hash表<code>map&lt;int,vector&lt;int&gt;&gt;</code>来保存对应的映射关系。在初始化的时候建表。时间复杂度和空间复杂度都是o(n).在检索的时候直接查表取随机值，时间复杂度为o(1).不过最后会出现MLE错误。原因是leetcode这道题考察的点不是hash表，于是将内存限制为o(1).<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MLE代码</span></div><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Solution(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums) &#123;</div><div class="line">		srand(time(<span class="number">0</span>));</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.size(); i++)&#123;</div><div class="line">			<span class="keyword">if</span> (m.count(nums[i]) == <span class="number">0</span>)&#123;</div><div class="line">				<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; t;</div><div class="line">				t.push_back(i);</div><div class="line">				m[nums[i]] = t;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				m[nums[i]].push_back(i);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">pick</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> r = rand() % m[target].size();</div><div class="line">		<span class="keyword">return</span> m[target][r];</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这道题实际上考察的是蓄水池抽样，具体的可以看看<a href="http://www.cnblogs.com/HappyAngel/archive/2011/02/07/1949762.html" target="_blank" rel="external">这篇Blog</a>。<br>利用蓄水池抽样算法，就可以在不知道整个数组长度的情况下，就能保证各个元素获取的概率是相同的。<br>不过貌似不用蓄水池抽样的方法也能通过。<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line">	vector&lt;<span class="built_in">int</span>&gt; num;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Solution(vector&lt;<span class="built_in">int</span>&gt; nums) &#123;</div><div class="line">		num = nums;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">int</span> pick(<span class="built_in">int</span> <span class="keyword">target</span>) &#123;</div><div class="line">		<span class="built_in">int</span> <span class="built_in">index</span> = -<span class="number">1</span>;</div><div class="line">		<span class="built_in">int</span> <span class="built_in">count</span> = <span class="number">0</span>;</div><div class="line">		for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; num.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">			<span class="keyword">if</span> (num[i] == <span class="keyword">target</span>)&#123;</div><div class="line">				<span class="built_in">count</span>++;</div><div class="line">				<span class="built_in">int</span> r = rand() % <span class="built_in">count</span> + <span class="number">1</span>;</div><div class="line">				<span class="keyword">if</span> (r == <span class="built_in">count</span>)&#123;</div><div class="line">					<span class="built_in">index</span> = i;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="built_in">index</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>顺带吐槽下leetcode的Golang. 这道题让我意识到Golang不适合在leetcode下刷题用。碰到大数据的题目几乎都会挂，比如109题和239题。还得发邮件给support才能在后台改成通过。这道题的golang解法提示WA。但是错误的test case在本地运行是可以通过的。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Solution <span class="keyword">struct</span> &#123;</div><div class="line">    nums []<span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">Solution</span></span> &#123;</div><div class="line">    <span class="keyword">var</span> s Solution</div><div class="line">	s.nums = nums</div><div class="line">	<span class="keyword">return</span> s</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *Solution)</span> <span class="title">Pick</span><span class="params">(target <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	idx,count := <span class="number">-1</span>,<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(this.nums);i++&#123;</div><div class="line">		<span class="keyword">if</span> this.nums[i] == target&#123;</div><div class="line">			count ++ </div><div class="line">			r := rand.Intn(count) + <span class="number">1</span></div><div class="line">			<span class="keyword">if</span> r== count&#123;</div><div class="line">				idx = i</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> idx</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###399. Evaluate Division###<br>这种解法最后也能过也是DIAO.<br>o(n*n)的复杂度。<br>遍历两遍。<br>第一遍遍历提供的数据，利用提供的数据计算出所有的两两可提供的结果。<br>比如提供给你 <code>a/b b/c</code>能得到<br><code>a/b b/a a/a /b/b a/c c/a</code>这几个结果。用map记录这些元素。<br>第二遍遍历第一遍所得到的map进行同样的操作，来二次推导得到的结果。<br>之后的检索操作就是查表操作。<br>没想到这样的方法也能过。<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">func calcEquation(equations <span class="comment">[]</span><span class="comment">[]</span>string, values <span class="comment">[]</span>float64, query <span class="comment">[]</span><span class="comment">[]</span>string) <span class="comment">[]</span>float64 &#123;</div><div class="line">    m := make(map<span class="comment">[<span class="comment">[2]</span>string]</span>float64)</div><div class="line">	//tm := make(map<span class="comment">[string]</span>float64)</div><div class="line">    for i:=0;i&lt;len(equations);i++&#123;</div><div class="line">		a,b :=equations<span class="comment">[i]</span><span class="comment">[0]</span>,equations<span class="comment">[i]</span><span class="comment">[1]</span></div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;a,b&#125;]</span> =values<span class="comment">[i]</span></div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;b,a&#125;]</span> = 1/values<span class="comment">[i]</span></div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;a,a&#125;]</span> =1.0</div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;b,b&#125;]</span> =1.0</div><div class="line">		for j :=i+1;j&lt;len(equations);j++&#123;</div><div class="line">			//in here to construct the map</div><div class="line">			c,d := equations<span class="comment">[j]</span><span class="comment">[0]</span>,equations<span class="comment">[j]</span><span class="comment">[1]</span></div><div class="line">			if a!=c &amp;&amp;a!=d &amp;&amp; b!=c &amp;&amp; b!=d&#123;</div><div class="line">				continue// can't get any new info</div><div class="line">			&#125;</div><div class="line">			if a == c &amp;&amp;b == d || a == d&amp;&amp; b == c&#123;</div><div class="line">				continue// can't get any new info</div><div class="line">			&#125;</div><div class="line">			if a == c&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;d,b&#125;]</span> = values<span class="comment">[i]</span>/values<span class="comment">[j]</span></div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;b,d&#125;]</span> = values<span class="comment">[j]</span>/values<span class="comment">[i]</span></div><div class="line">			&#125;</div><div class="line">			if a == d&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;c,b&#125;]</span> = values<span class="comment">[i]</span>*values<span class="comment">[j]</span></div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;b,c&#125;]</span> = 1/(values<span class="comment">[i]</span>*values<span class="comment">[j]</span>)</div><div class="line">			&#125;</div><div class="line">			if b == c&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;a,d&#125;]</span> = values<span class="comment">[i]</span>*values<span class="comment">[j]</span></div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;d,a&#125;]</span> = 1/(values<span class="comment">[j]</span>*values<span class="comment">[i]</span>)				</div><div class="line">			&#125;</div><div class="line">			if b == d&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;a,c&#125;]</span> = values<span class="comment">[i]</span>/values<span class="comment">[j]</span></div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;c,a&#125;]</span> = values<span class="comment">[j]</span>/values<span class="comment">[i]</span>						</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">    for	k,v := range m&#123;</div><div class="line">		a,b := k<span class="comment">[0]</span>,k<span class="comment">[1]</span></div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;a,b&#125;]</span> =v</div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;b,a&#125;]</span> = 1/v</div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;a,a&#125;]</span> =1.0</div><div class="line">		m<span class="comment">[<span class="comment">[2]</span>string&#123;b,b&#125;]</span> =1.0</div><div class="line">		for k1,v1 := range m&#123;</div><div class="line">			//in here to construct the map</div><div class="line">			c,d := k1<span class="comment">[0]</span>,k1<span class="comment">[1]</span></div><div class="line">			if a!=c &amp;&amp;a!=d &amp;&amp; b!=c &amp;&amp; b!=d&#123;</div><div class="line">				continue// can't get any new info</div><div class="line">			&#125;</div><div class="line">			if a == c &amp;&amp;b == d || a == d&amp;&amp; b == c&#123;</div><div class="line">				continue// can't get any new info</div><div class="line">			&#125;</div><div class="line">			if a == c&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;d,b&#125;]</span> = v/v1</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;b,d&#125;]</span> = v1/v</div><div class="line">			&#125;</div><div class="line">			if a == d&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;c,b&#125;]</span> = v*v1</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;b,c&#125;]</span> = 1/(v*v1)</div><div class="line">			&#125;</div><div class="line">			if b == c&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;a,d&#125;]</span> = v*v1</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;d,a&#125;]</span> = 1/(v*v1)				</div><div class="line">			&#125;</div><div class="line">			if b == d&#123;</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;a,c&#125;]</span> = v/v1</div><div class="line">				m<span class="comment">[<span class="comment">[2]</span>string&#123;c,a&#125;]</span> = v1/v					</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	tmp := <span class="comment">[2]</span>string&#123;<span class="string">""</span>,<span class="string">""</span>&#125;</div><div class="line">	var ret <span class="comment">[]</span>float64</div><div class="line">	for i:=0;i&lt;len(query);i++&#123;</div><div class="line">		tmp<span class="comment">[0]</span>,tmp<span class="comment">[1]</span> = query<span class="comment">[i]</span><span class="comment">[0]</span>,query<span class="comment">[i]</span><span class="comment">[1]</span></div><div class="line">		v, ok := m<span class="comment">[tmp]</span></div><div class="line">		if ok&#123;</div><div class="line">			ret = append(ret,v)</div><div class="line">		&#125;else&#123;</div><div class="line">			ret = append(ret,-1.0)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return ret</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/leetcode_weekly_contest4.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-dpdk_daq" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -367,98 +440,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/dpdk_note.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-interview_ali" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/interview_ali.html">阿里2017暑期实习内推面经</a>
-    </h1>
-  
-
-        
-        <a href="/interview_ali.html" class="archive-article-date">
-  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="阿里2017暑期实习内推面经"><a href="#阿里2017暑期实习内推面经" class="headerlink" title="阿里2017暑期实习内推面经"></a>阿里2017暑期实习内推面经</h2><hr>
-<h3 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h3><hr>
-<p>3月2日投递简历，3月3号下午3点半左右接到面试电话，推迟20分钟回到寝室后开始面试。面试时长20分钟。<br>面试内容如下：</p>
-<ol>
-<li>项目<br> 项目主要就着简历讲自己的项目。讲了挺久其中性能优化部分。之后问到DPDK的部分。DPDK底层架构（没答上），多队列的实现，大页面的实现（不知道），无锁ring的实现。</li>
-<li>TCP三次握手 说的有点问题。</li>
-<li>Linux熟练程度。只问了熟练程度。</li>
-<li>实习经历。面试官对着简历念了下就没有说啥。</li>
-<li>成绩。说自己成绩很好。=，=</li>
-<li>算法。问了下快排，快排说的有点问题，主要是把快排说成是归并的一种，然后最差情况说的也有点问题。</li>
-<li>mysql。没细问，就问会不会，回答会就没有继续问下去了。</li>
-</ol>
-<p>面试官部门介绍：<br>面试官介绍自己是阿里云底层做VPC的。注重性能和底层，平常经常使用DPDK所以问了这么多关于dpdk的问题。然后面试就结束了。</p>
-<h3 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h3><hr>
-<p>3月16日才接到二面电话。其实这么久才接到二面的电话，基本上就知道自己已经GG了。当时已经准备这周还没接到电话就去论坛上看看能不能找人逆天改命。<br>二面在下午三点半左右接到电话，面试时长为20分钟。<br>面试内容如下：  </p>
-<ol>
-<li>自我介绍。</li>
-<li>项目。感觉和一面差不多，也是问了性能优化的部分。但是二面的面试官抓住了一个没必要的性能优化地方问了下当时的想法。</li>
-<li>协议栈处理部分。直说不会。</li>
-<li>数据包处理算法。直说不会。</li>
-<li>在浏览器输入网址，按下Enter后发生了什么。<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">答案</a>回答了dns查找，服务器根据ip和端口查找服务，再原路返回。后来在面试官的提醒下回答了ARP的部分。并问了ARP过程。</li>
-<li>DPDK中core的缓存部分。不会。</li>
-<li>DPDK高性能的原因。1. 不走内核协议栈。2. 零拷贝。3.无锁架构。</li>
-<li>闲聊，现在在干啥，啥时候毕业，家乡。</li>
-</ol>
-<p>首先感觉二面本身就没啥机会了。因为等了两周，就算不是在简历海里泡着，一面的评级应该也很低…<br>然后二面回答也很不好。所以GG也是很正常的事情。<br>根据这两面的过程，感觉正在面的部门，底层是用DPDK做VPC，然后封装了一层自己的二三（甚至四）层协议栈。总体来说是个对性能要求很高的部门吧。</p>
-<p>不过幸运的是二面面试官人挺好的。挂了我之后还把我扔回简历海了。<br>不知道第二条命能够走多远…</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">简历</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面经</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/interview_ali.html">展开全文 >></a>
         </p>
       
 
@@ -673,15 +654,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,7 +662,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,15 +686,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Resume</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">简历</a>
               </li>
              
               <li class="article-tag-list-item">
