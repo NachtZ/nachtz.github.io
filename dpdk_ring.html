@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://nachtz.top">
   <title>dpdk_ring剥离（单线程版） | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -42,7 +42,7 @@ daq_ring.h12345678910111213">
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -94,13 +94,13 @@ daq_ring.h12345678910111213">
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/NachtZ" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/NachtZ" title="github" rel="external nofollow noopener noreferrer"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo" rel="external nofollow noopener noreferrer"><i class="icon-weibo"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu" rel="external nofollow noopener noreferrer"><i class="icon-zhihu"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail" rel="external nofollow noopener noreferrer"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -145,13 +145,13 @@ daq_ring.h12345678910111213">
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/NachtZ" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/NachtZ" title="github" rel="external nofollow noopener noreferrer"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="http://weibo.com/nachtz" title="weibo" rel="external nofollow noopener noreferrer"><i class="icon-weibo"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/nachtz" title="zhihu" rel="external nofollow noopener noreferrer"><i class="icon-zhihu"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:nachtz@outlook.com" title="mail" rel="external nofollow noopener noreferrer"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -182,10 +182,10 @@ daq_ring.h12345678910111213">
       <div id="wrapper" class="body-wrap">
         <div class="menu-l">
           <div class="canvas-wrap">
-            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+            <canvas data-colors="#eaeaea" data-sectionheight="100" data-contentid="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dpdk_ring" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-dpdk_ring" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -205,7 +205,7 @@ daq_ring.h12345678910111213">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DPDK-RING-剥离-sc"><a href="#DPDK-RING-剥离-sc" class="headerlink" title="DPDK_RING 剥离(sc)"></a>DPDK_RING 剥离(sc)</h1><p>dpdk中的ring结构的原理在<a href="http://dpdk.org/doc/guides/prog_guide/ring_lib.html" target="_blank" rel="external">官方的doc</a>中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。<br>此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。<br>目前就剥离了单线程版的。<br>代码如下：</p>
+        <h1 id="DPDK-RING-剥离-sc"><a href="#DPDK-RING-剥离-sc" class="headerlink" title="DPDK_RING 剥离(sc)"></a>DPDK_RING 剥离(sc)</h1><p>dpdk中的ring结构的原理在<a href="http://dpdk.org/doc/guides/prog_guide/ring_lib.html" rel="external nofollow noopener noreferrer" target="_blank">官方的doc</a>中有。详细的介绍了单线程和多线程下的ring的结构的实现。其中线程安全的ring的出入队中没有用到锁，这个结构是比较巧妙的。<br>此外，和一般的ring设计相比，dpdk的ring中减少了比较的次数和减法的次数。考虑了很多性能方面的东西。<br>目前就剥离了单线程版的。<br>代码如下：</p>
 <ul>
 <li><strong>daq_ring.h</strong><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DAQ_RING_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DAQ_RING_H</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="comment">//#include &lt;pthread.h&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _daq_ring&#123;</div><div class="line">  <span class="comment">//  pthread_mutex_t mutex;</span></div><div class="line">    <span class="keyword">int</span> size;</div><div class="line">    <span class="keyword">int</span> mask;</div><div class="line">    <span class="keyword">int</span> cons_head;</div><div class="line">    <span class="keyword">int</span> cons_tail;</div><div class="line">    <span class="keyword">int</span> prod_head;</div><div class="line">    <span class="keyword">int</span> prod_tail;</div><div class="line">    <span class="keyword">void</span> * ring[<span class="number">0</span>];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _daq_ring daq_ring;</div><div class="line"><span class="comment">//create a ring which can contain size's objects.</span></div><div class="line"><span class="function">daq_ring * <span class="title">daq_ring_create</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</div><div class="line"><span class="comment">//fre a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_free</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see whether a ring is empty.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isEmpty</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see whether a ring is full.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_isFull</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see the number of objects in ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_count</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//see the size of a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_getSize</span><span class="params">(daq_ring *r)</span></span>;</div><div class="line"><span class="comment">//see the number of objects can be inputed into the ring now.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_freeCount</span><span class="params">(daq_ring * r)</span></span>;</div><div class="line"><span class="comment">//enqueue objects into a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_enqueue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> * <span class="keyword">const</span> *obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>;</div><div class="line"><span class="comment">//dequeue objects from a ring.</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">daq_ring_dequeue</span><span class="params">(daq_ring * r, <span class="keyword">void</span> **obj_table, <span class="keyword">int</span> num,<span class="keyword">int</span> mc)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="comment">//end of daq_ring.h</span></div></pre></td></tr></table></figure>
 </li>
@@ -351,7 +351,7 @@ daq_ring.h12345678910111213">
     		&copy; 2017 NachtZ
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external nofollow noopener noreferrer">Yilia</a> by Litten
       	</div>
     </div>
   </div>
@@ -435,15 +435,19 @@ daq_ring.h12345678910111213">
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,17 +465,13 @@ daq_ring.h12345678910111213">
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面经</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -589,4 +589,3 @@ daq_ring.h12345678910111213">
 </div>
   </div>
 </body>
-</html>
