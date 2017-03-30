@@ -180,6 +180,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Smarking Algorithm Contest 3" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Smarking Algorithm Contest 3.html">Smarking Algorithm Contest 3</a>
+    </h1>
+  
+
+        
+        <a href="/Smarking Algorithm Contest 3.html" class="archive-article-date">
+  	<time datetime="2016-11-06T06:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-453-Minimum-Moves-to-Equal-Array-Elements"><a href="#1-453-Minimum-Moves-to-Equal-Array-Elements" class="headerlink" title="1.  453. Minimum Moves to Equal Array Elements"></a>1.  453. Minimum Moves to Equal Array Elements</h2><p>Given a <strong>non-empty</strong> integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[1,2,3]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">3</div><div class="line"></div><div class="line">Explanation:</div><div class="line">Only three moves <span class="keyword">are</span> needed (remember each move increments two elements):</div><div class="line"></div><div class="line"><span class="comment">[1,2,3]</span>  =&gt;  <span class="comment">[2,3,3]</span>  =&gt;  <span class="comment">[3,4,3]</span>  =&gt;  <span class="comment">[4,4,4]</span></div></pre></td></tr></table></figure></p>
+<p>给一个长度为n的非空数组，将这个数组中的其中n-1个元素都+1，称为一次操作。求出将这个数组所有元素都变为相同大小的操作的次数。<br>解法：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">func minMoves(nums []<span class="built_in">int</span>) <span class="built_in">int</span> &#123;</div><div class="line">	<span class="keyword">if</span> len(nums) &lt;= <span class="number">1</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	<span class="built_in">sum</span>,<span class="built_in">min</span>,<span class="built_in">max</span> := nums[<span class="number">0</span>],nums[<span class="number">0</span>],nums[<span class="number">0</span>]</div><div class="line">	for i:=<span class="number">1</span>;i&lt;len(nums);i++&#123;</div><div class="line">		<span class="built_in">sum</span> += nums[i]</div><div class="line">		<span class="keyword">if</span> <span class="built_in">min</span> &gt; nums[i]&#123;</div><div class="line">			<span class="built_in">min</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> <span class="built_in">max</span> &lt; nums[i]&#123;</div><div class="line">			<span class="built_in">max</span> = nums[i]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">sum</span> - len(nums)*<span class="built_in">min</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-447-Number-of-Boomerangs"><a href="#2-447-Number-of-Boomerangs" class="headerlink" title="2. 447. Number of Boomerangs"></a>2. 447. Number of Boomerangs</h2><p>Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters).</p>
+<p>Find the number of boomerangs. You may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive).<br>Ex:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="string">[[0,0],[1,0],[2,0]]</span></div><div class="line"></div><div class="line">Output:</div><div class="line"><span class="number">2</span></div><div class="line"></div><div class="line">Explanation:</div><div class="line">The two boomerangs are <span class="string">[[1,0],[0,0],[2,0]]</span> <span class="keyword">and</span> <span class="string">[[1,0],[2,0],[0,0]]</span></div></pre></td></tr></table></figure></p>
+<p>给定平面内的坐标。求出这些坐标中，一个点到另外两个点距离相同的组合。<br>这题只要求出每个坐标到其他坐标的距离。然后再遍历就行了。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">pow</span><span class="params">(t <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> t*t</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfBoomerangs</span><span class="params">(points [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(points) &lt;<span class="number">3</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	dis := <span class="built_in">make</span>([][]<span class="keyword">int</span>,<span class="built_in">len</span>(points))</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		dis[i] = <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="built_in">len</span>(points))</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(points);j++&#123;</div><div class="line">			t := pow(points[i][<span class="number">0</span>] - points[j][<span class="number">0</span>])+pow(points[i][<span class="number">1</span>] - points[j][<span class="number">1</span>])</div><div class="line">			dis[i][j],dis[j][i] = t,t</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	count := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(points);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(points);j++&#123;</div><div class="line">			<span class="keyword">if</span> j == i&#123;</div><div class="line">				<span class="keyword">continue</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> k := j+<span class="number">1</span>;k&lt;<span class="built_in">len</span>(points);k++&#123;</div><div class="line">				<span class="keyword">if</span> dis[i][j] == dis[i][k]&#123;</div><div class="line">					count +=<span class="number">2</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-452-Minimum-Number-of-Arrows-to-Burst-Balloons"><a href="#3-452-Minimum-Number-of-Arrows-to-Burst-Balloons" class="headerlink" title="3. 452. Minimum Number of Arrows to Burst Balloons"></a>3. 452. Minimum Number of Arrows to Burst Balloons</h2><p>There are a number of spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. Since it’s horizontal, y-coordinates don’t matter and hence the x-coordinates of start and end of the diameter suffice. Start is always smaller than end. There will be at most 104 balloons.</p>
+<p>An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with xstart and xend bursts by an arrow shot at x if xstart ≤ x ≤ xend. There is no limit to the number of arrows that can be shot. An arrow once shot keeps travelling up infinitely. The problem is to find the minimum number of arrows that must be shot to burst all balloons.<br>Ex:<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line"><span class="comment">[<span class="comment">[10,16]</span>, <span class="comment">[2,8]</span>, <span class="comment">[1,6]</span>, <span class="comment">[7,12]</span>]</span></div><div class="line"></div><div class="line">Output:</div><div class="line">2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">One way <span class="keyword">is</span> to shoot one arrow for example at x = 6 (bursting the balloons <span class="comment">[2,8]</span> and <span class="comment">[1,6]</span>) and another arrow at x = 11 (bursting the other two balloons).</div></pre></td></tr></table></figure></p>
+<p>这题把一堆乱七八糟的背景剥开后，题目实际上是这样的：<br>给定一组区间，然后要你给出长度最小的一组数，这组数中所有的点都在区间内而且没有区间被遗漏。<br>用贪心算法就可以做。将区间按起点从小到大排列。<br>然后每一次都选一个点，能够尽量的覆盖到最多的区间。直到不能覆盖为止。依次取点，直到区间都有点落在上面。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> ranges [][]<span class="keyword">int</span> </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(r ranges)</span><span class="title">Len</span><span class="params">()</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">len</span>(r)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(r  ranges)</span><span class="title">Less</span><span class="params">(i,j <span class="keyword">int</span>)</span><span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> r[i][<span class="number">0</span>] != r[j][<span class="number">0</span>]&#123;</div><div class="line">		<span class="keyword">return</span> r[i][<span class="number">0</span>]&lt;r[j][<span class="number">0</span>]</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> r[i][<span class="number">1</span>]&lt;r[j][<span class="number">1</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r  ranges)</span><span class="title">Swap</span><span class="params">(i,j <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	r[i][<span class="number">0</span>],r[j][<span class="number">0</span>] = r[j][<span class="number">0</span>],r[i][<span class="number">0</span>]</div><div class="line">	r[j][<span class="number">1</span>],r[i][<span class="number">1</span>] = r[i][<span class="number">1</span>],r[j][<span class="number">1</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMinArrowShots</span><span class="params">(points [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	p := ranges(points)</div><div class="line">	sort.Sort(p)</div><div class="line">	count := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(p);i++&#123;</div><div class="line">		count ++</div><div class="line">		j := i+<span class="number">1</span></div><div class="line">		at := p[i][<span class="number">1</span>]</div><div class="line">		<span class="keyword">for</span> j = i+<span class="number">1</span>;j&lt;<span class="built_in">len</span>(p) ;j++&#123;</div><div class="line">			<span class="keyword">if</span> p[j][<span class="number">0</span>]&gt;at&#123;</div><div class="line">				i = j<span class="number">-1</span></div><div class="line">				<span class="keyword">break</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> p[j][<span class="number">1</span>] &lt; at&#123;</div><div class="line">				at = p[j][<span class="number">1</span>]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> j == <span class="built_in">len</span>(p)&#123;</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="4-446-Arithmetic-Slices-II-Subsequence"><a href="#4-446-Arithmetic-Slices-II-Subsequence" class="headerlink" title="4. 446. Arithmetic Slices II - Subsequence"></a>4. 446. Arithmetic Slices II - Subsequence</h2><p>A zero-indexed array A consisting of N numbers is given. A subsequence slice of that array is any sequence of integers (P0, P1, …, Pk) such that 0 ≤ P0 &lt; P1 &lt; … &lt; Pk &lt; N.</p>
+<p>A subsequence slice (P0, P1, …, Pk) of array A is called arithmetic if the sequence A[P0], A[P1], …, A[Pk-1], A[Pk] is arithmetic. In particular, this means that k ≥ 2.</p>
+<p>The function should return the number of arithmetic subsequence slices in the array A.</p>
+<p>Ex:<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Input</span>: [2, 4, 6, 8, 10]</div><div class="line"></div><div class="line"><span class="http"><span class="attribute">Output</span>: 7</span></div><div class="line"></div><div class="line"><span class="inform7">Explanation:</span></div><div class="line">All arithmetic subsequence slices <span class="keyword">are</span>:</div><div class="line"><span class="comment">[2,4,6]</span></div><div class="line"><span class="comment">[4,6,8]</span></div><div class="line"><span class="comment">[6,8,10]</span></div><div class="line"><span class="comment">[2,4,6,8]</span></div><div class="line"><span class="comment">[4,6,8,10]</span></div><div class="line"><span class="comment">[2,4,6,8,10]</span></div><div class="line"><span class="comment">[2,6,10]</span></div></pre></td></tr></table></figure></p>
+<p>这题试了下DFS会超时，用DP做会MLE。最后没做出来。<br>给个别人的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">numberOfArithmeticSlices</span><span class="params">(self, A)</span>:</span></div><div class="line">		<span class="string">"""</span></div><div class="line">		:type A: List[int]</div><div class="line">		:rtype: int</div><div class="line">		"""</div><div class="line">		ans=<span class="number">0</span></div><div class="line">		dp = []</div><div class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</div><div class="line">			a=A[i]</div><div class="line">			dp.append(&#123;&#125;)</div><div class="line">			<span class="keyword">for</span> j <span class="keyword">in</span> range(i):</div><div class="line">				b=A[j]</div><div class="line">				d=a-b</div><div class="line">				<span class="keyword">if</span> d <span class="keyword">in</span> dp[j]:</div><div class="line">					v=<span class="number">1</span>+dp[j][d]</div><div class="line">				<span class="keyword">else</span>:</div><div class="line">					v=<span class="number">1</span></div><div class="line">				<span class="keyword">if</span> d <span class="keyword">in</span> dp[i]:</div><div class="line">					dp[i][d]=dp[i][d]+v</div><div class="line">				<span class="keyword">else</span>:</div><div class="line">					dp[i][d]=v</div><div class="line">			ans += sum([dp[i][x] <span class="keyword">for</span> x <span class="keyword">in</span> dp[i]]) - i</div><div class="line">		<span class="keyword">return</span> ans</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Smarking Algorithm Contest 3.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Smarking Algorithm Contest 2" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -831,76 +910,6 @@ return cnt +k
 
 
   
-    <article id="post-leetcode_weekly_contest5" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/leetcode_weekly_contest5.html">LeetCode Weekly Contest 5 第五周周赛</a>
-    </h1>
-  
-
-        
-        <a href="/leetcode_weekly_contest5.html" class="archive-article-date">
-  	<time datetime="2016-09-18T10:10:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一题-400-Nth-Digit"><a href="#第一题-400-Nth-Digit" class="headerlink" title="第一题: 400. Nth Digit"></a>第一题: 400. Nth Digit</h2><p>这道题用暴力的直接写出从1到n的所有数字组合而成的字符串会超时。<br>一种解法是：<br>先计算出第n个字符是属于哪个数字的。边计算边统计之前的字符个数total。<br>然后得到这个数字后，将这个数字转为字符串，并取n-total-1这个下标的字符，就是所求。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">findNthDigit</span><span class="params">(n <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	i := <span class="number">0</span></div><div class="line">	mark, l := <span class="number">1</span>, <span class="number">0</span></div><div class="line">	total := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i = <span class="number">1</span>; total &lt; n; i++ &#123;</div><div class="line">		<span class="keyword">if</span> i &gt;= mark &#123;</div><div class="line">			total += l + <span class="number">1</span></div><div class="line">			l++</div><div class="line">			mark *= <span class="number">10</span></div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			total += l</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	i--</div><div class="line">	total -= l</div><div class="line">	t := strconv.Itoa(i)</div><div class="line">	<span class="keyword">return</span> <span class="keyword">int</span>(t[n-total<span class="number">-1</span>] - <span class="string">'0'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="第二题：401-Binary-Watch"><a href="#第二题：401-Binary-Watch" class="headerlink" title="第二题：401. Binary Watch"></a>第二题：401. Binary Watch</h2><p>没过，应该是题目有问题。题目中说顺序无所谓但是实际上顺序貌似还是有关系的。<br>用二进制来进行计算。<br>先递归的计算出所有可能的num情况。然后将对应的num读为时间即可。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">512</span>&#125;</div><div class="line"><span class="keyword">var</span> ret []<span class="keyword">string</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">readTime</span><span class="params">(num <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	str := <span class="string">""</span></div><div class="line">	t := num &gt;&gt; <span class="number">6</span></div><div class="line">	<span class="keyword">if</span> t &gt;= <span class="number">12</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	str += strconv.Itoa(t) + <span class="string">":"</span></div><div class="line">	t = num &amp; <span class="number">63</span></div><div class="line">	<span class="keyword">if</span> t &gt;= <span class="number">60</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> t &lt; <span class="number">10</span> &#123;</div><div class="line">		str += <span class="string">"0"</span> + strconv.Itoa(t)</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		str += strconv.Itoa(t)</div><div class="line">	&#125;</div><div class="line">	ret = <span class="built_in">append</span>(ret, str)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(now, num, idx <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</div><div class="line">		readTime(now)</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> idx &gt;= <span class="number">10</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	help(now, num, idx+<span class="number">1</span>)</div><div class="line">	help(now|b[idx], num<span class="number">-1</span>, idx+<span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">readBinaryWatch</span><span class="params">(num <span class="keyword">int</span>)</span> []<span class="title">string</span></span> &#123;</div><div class="line">	ret = []<span class="keyword">string</span>&#123;&#125;</div><div class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> []<span class="keyword">string</span>&#123;<span class="string">"0:00"</span>&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(b); i++ &#123;</div><div class="line">		help(b[i], num<span class="number">-1</span>, i+<span class="number">1</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ret</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="第三题：402-Remove-K-Digits"><a href="#第三题：402-Remove-K-Digits" class="headerlink" title="第三题：402. Remove K Digits"></a>第三题：402. Remove K Digits</h2><p>在裁剪的过程中，如果要裁剪掉k个字符，那么在一个字符串中，前k+1一个字符中一定会有至少一个字符被保留下来。所以算法的目的就是递归的找到这个字符，并对这个字符之后的字符串继续进行裁剪，直到得到最后的结果。<br>另外，题目中要求不能有0，所以在得到结果之后还要去掉首部的0。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> res <span class="keyword">string</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(num <span class="keyword">string</span>, k <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> k &lt;= <span class="number">0</span>&#123;</div><div class="line">		res = res + num</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> k &gt;= <span class="built_in">len</span>(num)&#123;</div><div class="line">		<span class="keyword">return</span> ;</div><div class="line">	&#125;</div><div class="line">	minIdx := <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>;i&lt;=k;i++&#123;</div><div class="line">		<span class="keyword">if</span> num[i] &lt; num[minIdx]&#123;</div><div class="line">			minIdx = i</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	res = res + <span class="keyword">string</span>(num[minIdx])</div><div class="line">	<span class="built_in">new</span> := num[minIdx+<span class="number">1</span>:]</div><div class="line">	help(<span class="built_in">new</span>,k - minIdx)</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeKdigits</span><span class="params">(num <span class="keyword">string</span>, k <span class="keyword">int</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    res = <span class="string">""</span></div><div class="line">	help(num,k)</div><div class="line">	i:=<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(res)&amp;&amp;res[i]==<span class="string">'0'</span>;i++&#123;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> i&lt;<span class="built_in">len</span>(res)&#123;</div><div class="line">		res = res[i:]</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		res = <span class="string">"0"</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="第四题：403-Frog-Jump"><a href="#第四题：403-Frog-Jump" class="headerlink" title="第四题：403. Frog Jump"></a>第四题：403. Frog Jump</h2><p>很明显的递归的例子。<br>用一个映射来讲stones[下标]距离 改成 map[距离]下标.<br>然后从0开始起跳。距离为1。<br>每一次进行判断，首先是是不是最后一个石头了，是则返回true。程序over。<br>然后判断判断下目前所在的石头是哪一个。（检索map[stone[idx]+stp]即可知道，为0即不存在，返回false。）<br>接下来就是继续进行跳跃，分别尝试跳跃stp,stp+1,stp-1的距离即可。需要注意stp==0的时候是没有意义的，直接返回false.<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">help</span><span class="params">(stones []<span class="keyword">int</span>, idx <span class="keyword">int</span>, stp <span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	<span class="keyword">if</span> stp == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> idx == <span class="built_in">len</span>(stones)<span class="number">-1</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">true</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> m[stones[idx]+stp] == <span class="number">0</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	idx = m[stones[idx]+stp]</div><div class="line">	<span class="keyword">return</span> help(stones, idx, stp<span class="number">-1</span>) || help(stones, idx, stp+<span class="number">1</span>) || help(stones, idx, stp)</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">canCross</span><span class="params">(stones []<span class="keyword">int</span>)</span> <span class="title">bool</span></span> &#123;</div><div class="line">	m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(stones); i++ &#123;</div><div class="line">		m[stones[i]] = i</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> help(stones, <span class="number">0</span>, <span class="number">1</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/leetcode_weekly_contest5.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -998,10 +1007,6 @@ return cnt +k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Golang</a>
               </li>
              
@@ -1010,15 +1015,15 @@ return cnt +k
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1030,7 +1035,11 @@ return cnt +k
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>

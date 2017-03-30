@@ -10,14 +10,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="整理和自己总结的部分数据结构和算法。
 数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要进行一次拷贝。
-树树的子树还是树；度：节点的子树个数；树的度：树中任意节点的度的最大值；兄弟：两节点的parent相同；层：">
+
+
+
+操作
+链表实现复杂度
+数组实现复杂度 
+
+
+
+
+出队
+1
+n 
+
+
+入队
+n
+1 
+
+
+扩容
+n
+n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法">
 <meta property="og:url" content="http://nachtz.top/data_struct_and_ag.html">
 <meta property="og:site_name" content="一元硬币">
 <meta property="og:description" content="整理和自己总结的部分数据结构和算法。
 数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要进行一次拷贝。
-树树的子树还是树；度：节点的子树个数；树的度：树中任意节点的度的最大值；兄弟：两节点的parent相同；层：">
+
+
+
+操作
+链表实现复杂度
+数组实现复杂度 
+
+
+
+
+出队
+1
+n 
+
+
+入队
+n
+1 
+
+
+扩容
+n
+n">
 <meta property="og:image" content="http://hi.csdn.net/attachment/201012/31/8394323_1293757535O5W5.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201301/03/1357220939_7742.png">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201301/10/1357799464_6962.GIF">
@@ -35,12 +79,34 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20130924000026250">
 <meta property="og:image" content="http://img.blog.csdn.net/20130924000843031">
 <meta property="og:image" content="http://img.blog.csdn.net/20160319170757295">
-<meta property="og:updated_time" content="2017-03-14T08:50:44.083Z">
+<meta property="og:updated_time" content="2017-03-23T10:39:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法">
 <meta name="twitter:description" content="整理和自己总结的部分数据结构和算法。
 数据结构队列特点是FIFO。是一种常见的数据结构。可用链表和数组实现。出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。入队时，链表需要遍历一遍链表，数组则不需要。扩容时，链表是需要遍历一次，而数组需要进行一次拷贝。
-树树的子树还是树；度：节点的子树个数；树的度：树中任意节点的度的最大值；兄弟：两节点的parent相同；层：">
+
+
+
+操作
+链表实现复杂度
+数组实现复杂度 
+
+
+
+
+出队
+1
+n 
+
+
+入队
+n
+1 
+
+
+扩容
+n
+n">
 <meta name="twitter:image" content="http://hi.csdn.net/attachment/201012/31/8394323_1293757535O5W5.jpg">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
@@ -225,6 +291,32 @@
       
         <p><strong>整理和自己总结的部分数据结构和算法。</strong></p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>特点是FIFO。是一种常见的数据结构。可用链表和数组实现。<br>出队时，链表只需要给出链头并将链头重新指向即可，而数组则需要进行一次全数组移动的操作。<br>入队时，链表需要遍历一遍链表，数组则不需要。<br>扩容时，链表是需要遍历一次，而数组需要进行一次拷贝。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>链表实现复杂度</th>
+<th>数组实现复杂度 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出队</td>
+<td>1</td>
+<td>n </td>
+</tr>
+<tr>
+<td>入队</td>
+<td>n</td>
+<td>1 </td>
+</tr>
+<tr>
+<td>扩容</td>
+<td>n</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
 <h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>树的子树还是树；<br>度：节点的子树个数；<br>树的度：树中任意节点的度的最大值；<br>兄弟：两节点的parent相同；<br>层：根在第一层，以此类推；<br>高度：叶子节点的高度为1，根节点高度最高；<br>有序树：树中各个节点是有次序的；<br>森林：多个树组成；  </p>
 <h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>二叉树的数组存储下标公式：第i个节点的左右子节点是2i+1, 2i+2<br>满二叉树的深度为k，节点数是2的k次方-1<br>先序遍历：先访问根节点，再访问左节点，再访问右节点<br>中序遍历：左-&gt;根-&gt;右<br>后序遍历：左-&gt;右-&gt;根<br>中序遍历+另外一种遍历可以还原一棵二叉树。  </p>
 <p>二叉查找树：</p>
@@ -580,10 +672,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Golang</a>
               </li>
              
@@ -592,15 +680,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,7 +700,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Snort</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>
