@@ -6,36 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>阿里2017暑期实习内推面经 | 一元硬币</title>
+  <title>Shell杂记 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="阿里2017暑期实习内推面经
-一面
-3月2日投递简历，3月3号下午3点半左右接到面试电话，推迟20分钟回到寝室后开始面试。面试时长20分钟。面试内容如下：
-
-项目 项目主要就着简历讲自己的项目。讲了挺久其中性能优化部分。之后问到DPDK的部分。DPDK底层架构（没答上），多队列的实现，大页面的实现（不知道），无锁ring的实现。
-TCP三次握手 说的有点问题。
-Linux熟练程度。只问了熟练程度。">
+  <meta name="description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
+确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里2017暑期实习内推面经">
-<meta property="og:url" content="http://nachtz.top/interview_ali.html">
+<meta property="og:title" content="Shell杂记">
+<meta property="og:url" content="http://nachtz.top/ShellNote.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="阿里2017暑期实习内推面经
-一面
-3月2日投递简历，3月3号下午3点半左右接到面试电话，推迟20分钟回到寝室后开始面试。面试时长20分钟。面试内容如下：
-
-项目 项目主要就着简历讲自己的项目。讲了挺久其中性能优化部分。之后问到DPDK的部分。DPDK底层架构（没答上），多队列的实现，大页面的实现（不知道），无锁ring的实现。
-TCP三次握手 说的有点问题。
-Linux熟练程度。只问了熟练程度。">
-<meta property="og:updated_time" content="2017-03-18T01:19:32.000Z">
+<meta property="og:description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
+确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
+<meta property="og:updated_time" content="2017-04-12T01:22:54.103Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里2017暑期实习内推面经">
-<meta name="twitter:description" content="阿里2017暑期实习内推面经
-一面
-3月2日投递简历，3月3号下午3点半左右接到面试电话，推迟20分钟回到寝室后开始面试。面试时长20分钟。面试内容如下：
-
-项目 项目主要就着简历讲自己的项目。讲了挺久其中性能优化部分。之后问到DPDK的部分。DPDK底层架构（没答上），多队列的实现，大页面的实现（不知道），无锁ring的实现。
-TCP三次握手 说的有点问题。
-Linux熟练程度。只问了熟练程度。">
+<meta name="twitter:title" content="Shell杂记">
+<meta name="twitter:description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
+确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -197,53 +182,40 @@ Linux熟练程度。只问了熟练程度。">
             <canvas data-colors="#eaeaea" data-sectionheight="100" data-contentid="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-interview_ali" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ShellNote" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      阿里2017暑期实习内推面经
+      Shell杂记
     </h1>
   
 
         
-        <a href="/interview_ali.html" class="archive-article-date">
-  	<time datetime="2017-03-18T01:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+        <a href="/ShellNote.html" class="archive-article-date">
+  	<time datetime="2017-04-12T13:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="阿里2017暑期实习内推面经"><a href="#阿里2017暑期实习内推面经" class="headerlink" title="阿里2017暑期实习内推面经"></a>阿里2017暑期实习内推面经</h2><hr>
-<h3 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h3><hr>
-<p>3月2日投递简历，3月3号下午3点半左右接到面试电话，推迟20分钟回到寝室后开始面试。面试时长20分钟。<br>面试内容如下：</p>
-<ol>
-<li>项目<br> 项目主要就着简历讲自己的项目。讲了挺久其中性能优化部分。之后问到DPDK的部分。DPDK底层架构（没答上），多队列的实现，大页面的实现（不知道），无锁ring的实现。</li>
-<li>TCP三次握手 说的有点问题。</li>
-<li>Linux熟练程度。只问了熟练程度。</li>
-<li>实习经历。面试官对着简历念了下就没有说啥。</li>
-<li>成绩。说自己成绩很好。=，=</li>
-<li>算法。问了下快排，快排说的有点问题，主要是把快排说成是归并的一种，然后最差情况说的也有点问题。</li>
-<li>mysql。没细问，就问会不会，回答会就没有继续问下去了。</li>
+        <ol>
+<li>保证shell脚本的安全性。<br>在<code>#!/bin/bash</code> 后面加上<code>-e</code>。 <code>-e</code> 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加<code>-e</code>会继续执行下去，这种忽略错误的行为不是好行为。<code>-v</code>的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。<br>所以在脚本头该写的是：<code>#!/bin/bash -ev</code>。</li>
+<li>确保创建目录一定成功。<br>在<code>mkdir</code>的时候，加上<code>-p</code>的时候能够确保该文件夹创建成功，加上 <code>-m arg</code>配置权限。<br>所以下面语句<code>mkdir -m 777 -p /path/to/dir</code>。这个语句，在目录<code>/path/to/</code>下面创建<code>dir</code>文件夹，并赋予<code>777</code>即所有用户都可读写执行的权限。同时，该语句保证<code>mkdir</code>一定成功，即如果<code>dir</code>的任意上级目录不存在，系统都会创建该上级目录，直至<code>dir</code>；如果<code>dir</code>目录存在，则不做任意改动并返回成功，如果不加<code>-p</code>，上面两种情况都会返回失败。</li>
+<li><p>获取当前脚本所在目录。<br> 在运行脚本的时候，确保脚本运行时所在的目录是非常重要的，脚本运行时目录会在调用这个脚本的目录。而很多时候我们希望脚本运行时的目录是在脚本所在的目录。以脚本<code>/path/to/test.sh</code>为例。假设在<code>path</code>目录下用语句<code>./to/test.sh</code>调用。这个时候脚本运行环境的目录是在<code>/path</code>下，而不是脚本所在目录<code>/path/to</code>下。所以经常需要将脚本重新定位要它本身所在目录。    </p>
+ <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">DIR</span>=<span class="string">"$( cd "</span>$( dirname <span class="string">"$&#123;BASH_SOURCE[0]&#125;"</span> )<span class="string">" &amp;&amp; pwd )"</span></div></pre></td></tr></table></figure>
+<p> 以脚本<code>/path/to/test.sh</code>为例，假设该文件中存在以上语句。在<code>path</code>目录下用语句<code>./to/test.sh</code>调用。<br> 那么，语句<code>${BASH_SOURCE[0]}</code>显示的是运行该语句时候的调用命令，即<code>./to/test.sh</code>。然后<code>dirname</code>就是<code>./to</code>。之后，进入该目录并打印<code>pwd</code>，就会得到路径<code>/path/to</code>。这个就是脚本所在的目录。</p>
+</li>
+<li><p>在脚本中安装一些依赖。<br> 在脚本中，如果直接使用<code>apt-get install</code>语句，经常要你确认安装，由于是在脚本中执行，显然是没有机会按y键的。<br>在安装语句中加上<code>-y</code>选项，比如<code>apt-get install -y libssl-dev</code>。这个就能默认确认安装了。</p>
+</li>
+<li><p>确认root权限。</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    echo <span class="string">"Check use is root or not now."</span></div><div class="line">ROOT_UID=<span class="number">0</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"$UID"</span> -eq <span class="string">"$ROOT_UID"</span> ]</div><div class="line">then</div><div class="line">    echo <span class="string">"You are root."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    echo <span class="string">"You are not root, please run as root"</span></div><div class="line">    <span class="keyword">exit</span> <span class="number">1</span></div><div class="line">fi</div></pre></td></tr></table></figure>
+<p> <code>$UID</code>打印当前用户UID，root用户的UID是0.二者相等，那么自然当前用户是root。<br> 此外，把if语句换成<code>if [ &quot;$whoami&quot; -eq &quot;root&quot; ]</code>也行。<code>$whoami</code>会打印当前用户的名字。</p>
+</li>
 </ol>
-<p>面试官部门介绍：<br>面试官介绍自己是阿里云底层做VPC的。注重性能和底层，平常经常使用DPDK所以问了这么多关于dpdk的问题。然后面试就结束了。</p>
-<h3 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h3><hr>
-<p>3月16日才接到二面电话。其实这么久才接到二面的电话，基本上就知道自己已经GG了。当时已经准备这周还没接到电话就去论坛上看看能不能找人逆天改命。<br>二面在下午三点半左右接到电话，面试时长为20分钟。<br>面试内容如下：  </p>
-<ol>
-<li>自我介绍。</li>
-<li>项目。感觉和一面差不多，也是问了性能优化的部分。但是二面的面试官抓住了一个没必要的性能优化地方问了下当时的想法。</li>
-<li>协议栈处理部分。直说不会。</li>
-<li>数据包处理算法。直说不会。</li>
-<li>在浏览器输入网址，按下Enter后发生了什么。<a href="https://github.com/skyline75489/what-happens-when-zh_CN" rel="external nofollow noopener noreferrer" target="_blank">答案</a>回答了dns查找，服务器根据ip和端口查找服务，再原路返回。后来在面试官的提醒下回答了ARP的部分。并问了ARP过程。</li>
-<li>DPDK中core的缓存部分。不会。</li>
-<li>DPDK高性能的原因。1. 不走内核协议栈。2. 零拷贝。3.无锁架构。</li>
-<li>闲聊，现在在干啥，啥时候毕业，家乡。</li>
-</ol>
-<p>首先感觉二面本身就没啥机会了。因为等了两周，就算不是在简历海里泡着，一面的评级应该也很低…<br>然后二面回答也很不好。所以GG也是很正常的事情。<br>根据这两面的过程，感觉正在面的部门，底层是用DPDK做VPC，然后封装了一层自己的二三（甚至四）层协议栈。总体来说是个对性能要求很高的部门吧。</p>
-<p>不过幸运的是二面面试官人挺好的。挂了我之后还把我扔回简历海了。<br>不知道第二条命能够走多远…</p>
 
       
 
@@ -257,11 +229,11 @@ Linux熟练程度。只问了熟练程度。">
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Resume</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面经</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
         		</li>
       		
 		</ul>
@@ -317,7 +289,7 @@ Linux熟练程度。只问了熟练程度。">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/interview_ali.html" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/ShellNote.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,18 +303,9 @@ Linux熟练程度。只问了熟练程度。">
   
 <nav id="article-nav">
   
-    <a href="/dpdk_ring_perf.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          dpdk ring 性能测试
-        
-      </div>
-    </a>
   
-  
-    <a href="/leetcode_answer.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode Golang 答案</div>
+    <a href="/dpdk_ring_perf.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">dpdk ring 性能测试</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -356,7 +319,7 @@ Linux熟练程度。只问了熟练程度。">
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="interview_ali" data-title="阿里2017暑期实习内推面经" data-url="http://nachtz.top/interview_ali.html"></div>
+	<div class="ds-thread" data-thread-key="ShellNote" data-title="Shell杂记" data-url="http://nachtz.top/ShellNote.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

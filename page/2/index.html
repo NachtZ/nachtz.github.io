@@ -180,6 +180,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SDN_conclusion" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/SDN_conclusion.html">SDN综述</a>
+    </h1>
+  
+
+        
+        <a href="/SDN_conclusion.html" class="archive-article-date">
+  	<time datetime="2016-12-18T18:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h2><p><a href="论文：软件定义网络(SDN)研究进展.Tutorial)">^1</a></p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>利用分层思想，将数据与控制分离。<br>控制层有逻辑中心化和可编程控制器。数据层有dump 交换机，只负责数据的转发，课快速处理匹配数据包，适应流量日益增长的需求。两层之间采用开放统一的接口（比如openflow）交互。控制器通过接口下发规则，交换机按照规则执行工作。</p>
+<h2 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h2><h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="https://www.opennetworking.org/images/stories/sdn-resources/meet-sdn/sdn-3layers.gif" alt="SDN体系结构"><a href="论文：软件定义网络(SDN)研究进展.Tutorial)">^1</a><br>SDN由北向南分为三个接口：数据平面、控制平面、和应用平面。数据平面与控制平面之间利用用SDN控制数据平面接口(<code>control-data-plane  interface</code>，简称CDPI)进行通信。CDPI有统一的标准，目前是 OpenFlow协议。控制平面与应用平面之间采用SDN北向接口(northbound interface，简称NBI)。NBI可以依照用于实际需求定制。</p>
+<p>数据平面由交换机等网络元素链接。可以将至视为传统的数据链路，负责网络之间的数据交互，并接受上层的控制。控制平面是中间件，通过CDPI驱动来监控管理数据平面中的网络元素的行为，并通过北向接口来接收应用层的命令。应用平面包含各类基于SDN的网络应用，用户无需关心底层实现，就可以通过简单编程实现应用的快速部署。网络抽象特性允许用户可以根据需求选择不同的网络操作系<br>统，而并不影响物理设备的正常运行。</p>
+<h3 id="不同方向"><a href="#不同方向" class="headerlink" title="不同方向"></a>不同方向</h3><p>NFV(Network Function Virtulizaiton),是指将传统的网络功能虚拟化，使之独立于硬件。在相同的硬件上，可以运行不同的网络功能。从而减少专属设备的硬件成本。NVF用了资源虚拟化的方式，在硬件设备中建立一个网络虚拟层，负责将硬件<br>资源虚拟化，形成虚拟计算资源、虚拟存储资源和虚拟网络资源等，运营商通过软件来管理这些虚拟资源．由于<br>采用的是通用硬件设备，NFV降低了设备成本，减少了能耗，缩短了新网络服务的部署周期，从而适应网络运营<br>商的发展需求．在接口设计方面，NFV既可以基于非OpenFlow协议，又能与OpenFlow协同工作，同时还支持<br>ForCES等多种传统接口标准化协议，以便适应网络运营商对设备的不同需求，并与ONF的SDN保持相对独<br>立的发展．</p>
+<p>OpenDaylight是一套以社区为主导的开源框架,旨在推动创新实施以及SDN透明化。考虑到兼容性问题，OpenDaylight继承了SDN架构形式，同时又结合了NFV的特<br>点．架构共分为3个层次，分别是网络应用与业务流程(即应用层)、控制平台(即控制层)和物理与虚拟网络设备(即数据层)．OpenDaylight的控制平台直接由自带的Java虚拟机实现．针对不同的网络任务，控制器自身携带了一系列可插入模块，并兼容第三方模块以增强SDN的功能．与ONF的SDN架构最大的不同在于：OpenDaylight控制器的南向接口除了支持OpenFlow协议之外，还支持NETCONF等配置协议和BGPt24等路由协议，并支持生产厂商的专有协议(如思科的OnePK协议)．为了能够处理不同的标准协议，OpenDaylight增加了服务抽象层SAL，它负责将不同的底层协议标准转换成OpenDaylight控制层所理解的请求服务，保持了底层协议的透明性，并提高了整体架构的可扩展性．</p>
+<h3 id="开放式接口与协议设计"><a href="#开放式接口与协议设计" class="headerlink" title="开放式接口与协议设计"></a>开放式接口与协议设计</h3><p>SDN接口中，以控制器为中心，南向与数据层通信，北向与应用层通信。并支持多控制器，在东西向进行多控制器通信。<br>作为数据与控制分离的核心，南向接口是目前相对研究比较多的点。比如ONF的CDPI,采用openflow。Openflow基于流的概念来匹配规则，交换机通过维护流表（Flow table）来支持openflow，按流表进行数据转发。流表的建立，维护及下发由控制器进行。</p>
+<p>对于北向的研究，有ONF的NBI，OpenDaylight的REST等。这一方面的研究在于如何实现统一的北向接口标准。 东西向接口为负载均衡和性能提升提供保障。</p>
+<h2 id="数据层关键技术"><a href="#数据层关键技术" class="headerlink" title="数据层关键技术"></a>数据层关键技术</h2><p>在SDN中，数据层与控制层分离，控制策略部分被交给控制器负责，数据层上的研究主要集中在交换机设计和转发规则。</p>
+<h3 id="交换机设计问题"><a href="#交换机设计问题" class="headerlink" title="交换机设计问题"></a>交换机设计问题</h3><p>SDN交换机位于数据层面。用来负责数据流转发。可以使用硬件和软件两种方式进行转发。硬件转发速度快，成本低，功耗小，但是灵活性不够。对此，Bosshart等人[^32]提出了针对数据平面转发的RMT模型。允许在流水线阶段支持任意宽度和深度的流表。  </p>
+<ol>
+<li>允许随意替换或增加域定义；</li>
+<li>允许指定流表的数量、拓扑、宽度和深度，仅仅受限于芯片的整体资源(如芯片内存大小等)；</li>
+<li>允许创建新动作；</li>
+<li>可以随意将数据包放到不同的队列中，并指定发送端口。  </li>
+</ol>
+<p>此外，FlowAdapter是另一种利用硬件灵活处理的技术。FlowAdapter采用三层结构。最上层是可以通过更新来支持任何新协议的软件数据平面，底层是相对固定但转发效率高的硬件数据平面，位于中部的FlowAdapter层负责软件数据平面和硬件数据平面之间的通信．当控制器下发规则时，软件数据平面将存储这些规则，形成M个阶段的流表．由于这些规则相对灵活，不能全部<br>由交换机直接转化成相应转发动作，而硬件数据平面可以实现规则的高速匹配转发．因此可利用中间层FlowAdapter将两个数据平面中的规则进行无缝转换，即，将相对灵活的M阶段的流表转换成能够被硬件所识别的Ⅳ阶段的流表．为了达到转换目的，FlowAdapter首先检查软件数据平面的全部规则，然后根据完整的规则将M阶段的流表转换成l阶段流表，最后再将1阶段流表转换成Ⅳ阶段流表发送给硬件数据平面．．另外，FlowAdapter相对控制器完全透明，对FlowAdapter交换机的更新不会影响控制器的正常运行．</p>
+<p>与硬件设计交换机的观点不同，软件处理速度虽然低于硬件。但是软件方式可以最大限度提升规则灵活性。同时避免硬件受制于自身资源限制导致的流表大小受限，无法有效处理突发流的问题。同时软件也可以采用专用的NP(Network Processor)来替换CPU.</p>
+<h3 id="转发规则的研究"><a href="#转发规则的研究" class="headerlink" title="转发规则的研究"></a>转发规则的研究</h3><p>如果网络节点失效，或者网络流量需要负载转移等情况，都会引发转发规则的变换。SDN采用高抽象层次的管理方式统一更新规则，防止出现规则更新不一致和规则延迟的现象。<br>一般采用两阶段提交方式更新规则[^40]：    第一阶段：规则需要更新，控制器询问每一个交换机是否处理完对应旧规则的流。并对处理完成的所有交换机进行规则更新。<br>第二阶段：当所有交换机都更新完毕后，才算完成更新，否则取消该更新操作。<br>这种方法需要等待旧规则的数据包处理完毕后才能处理新规则的数据包，会导致规则空间被占用的问题。这个时候可以采用增量式一致更新：，该算法将规则更新分成多轮进行每一轮都采用二阶段提交方式更新一个子集，这样可以节省规则空间，达到更新时间与规则空间的折中。</p>
+<h2 id="控制层关键技术"><a href="#控制层关键技术" class="headerlink" title="控制层关键技术"></a>控制层关键技术</h2><p>控制器是控制层核心组件。通过控制器，用户可以逻辑上集中控制交换机，实现数据快速转发，安全便捷管理网络，提神网络整体性能。</p>
+<h3 id="控制器设计问题"><a href="#控制器设计问题" class="headerlink" title="控制器设计问题"></a>控制器设计问题</h3><p>控制器基本功能是为科研人员提供可用的编程平台，最早且广泛使用的控制器平台是NOX。提供了一系列基本接口，用户通过NOX对全局网络信息进行获取，控制与管理。NOX的问题在于，随着SDN网络规模的扩展,单一结构集中控制的控制器处理能力受限，扩展困难，只能应用于小型企业网络或者科研人员进行仿真。网络中有两种方式扩展，第一是提升控制器性能，比如NOX-MT，第二种是采用多控制器方式提升整体控制器的能力。<br>NOX-MT是具有多线程处理能力的NOX控制器，NOX-MT不改变NOX控制器的基本结构，而是利用传统并行技术提升性能。<br>对于大规模网络，需要采用多控制器进行处理。分布式控制器有两种方式进行扩展，扁平控制方式和层次控制方式。．对于扁平控制方式（比如ONIX,HyperFlow），所有控制器被放置在不相交的区域里，分别管理各自的网络．各控制器间的地位相等，<br>并通过东西向接口进行通信．对于层次控制方式(Kandoo)，控制器之间具有垂直管理的功能．也就是说，局部控制器负责<br>各自的网络，全局控制器负责局部控制器，控制器之间的交互可通过全局控制器来完成．</p>
+<p>SDN网络操作系统应该具有实时运行开发应用的能力，力求开发与执行的平衡。NOX采用Python或c++. 二者在开发效率和执行效率上各有偏重。科研人员致力于开发通用平台，Beacon就是一个基于Java的通用平台。它向用户提供了一系列相关的库与接口用于开发，并提供运行时模块化的功能，使其在保证性能的情况下具有了实时运行的能力，实现了开发与执行两者之间的平衡。</p>
+<h3 id="接口语言"><a href="#接口语言" class="headerlink" title="接口语言"></a>接口语言</h3><p>传统的低级配置接口，比如用c++编写的接口，抽象程度低，不能大幅减少使用成本， 就有团队致力于开发网络配置语言,旨在搭建具有优化性能的通用北向接口。比如Nettle,McNettle(Nettle多核版)，采用了函数响应式编程（FPR）方式。Maple则对接口语言进一步抽象，允许用户使用自定义抽象策略。为了能够高效地将抽象策略分解成一系<br>列规则，并下发到相应的分布式交换机上，Maple不但采用了高效的多核调度器，最关键的是，它采用了跟踪运行时优化器(tracing runtime optimizer)来优化性能．该优化器一方面通过记录可重用的策略，将负载尽可能地转移<br>到交换机来处理．另一方面，通过动态跟踪抽象策略与数据内容及环境的依赖性，使流表始终处于最新状态，从而确保抽象策略转成可用规则的效率。  此外还介绍了Frenetic等。</p>
+<h3 id="控制层特性研究"><a href="#控制层特性研究" class="headerlink" title="控制层特性研究"></a>控制层特性研究</h3><p>控制层存在一致性，可用性和容错性等特性，但是三种特性无法同时满足，达到三者之间的平衡和整体的最优化，是这个方向上的重点。</p>
+<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>集中控制是SDN区别于其他网络架构的核心优势之一，通过集中控制，用户可以获取全局网络视图，并根据全网信息对网络进行统一设计与部署，理论上保证了网络配置的一致性问题．然而，分布式控制器仍然具有潜在的不一致性问题．由于不同控制器的设计对网络一致性要求有所不同，严格保证分布式状态全局统一的控制器，将无法保证网络性能；反之，如果控制器能够快速响应请求，下发策略，则无法保证全局状态一致性．性能无明<br>显影响的情况下，保证状态一致性成为了SDN设计中的关键问题。<br>并发策略同样会导致一致性问题。可以由控制层将策略形成规则，并按两阶段提交方式解决．为了避免数据层过多的参与，控制层可直接通过并发策略组合的方式来解决，并可利用细粒度锁(fine—grained locking)确保组合策略无冲突发生．HFT采用了层次策略方案，它将并发策略分解，组织成树的形式，树的每个节点都可独立形成转发规则．HFT首先对每个节点进行自定义冲突处理操作，这样，整个冲突处理过程就转化成利用自定义冲突处理规则逆向搜索树的过程，从而解决了并发策略一致性问题．</p>
+<h4 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h4><p>规则备份可以提升网络的可用性（RuleBrieks）。<br>控制器作为SDN的核心处理节点，需要处理来自交换机的大量请求，而过重的负载会影响SDN的可用性．利用分布式控制器可以平衡负载，提升SDN的整体性能．（ndoo，ElastiCon）.减少交换机的请求次数，可以提升控制层可用性。（DIFANE,DevoFlow）</p>
+<h4 id="容错性"><a href="#容错性" class="headerlink" title="容错性"></a>容错性</h4><p>与传统的互联网类似，SDN同样面临着网络节点或链路失效的问题．然而，SDN控制器可以通过全网信息快速恢复失效节点，具有较强的容错能力．网络节点恢复收敛过程如图7所示：</p>
+<ol>
+<li>当某台交换机失效时，其他交换机察觉出变化；</li>
+<li>交换机将变化情况通知控制器；</li>
+<li>控制器根据所掌握的信息，计算出需要恢复的规则；</li>
+<li>将更新发送给数据平面中受到影响的网络元素；</li>
+<li>数据平面中受影响的元素分别更新流表信息．</li>
+</ol>
+<p>从链路恢复过程可以看出：在SDN架构中，失效信息一般不是通过洪泛方式通知全网，而是直接发送给控<br>制层，并由控制器来做恢复决策，因而不易出现路由振荡的现象．如果是交换机和控制器之间的链接失效，导致<br>无法通信，则收敛过程相对困难．可以采用传统网络的IGP(如OSPF协议)通信，并通过洪泛方式恢复，也可以采<br>用故障转移(failover)方式，同样能够缓解链路失效收敛时间问题．通过在交换机上安装用于验证拓扑连接性<br>的静态转发规则，可以更好地实现网络故障的快速收敛．<br>控制层也提供了一种高级容错语言FatTire.</p>
+<h2 id="SDN应用研究"><a href="#SDN应用研究" class="headerlink" title="SDN应用研究"></a>SDN应用研究</h2><h3 id="企业与校园网"><a href="#企业与校园网" class="headerlink" title="企业与校园网"></a>企业与校园网</h3><p>早期SDN研究主要场景。在第二代中国教育和科研计算机网中，利用4over6技术和SDN网络虚拟化思想进行v4到v6的过渡。</p>
+<h3 id="数据中心与云"><a href="#数据中心与云" class="headerlink" title="数据中心与云"></a>数据中心与云</h3><p>数据中心需求带宽高，设备繁多，高度集中，在此部署SDN也有严峻的考验。早期的实例是基于NOX的SDN网络。在合理运用带宽方面的实践有OpenFlow,DevoFlow,zUpdate等。在节能方面，利用SDN掌控全局，实时关闭不必要的设备以进行节能，能够节省约一半的能耗。同时也能进行负载均衡，避免资源浪费。</p>
+<h3 id="广域网"><a href="#广域网" class="headerlink" title="广域网"></a>广域网</h3><p>Google B4系统，微软SWAN系统，都基于SDN架构，大幅提升了链路利用率。其中SWAN系统主要基于传统设备，利于普及和升级。</p>
+<h3 id="无线网络"><a href="#无线网络" class="headerlink" title="无线网络"></a>无线网络</h3><p>OpenRoads, Odin,OpenRadio,SoftRAN等。</p>
+<h2 id="SDN未来方向"><a href="#SDN未来方向" class="headerlink" title="SDN未来方向"></a>SDN未来方向</h2><h3 id="SDN可扩展性研究"><a href="#SDN可扩展性研究" class="headerlink" title="SDN可扩展性研究"></a>SDN可扩展性研究</h3><h3 id="SDN规模部署和跨域通信"><a href="#SDN规模部署和跨域通信" class="headerlink" title="SDN规模部署和跨域通信"></a>SDN规模部署和跨域通信</h3><h3 id="传统网络与SDN共存问题研究"><a href="#传统网络与SDN共存问题研究" class="headerlink" title="传统网络与SDN共存问题研究"></a>传统网络与SDN共存问题研究</h3><h3 id="SDN在数据中心的应用研究"><a href="#SDN在数据中心的应用研究" class="headerlink" title="SDN在数据中心的应用研究"></a>SDN在数据中心的应用研究</h3><h3 id="借鉴SDN思想融合IPv6过渡机制"><a href="#借鉴SDN思想融合IPv6过渡机制" class="headerlink" title="借鉴SDN思想融合IPv6过渡机制"></a>借鉴SDN思想融合IPv6过渡机制</h3><h3 id="SDN与其他新型网络架构融合"><a href="#SDN与其他新型网络架构融合" class="headerlink" title="SDN与其他新型网络架构融合"></a>SDN与其他新型网络架构融合</h3><h3 id="SDN网络安全"><a href="#SDN网络安全" class="headerlink" title="SDN网络安全"></a>SDN网络安全</h3><p><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:MD-SAL:Component_Map" rel="external nofollow noopener noreferrer" target="_blank">控制器mdsal组件列表</a><br><a href="https://nexus.opendaylight.org/content/sites/site/org.opendaylight.mdsal/beryllium/apidocs/" rel="external nofollow noopener noreferrer" target="_blank">ODL beryllium版本API，已过期</a><br><a href="https://nexus.opendaylight.org/content/sites/site/org.opendaylight.mdsal/boron/apidocs/" rel="external nofollow noopener noreferrer" target="_blank">ODL boron版本API，目前最新(1/6/2017)</a><br><a href="https://git.opendaylight.org/gerrit/#/admin/projects/" rel="external nofollow noopener noreferrer" target="_blank">官方Git</a>  </p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><a href="http://www.muzixing.com/pages/2015/08/30/sdnkong-zhi-ping-mian-fa-zhan-li-shi-ji-qu-shi.html" rel="external nofollow noopener noreferrer" target="_blank">sdn架构</a><br><a href="http://blog.csdn.net/yuzhihui_no1/article/details/39161515" rel="external nofollow noopener noreferrer" target="_blank">ovs模块划分</a><br><a href="http://blog.csdn.net/yuzhihui_no1/article/details/41546481" rel="external nofollow noopener noreferrer" target="_blank">ovs源码分析系列</a><br><a href="https://wiki.opendaylight.org/view/Network_Intent_Composition:Use_Cases#Suspicious_DDoS_activity_monitoring" rel="external nofollow noopener noreferrer" target="_blank">ODL用户邮件(感觉有用，但是不知道怎么用)</a><br><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:Load_Balancer_Service" rel="external nofollow noopener noreferrer" target="_blank">ODL 负载均衡演示(已过期)</a><br><a href="http://docs.opendaylight.org/en/stable-boron/getting-started-guide/security_considerations.html" rel="external nofollow noopener noreferrer" target="_blank">ODL安全措施，没啥用</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/SDN_conclusion.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Smarking Algorithm Contest 3" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -841,75 +944,6 @@ return cnt +k
 
 
   
-    <article id="post-leetcode_weekly_contest6" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/leetcode_weekly_contest6.html">LeetCode Weekly Contest 6 第六周周赛</a>
-    </h1>
-  
-
-        
-        <a href="/leetcode_weekly_contest6.html" class="archive-article-date">
-  	<time datetime="2016-09-25T18:08:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="404-Sum-of-Left-Leaves"><a href="#404-Sum-of-Left-Leaves" class="headerlink" title="404. Sum of Left Leaves"></a>404. Sum of Left Leaves</h2><p>不解释<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">isLeaf</span><span class="params">(root * TreeNode)</span> <span class="title">bool</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> root == <span class="literal">nil</span> || root.Left!=<span class="literal">nil</span> || root.Right!=<span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">false</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOfLeftLeaves</span><span class="params">(root *TreeNode)</span> <span class="title">int</span></span> &#123;</div><div class="line">    res := <span class="number">0</span></div><div class="line">	<span class="keyword">if</span> root != <span class="literal">nil</span>&#123;</div><div class="line">		<span class="keyword">if</span> isLeaf(root.Left)&#123;</div><div class="line">			res += root.Left.Val</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			res += sumOfLeftLeaves(root.Left)</div><div class="line">		&#125;</div><div class="line">		res += sumOfLeftLeaves(root.Right)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="405-Convert-a-Number-to-Hexadecimal"><a href="#405-Convert-a-Number-to-Hexadecimal" class="headerlink" title="405. Convert a Number to Hexadecimal"></a>405. Convert a Number to Hexadecimal</h2><p>常规的10进制转16进制。<br>负数的转换需要先转为补码再计算。注意用long long int 防止溢出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="built_in">string</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="built_in">string</span> a[] = &#123; <span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span>, <span class="string">"7"</span>, <span class="string">"8"</span>, <span class="string">"9"</span>, <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>, <span class="string">"f"</span> &#125;;</div><div class="line">		<span class="built_in">string</span> res;</div><div class="line">		<span class="keyword">if</span> (num == <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> <span class="string">"0"</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> t;</div><div class="line">		<span class="keyword">if</span> (num &lt;<span class="number">0</span>)&#123;</div><div class="line">			t = <span class="keyword">unsigned</span>(num);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			t = num;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span> (t&gt;<span class="number">0</span>)&#123;</div><div class="line">			res = a[t % <span class="number">16</span>] + res;</div><div class="line">			t /= <span class="number">16</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> res;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<h2 id="406-Queue-Reconstruction-by-Height"><a href="#406-Queue-Reconstruction-by-Height" class="headerlink" title="406. Queue Reconstruction by Height"></a>406. Queue Reconstruction by Height</h2><p>o(n*n)的复杂度。<br>1.将人排序，以前置比他高的人数大小排列，相等的时候按照高度从低到高。<br>2.取排列完第一位，将其取出队列。然后更新下排列中的人情况。即将比他矮的人中，front的人数-1。<br>3.重复操作1，2直到队列中的人都被取出。<br>4.还原队列中的front的情况。因为在第二步中，front的情况会被改写，所以需要恢复。<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">type P <span class="string">[]</span><span class="string">[]</span>int </div><div class="line">func(p P) Len()int&#123;</div><div class="line">	return len(p)</div><div class="line">&#125;</div><div class="line">func(p P)Swap(i,j int)&#123;</div><div class="line">	p<span class="string">[i]</span><span class="string">[0]</span>,p<span class="string">[i]</span><span class="string">[1]</span>,p<span class="string">[j]</span><span class="string">[0]</span>,p<span class="string">[j]</span><span class="string">[1]</span> = p<span class="string">[j]</span><span class="string">[0]</span>,p<span class="string">[j]</span><span class="string">[1]</span>,p<span class="string">[i]</span><span class="string">[0]</span>,p<span class="string">[i]</span><span class="string">[1]</span></div><div class="line">&#125;</div><div class="line">func (p P)Less(i,j int)bool&#123;</div><div class="line">	if p<span class="string">[i]</span><span class="string">[1]</span>!=p<span class="string">[j]</span><span class="string">[1]</span>&#123;</div><div class="line">		return p<span class="string">[i]</span><span class="string">[1]</span> &lt; p<span class="string">[j]</span><span class="string">[1]</span></div><div class="line">	&#125;</div><div class="line">	return p<span class="string">[i]</span><span class="string">[0]</span> &lt; p<span class="string">[j]</span><span class="string">[0]</span></div><div class="line">&#125;</div><div class="line">//<span class="number">1</span>.sort</div><div class="line">//<span class="number">2</span>.取当前队列</div><div class="line">func reconstructQueue(people <span class="string">[]</span><span class="string">[]</span>int) <span class="string">[]</span><span class="string">[]</span>int &#123;</div><div class="line">	res := make(<span class="string">[]</span><span class="string">[]</span>int,len(people))</div><div class="line">	for i:=<span class="number">0</span>;i&lt;len(res);i++&#123;</div><div class="line">		res<span class="string">[i]</span>  = make(<span class="string">[]</span>int,<span class="number">2</span>)</div><div class="line">	&#125;</div><div class="line">	n := len(people)</div><div class="line">	for  i:=<span class="number">0</span>;i&lt;n;i++&#123;</div><div class="line">		</div><div class="line">		sort.Sort(P(people))</div><div class="line">		res<span class="string">[i]</span><span class="string">[0]</span>,res<span class="string">[i]</span><span class="string">[1]</span> = people<span class="string">[0]</span><span class="string">[0]</span>,people<span class="string">[0]</span><span class="string">[1]</span></div><div class="line">		for j:=<span class="number">1</span>;j&lt;len(people);j++&#123;</div><div class="line">			if people<span class="string">[0]</span><span class="string">[0]</span> &gt;=people<span class="string">[j]</span><span class="string">[0]</span>&#123;</div><div class="line">				people<span class="string">[j]</span><span class="string">[1]</span> --;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		people = people<span class="string">[1:]</span></div><div class="line">	&#125;</div><div class="line">	for i :=<span class="number">1</span>;i&lt;len(res);i++ &#123;</div><div class="line">		count :=<span class="number">0</span></div><div class="line">		for j :=<span class="number">0</span>;j&lt;i;j++ &#123;</div><div class="line">			if res<span class="string">[i]</span><span class="string">[0]</span> &lt;= res<span class="string">[j]</span><span class="string">[0]</span>&#123;</div><div class="line">				count ++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		res<span class="string">[i]</span><span class="string">[1]</span> = count</div><div class="line">	&#125;</div><div class="line">	return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="407-Trapping-Rain-Water-II"><a href="#407-Trapping-Rain-Water-II" class="headerlink" title="407. Trapping Rain Water II"></a>407. Trapping Rain Water II</h2><p>下面的做法超时了。正解网上找了一个。<a href="http://www.cnblogs.com/easonliu/p/4743644.html" rel="external nofollow noopener noreferrer" target="_blank">1</a><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">dfs</span><span class="params">(heightMap [][]<span class="keyword">int</span>, x,y <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> x &lt; <span class="number">0</span> || x &gt;= <span class="built_in">len</span>(heightMap) || y &lt;<span class="number">0</span> || y &gt;= <span class="built_in">len</span>(heightMap[<span class="number">0</span>])&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> heightMap[x][y] != <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	heightMap[x][y] = <span class="number">65535</span></div><div class="line">	dfs(heightMap,x+<span class="number">1</span>,y)</div><div class="line">	dfs(heightMap,x<span class="number">-1</span>,y)</div><div class="line">	dfs(heightMap,x,y+<span class="number">1</span>)</div><div class="line">	dfs(heightMap,x,y<span class="number">-1</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getArea</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap[<span class="number">0</span>]);i++&#123;</div><div class="line">		dfs(heightMap,<span class="number">0</span>,i)</div><div class="line">		dfs(heightMap,<span class="built_in">len</span>(heightMap)<span class="number">-1</span>,i)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap);i++&#123;</div><div class="line">		dfs(heightMap,i,<span class="number">0</span>)</div><div class="line">		dfs(heightMap,i,<span class="built_in">len</span>(heightMap[<span class="number">0</span>])<span class="number">-1</span>)</div><div class="line">	&#125;</div><div class="line">	count :=<span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i :=<span class="number">0</span>;i&lt;<span class="built_in">len</span>(heightMap);i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;<span class="built_in">len</span>(heightMap[<span class="number">0</span>]);j++&#123;</div><div class="line">			<span class="keyword">if</span> heightMap[i][j] == <span class="number">0</span>&#123;</div><div class="line">				count ++</div><div class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span> heightMap[i][j] ==<span class="number">65535</span>&#123;</div><div class="line">				heightMap[i][j] = <span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> count</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">func getMin(heightMap [][]int) int&#123;</div><div class="line">	min := 65535</div><div class="line">	m,n := len(heightMap),len(heightMap[0])</div><div class="line">	for i:=1;i&lt;m-1;i++&#123;</div><div class="line">		for j:=1;j&lt;n-1;j++&#123;</div><div class="line">			if heightMap[i][j] == 0&#123;</div><div class="line">				continue;</div><div class="line">			&#125;</div><div class="line">			if min &gt; heightMap[i][j]&#123;</div><div class="line">				min = heightMap[i][j]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	return min</div><div class="line">&#125;*/</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMin2</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	min := <span class="number">65535</span></div><div class="line">	m,n := <span class="built_in">len</span>(heightMap),<span class="built_in">len</span>(heightMap[<span class="number">0</span>])</div><div class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;m;i++&#123;</div><div class="line">		<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;n;j++&#123;</div><div class="line">			<span class="keyword">if</span> heightMap[i][j] == <span class="number">0</span>&#123;</div><div class="line">				<span class="keyword">continue</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> min &gt; heightMap[i][j]&#123;</div><div class="line">				min = heightMap[i][j]</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> min</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">trapRainWater</span><span class="params">(heightMap [][]<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    res ,tmp:= <span class="number">0</span>,<span class="number">1</span></div><div class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(heightMap) == <span class="number">0</span> || <span class="built_in">len</span>(heightMap[<span class="number">0</span>]) == <span class="number">0</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">for</span> <span class="literal">true</span>&#123;</div><div class="line">		m,n := <span class="built_in">len</span>(heightMap),<span class="built_in">len</span>(heightMap[<span class="number">0</span>])</div><div class="line">		min := getMin2(heightMap)</div><div class="line">		<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;m;i++&#123;</div><div class="line">			<span class="keyword">for</span> j:=<span class="number">0</span>;j&lt;n;j++&#123;</div><div class="line">				<span class="keyword">if</span> heightMap[i][j] &lt; min&#123;</div><div class="line">					heightMap[i][j] = <span class="number">0</span></div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;</div><div class="line">				heightMap[i][j] -= min</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		min = getMin2(heightMap)</div><div class="line">		<span class="keyword">if</span> min == <span class="number">65535</span>&#123;</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">		tmp  = min* getArea(heightMap)</div><div class="line">		res += tmp</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/leetcode_weekly_contest6.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1040,6 +1074,10 @@ return cnt +k
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面经</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
             
             <div class="clearfix"></div>

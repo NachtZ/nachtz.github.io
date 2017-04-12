@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://nachtz.top/ShellNote.html</loc>
+    <lastmod>2017-04-12T01:22:54.103Z</lastmod>
+    <data>
+        <display>
+        <title>Shell杂记</title>
+        <pubTime>2017-04-12T13:19:02.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>Shell</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://nachtz.top/dpdk_ring_perf.html</loc>
     <lastmod>2017-03-30T20:12:56.000Z</lastmod>
     <data>
