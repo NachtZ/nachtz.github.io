@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Shell杂记 | 一元硬币</title>
+  <title>一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
-确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Shell杂记">
-<meta property="og:url" content="http://nachtz.top/ShellNote.html">
+  <meta name="description" content="YsRc91fky5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一元硬币">
+<meta property="og:url" content="http://nachtz.top/baidu_verify_YsRc91fky5.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
-确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
-<meta property="og:updated_time" content="2017-04-12T01:22:54.103Z">
+<meta property="og:description" content="YsRc91fky5">
+<meta property="og:updated_time" content="2017-03-13T11:32:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell杂记">
-<meta name="twitter:description" content="保证shell脚本的安全性。在#!/bin/bash 后面加上-e。 -e 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加-e会继续执行下去，这种忽略错误的行为不是好行为。-v的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。所以在脚本头该写的是：#!/bin/bash -ev。
-确保创建目录一定成功。在mkdir的时候，加上-p的时候能够确保该文件夹创建成功，">
+<meta name="twitter:title" content="一元硬币">
+<meta name="twitter:description" content="YsRc91fky5">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -182,41 +179,12 @@
             <canvas data-colors="#eaeaea" data-sectionheight="100" data-contentid="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ShellNote" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="page-undefined" class="article article-type-page " itemscope="" itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Shell杂记
-    </h1>
-  
-
-        
-        <a href="/ShellNote.html" class="archive-article-date">
-  	<time datetime="2017-04-12T01:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>保证shell脚本的安全性。<br>在<code>#!/bin/bash</code> 后面加上<code>-e</code>。 <code>-e</code> 的作用是当当前脚本出现问题时就退出。 脚本出现错误时，如果不加<code>-e</code>会继续执行下去，这种忽略错误的行为不是好行为。<code>-v</code>的作用是打印当前脚本。可以在脚本出错退出时很方便的定位到出错的语句。<br>所以在脚本头该写的是：<code>#!/bin/bash -ev</code>。</li>
-<li>确保创建目录一定成功。<br>在<code>mkdir</code>的时候，加上<code>-p</code>的时候能够确保该文件夹创建成功，加上 <code>-m arg</code>配置权限。<br>所以下面语句<code>mkdir -m 777 -p /path/to/dir</code>。这个语句，在目录<code>/path/to/</code>下面创建<code>dir</code>文件夹，并赋予<code>777</code>即所有用户都可读写执行的权限。同时，该语句保证<code>mkdir</code>一定成功，即如果<code>dir</code>的任意上级目录不存在，系统都会创建该上级目录，直至<code>dir</code>；如果<code>dir</code>目录存在，则不做任意改动并返回成功，如果不加<code>-p</code>，上面两种情况都会返回失败。</li>
-<li><p>获取当前脚本所在目录。<br> 在运行脚本的时候，确保脚本运行时所在的目录是非常重要的，脚本运行时目录会在调用这个脚本的目录。而很多时候我们希望脚本运行时的目录是在脚本所在的目录。以脚本<code>/path/to/test.sh</code>为例。假设在<code>path</code>目录下用语句<code>./to/test.sh</code>调用。这个时候脚本运行环境的目录是在<code>/path</code>下，而不是脚本所在目录<code>/path/to</code>下。所以经常需要将脚本重新定位要它本身所在目录。    </p>
- <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">DIR</span>=<span class="string">"$( cd "</span>$( dirname <span class="string">"$&#123;BASH_SOURCE[0]&#125;"</span> )<span class="string">" &amp;&amp; pwd )"</span></div></pre></td></tr></table></figure>
-<p> 以脚本<code>/path/to/test.sh</code>为例，假设该文件中存在以上语句。在<code>path</code>目录下用语句<code>./to/test.sh</code>调用。<br> 那么，语句<code>${BASH_SOURCE[0]}</code>显示的是运行该语句时候的调用命令，即<code>./to/test.sh</code>。然后<code>dirname</code>就是<code>./to</code>。之后，进入该目录并打印<code>pwd</code>，就会得到路径<code>/path/to</code>。这个就是脚本所在的目录。</p>
-</li>
-<li><p>在脚本中安装一些依赖。<br> 在脚本中，如果直接使用<code>apt-get install</code>语句，经常要你确认安装，由于是在脚本中执行，显然是没有机会按y键的。<br>在安装语句中加上<code>-y</code>选项，比如<code>apt-get install -y libssl-dev</code>。这个就能默认确认安装了。</p>
-</li>
-<li><p>确认root权限。</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    echo <span class="string">"Check use is root or not now."</span></div><div class="line">ROOT_UID=<span class="number">0</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"$UID"</span> -eq <span class="string">"$ROOT_UID"</span> ]</div><div class="line">then</div><div class="line">    echo <span class="string">"You are root."</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    echo <span class="string">"You are not root, please run as root"</span></div><div class="line">    <span class="keyword">exit</span> <span class="number">1</span></div><div class="line">fi</div></pre></td></tr></table></figure>
-<p> <code>$UID</code>打印当前用户UID，root用户的UID是0.二者相等，那么自然当前用户是root。<br> 此外，把if语句换成<code>if [ &quot;$whoami&quot; -eq &quot;root&quot; ]</code>也行。<code>$whoami</code>会打印当前用户的名字。</p>
-</li>
-</ol>
-
+        YsRc91fky5
       
 
       
@@ -224,21 +192,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -289,7 +242,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/ShellNote.html" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/baidu_verify_YsRc91fky5.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,25 +254,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/interview_didi.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          滴滴新锐计划实习生面试经历
-        
-      </div>
-    </a>
-  
-  
-    <a href="/dpdk_ring_perf.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">dpdk ring 性能测试</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 
 
@@ -328,7 +262,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="ShellNote" data-title="Shell杂记" data-url="http://nachtz.top/ShellNote.html"></div>
+	<div class="ds-thread" data-thread-key="undefined" data-title="" data-url="http://nachtz.top/baidu_verify_YsRc91fky5.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -370,7 +304,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

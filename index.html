@@ -59,7 +59,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/Resume/">简历</a></li>
+				<li><a href="/tags/Resume/">面经</a></li>
 	        
 				<li><a href="/tags/DPDK/">DPDK</a></li>
 	        
@@ -155,7 +155,7 @@
 				
 					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/Resume/">简历</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/Resume/">面经</a></li>
 		        
 					<li style="width: 16.666666666666668%"><a href="/tags/DPDK/">DPDK</a></li>
 		        
@@ -180,6 +180,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-interview_didi" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/interview_didi.html">滴滴新锐计划实习生面试经历</a>
+    </h1>
+  
+
+        
+        <a href="/interview_didi.html" class="archive-article-date">
+  	<time datetime="2017-04-22T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="滴滴新锐计划实习生面试经历"><a href="#滴滴新锐计划实习生面试经历" class="headerlink" title="滴滴新锐计划实习生面试经历"></a>滴滴新锐计划实习生面试经历</h3><p>　　周四(2017.04.20)面了滴滴，两面总共花了大概1.5小时吧。感觉整个面试过程和之前经历过得面试完全不一样。而且二面也让我收获颇丰。于是想记录下来。<br>　　一面是一个有点吊儿郎当的面试官。给人感觉不像个面试官，像个我想考考你的学长一样。在我回答问题的时候还会坐在沙发上抖腿，很有趣xd.不知道是不是滴滴的面试策略就是这样。<br>　　一面的流程很简单，介绍了一下自己，项目经历。然后就是一些常规的面试题。面试主要是问了三个tcp协议的问题。tcp三次握手，tcp四次挥手和tcp拥塞控制。感觉答得还行。打完之后面试官就问有什么问题要问的，我就问了下未来可能部门要做的事情和部门在整个业务中的地位。(系统部，业务基石)。<br>　　问完后面试官就说网络我不太熟，我让一个熟悉网络的同事过来面你吧(这里不知道是不是套路，因为后来从hr那了解到，那天面了两面，这算第一面了)。<br>　　二面的面试官是一个精瘦的男子。感觉特别干练，像炉石主播海老板。这个面试官也不走常规面试套路，闲聊式面试。面试官一开始先问对自己部门的了解，我直接说不了解(滴滴一没求职系统二没告诉我对应岗位，内推的新锐计划又那么敷衍，谁知道自己要面的是谁.).然后面试官就介绍了自己，来自系统部，主要做的是定制系统内核，比如在旧内核加新feature,在系统中改造内核，修改协议栈等，和滴滴内部私有云平台的研发，开发语言是C。面试官一边聊自己对网络的看法，然后抛出问题让你接。面试官让我给他讲项目，一边讲一边点评。比如再说到自己项目中基于流的缓存容量是三千条时，他就很犀利的指出为什么是三千，如果是三万三十万怎么办。其实这个三千只是一个宏定义的事情。我就给他具体介绍了怎么进行缓存的(五元组hash和链表，外挂时间排序的流链表及其他优化措施)。面试官表示这是旧版本内核的写法，让我去看看，后来因为性能问题现在内核已经换了种写法了。此外还有ip网段匹配的问题(利用掩码拼接做索引，然后用字典树做接下来的匹配)，他在也认为这是性能不足以承受的。在极端条件下，这两种方案都无法满足。个人感觉是比较汗颜的，在实验室环境下，的确是根本不可能考虑到这方面的东西。面试官说实验室的项目更多要求功能性，不扣性能。此外还聊到了DPDK,问我DPDK为什么高性能。我的回答是官方博客那一套，hugepage,cpu亲和，零拷贝，无锁ring等等。他表示这些都是官方博客上的内容，真正的点不在这。在于dpdk内存管理。正常的内核态没办法支撑过于频繁的内存分配或者内存清空，从而限制了最大发包数。这一点我是从来没想过的。到此面试就差不多结束了，最后问他问题的时候我问了下未来工作地点的情况。他说在北京，他认为刚入职场的这两年最好在总部有人带，便于发展。我如果在滴滴杭州没有前途的。这一点我之前也是没有考虑过得。<br>　　到此滴滴二面结束了。面试官说让我回去等接下来的交叉或者hr面。<br>　　这次面试让我看到了自己的不足。首先对于DPDK,我不应该只止于会用。而如果要继续深入下去，我可能需要先去了解linux内核。其次是在做项目的时候，应该多看看。在项目中的ip匹配和流缓存。在系统内核中早有相似实现。而我却完全不知道，所以我还是应该多看看内核相关的书籍。第三就是关于性能考量这块。尽管我面试时候说这样的设计是有一个前提是项目本身性能有其他瓶颈，不过这也只是一种不让面试官觉得自己啥也没考虑就开始撸代码的努力。在学校，实验室对这性能方面没有极致的要求，你的项目中就注定不可能在抠性能上大费时间。所以未来的话，真想做后台开发，就不要去读博了。<br>　　尽管面试官说他这关我算是过了，我最后等到的是却调岗再面的通知。hr说这个部门没有hc了，让我换个部门重头再来。我最后拒绝了，因为感觉未来肯定不会留在滴滴。首先我想base广杭沪，再不济苏州微软，绝对不留北京，而滴滴杭州只是大数据岗位，不适合我。其次我觉得这一次面试已经给我很大的启发了，腾讯面试官的建议，和从滴滴这获得的体会，足够满足未来这两个月平时我的闲暇时间的充电了，新的面试官，是系统部网络部门的，感觉再面也没啥收获可得。所以我决定还是不再去面试了，可以缓下来好好沉淀一下了。  </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Resume</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面经</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/interview_didi.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-ShellNote" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -193,7 +259,7 @@
 
         
         <a href="/ShellNote.html" class="archive-article-date">
-  	<time datetime="2017-04-12T13:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
+  	<time datetime="2017-04-12T01:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
 </a>
         
       </header>
@@ -272,7 +338,7 @@
 
         
         <a href="/dpdk_ring_perf.html" class="archive-article-date">
-  	<time datetime="2017-03-30T20:12:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
+  	<time datetime="2017-03-30T08:12:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
 </a>
         
       </header>
@@ -366,7 +432,7 @@
 
         
         <a href="/interview_ali.html" class="archive-article-date">
-  	<time datetime="2017-03-18T01:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+  	<time datetime="2017-03-17T13:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
 </a>
         
       </header>
@@ -458,7 +524,7 @@
 
         
         <a href="/leetcode_answer.html" class="archive-article-date">
-  	<time datetime="2017-03-13T03:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
+  	<time datetime="2017-03-12T15:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
 </a>
         
       </header>
@@ -1882,7 +1948,7 @@
 
         
         <a href="/data_struct_and_ag.html" class="archive-article-date">
-  	<time datetime="2017-03-01T18:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
+  	<time datetime="2017-03-01T05:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
 </a>
         
       </header>
@@ -2106,7 +2172,7 @@
 
         
         <a href="/SDN_defense4all.html" class="archive-article-date">
-  	<time datetime="2017-02-23T18:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-23</time>
+  	<time datetime="2017-02-23T05:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-23</time>
 </a>
         
       </header>
@@ -2326,7 +2392,7 @@
 
         
         <a href="/SDN_opendaylight_dev_bundle.html" class="archive-article-date">
-  	<time datetime="2017-01-08T18:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
+  	<time datetime="2017-01-08T05:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
 </a>
         
       </header>
@@ -2561,75 +2627,6 @@ application/json
 
 
   
-    <article id="post-SDN_Link" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/SDN_Link.html">SDN收藏夹</a>
-    </h1>
-  
-
-        
-        <a href="/SDN_Link.html" class="archive-article-date">
-  	<time datetime="2017-01-08T18:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="SDN收藏夹"><a href="#SDN收藏夹" class="headerlink" title="SDN收藏夹"></a>SDN收藏夹</h2><hr>
-<h3 id="OpenDayLight操作"><a href="#OpenDayLight操作" class="headerlink" title="OpenDayLight操作"></a>OpenDayLight操作</h3><p><a href="http://www.sdnlab.com/1749.html" rel="external nofollow noopener noreferrer" target="_blank">ODL与mininet</a><br><a href="http://docs.opendaylight.org/en/stable-boron/getting-started-guide/common-features/clustering.html" rel="external nofollow noopener noreferrer" target="_blank">ODL控制器集群</a><br><a href="https://github.com/yeasy/tech_writing/blob/master/SDN/OpenDaylight%20Controller%20%E7%AE%80%E6%98%93%E5%85%A5%E9%97%A8.pdf" rel="external nofollow noopener noreferrer" target="_blank">简单入门(13年12月)</a>  </p>
-<hr>
-<h3 id="OpenDayLight编程开发"><a href="#OpenDayLight编程开发" class="headerlink" title="OpenDayLight编程开发"></a>OpenDayLight编程开发</h3><p><a href="http://blog.csdn.net/heriam/article/details/50411303" rel="external nofollow noopener noreferrer" target="_blank">Linux编译环境搭建</a><br><a href="http://www.sdnlab.com/17124.html" rel="external nofollow noopener noreferrer" target="_blank">windows下环境搭建</a>(<a href="http://www.sdnlab.com/author/3836/" rel="external nofollow noopener noreferrer" target="_blank">该文作者系列文章</a>)<br><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:Building_from_CLI" rel="external nofollow noopener noreferrer" target="_blank">官方maven编译安装教程</a><strong>注意maven编译的时候可能需要使用代理来访问远端maven仓库</strong><br><a href="http://www.sdnlab.com/11405.html" rel="external nofollow noopener noreferrer" target="_blank">控制器上bundle的二次开发</a><br><a href="http://blog.csdn.net/pantingting_zju/article/details/46835081" rel="external nofollow noopener noreferrer" target="_blank">开发一个bundle</a>(已经过期无法按照原文步骤演示了，但是可以看看。<a href="http://www.frank-durr.de/?p=84" rel="external nofollow noopener noreferrer" target="_blank">原文</a>)<br><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:Sample_Applications/SampleStatisticsApplication" rel="external nofollow noopener noreferrer" target="_blank">利用北向接口NBI来写一个统计程序</a><br><a href="http://docs.opendaylight.org/en/stable-boron/developer-guide/developing-apps-on-the-opendaylight-controller.html" rel="external nofollow noopener noreferrer" target="_blank">官方开发控制器app文档</a><br><a href="http://www.sdnlab.com/18270.html" rel="external nofollow noopener noreferrer" target="_blank">YANG模型</a>  </p>
-<hr>
-<h3 id="OpenDayLight-源码与API"><a href="#OpenDayLight-源码与API" class="headerlink" title="OpenDayLight 源码与API"></a>OpenDayLight 源码与API</h3><p><a href="http://blog.csdn.net/sdnlab/article/details/44651161" rel="external nofollow noopener noreferrer" target="_blank">ODL 氢版本数据通讯版本源码解读</a><br><a href="https://wiki.opendaylight.org/view/Defense4All:Tutorial" rel="external nofollow noopener noreferrer" target="_blank">defenseAll (已被odl官方存档弃用)</a><br><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:MD-SAL:Component_Map" rel="external nofollow noopener noreferrer" target="_blank">控制器mdsal组件列表</a><br><a href="https://nexus.opendaylight.org/content/sites/site/org.opendaylight.mdsal/beryllium/apidocs/" rel="external nofollow noopener noreferrer" target="_blank">ODL beryllium版本API，已过期</a><br><a href="https://nexus.opendaylight.org/content/sites/site/org.opendaylight.mdsal/boron/apidocs/" rel="external nofollow noopener noreferrer" target="_blank">ODL boron版本API，目前最新(1/6/2017)</a><br><a href="https://git.opendaylight.org/gerrit/#/admin/projects/" rel="external nofollow noopener noreferrer" target="_blank">官方Git</a>  </p>
-<hr>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><a href="http://www.muzixing.com/pages/2015/08/30/sdnkong-zhi-ping-mian-fa-zhan-li-shi-ji-qu-shi.html" rel="external nofollow noopener noreferrer" target="_blank">sdn架构</a><br><a href="http://blog.csdn.net/yuzhihui_no1/article/details/39161515" rel="external nofollow noopener noreferrer" target="_blank">ovs模块划分</a><br><a href="http://blog.csdn.net/yuzhihui_no1/article/details/41546481" rel="external nofollow noopener noreferrer" target="_blank">ovs源码分析系列</a><br><a href="https://wiki.opendaylight.org/view/Network_Intent_Composition:Use_Cases#Suspicious_DDoS_activity_monitoring" rel="external nofollow noopener noreferrer" target="_blank">ODL用户邮件(感觉有用，但是不知道怎么用)</a><br><a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:Load_Balancer_Service" rel="external nofollow noopener noreferrer" target="_blank">ODL 负载均衡演示(已过期)</a><br><a href="http://docs.opendaylight.org/en/stable-boron/getting-started-guide/security_considerations.html" rel="external nofollow noopener noreferrer" target="_blank">ODL安全措施，没啥用</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/SDN_Link.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -2723,14 +2720,6 @@ application/json
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
@@ -2739,11 +2728,19 @@ application/json
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">DPDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2755,15 +2752,15 @@ application/json
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Resume</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面经</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>
