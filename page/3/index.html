@@ -182,6 +182,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-dpdk_docker" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/dpdk_docker.html">在Docker中运行DPDK</a>
+    </h1>
+  
+
+        
+        <a href="/dpdk_docker.html" class="archive-article-date">
+  	<time datetime="2016-10-16T04:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>Docker：<code>1.12.1</code><br>DPDK:<code>16.07</code></p>
+<h3 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h3><p>在Ubuntu中docker的安装还是很简单的。参考官方文档<a href="[Docker安装指南](https://docs.docker.com/engine/installation/linux/ubuntulinux/)">^1</a>就行了。需要注意的是只能在64位，linux版本号不低于<code>3.11.0-15-generic</code>的发行版上运行。所以在OpenVZ的VPS上不能运行。</p>
+<h3 id="制造DPDK的Docker镜像"><a href="#制造DPDK的Docker镜像" class="headerlink" title="制造DPDK的Docker镜像"></a>制造DPDK的Docker镜像</h3><p>这边主要参考的是网上的一篇博客<a href="[Docker安装指南](https://docs.docker.com/engine/installation/linux/ubuntulinux/)">^1</a>和红帽的Github[^2]来写Dockerfile的。Dockerfile如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">FROM ubuntu</div><div class="line">MAINTAINER NachtZ&lt;nachtz@outlook.com&gt;</div><div class="line"></div><div class="line">LABEL RUN docker run -it --privileged -v /sys/bus/pci/devices:/sys/bus/pci/devices -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages -v /sys/devices/system/node:/sys/devices/system/node -v /dev:/dev --name NAME -e NAME=NAME -e IMAGE=IMAGE IMAGE&quot;</div><div class="line"></div><div class="line"># Setup yum repos, or use subscription-manager</div><div class="line"></div><div class="line"># Install DPDK support packages.</div><div class="line">RUN  apt-get update &amp;&amp; apt-get install -y libpcap-dev wget xz-utils gcc automake autoconf libtool make</div><div class="line">    </div><div class="line"></div><div class="line"># Build DPDK and pktgen-dpdk for x86_64-native-linuxapp-gcc.</div><div class="line">WORKDIR /root</div><div class="line">COPY ./build_dpdk.sh /root/build_dpdk.sh</div><div class="line">COPY ./dpdk-profile.sh /etc/profile.d/</div><div class="line">#RUN /root/build_dpdk.sh</div><div class="line"></div><div class="line"># Defaults to a bash shell, you could put your DPDK-based application here.</div><div class="line">CMD [&quot;/bin/bash&quot;]</div></pre></td></tr></table></figure></p>
+<p>这个Dockerfile的注解如下：<br><code>FROM ubuntu</code>：说明该镜像的源镜像是Ubuntu。<br><code>MAINTAINER NachtZ&lt;nachtz@outlook.com&gt;</code>:介绍镜像的作者。</p>
+<p><code>LABEL RUN docker run -it --privileged -v /sys/bus/pci/devices:/sys/bus/pci/devices -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages -v /sys/devices/system/node:/sys/devices/system/node -v /dev:/dev --name NAME -e NAME=NAME -e· IMAGE=IMAGE IMAGE&quot;</code>: 镜像的标签。</p>
+<p><code>RUN  apt-get update &amp;&amp; apt-get install -y libpcap-dev wget xz-utils gcc automake autoconf libtool make</code>：安装DPDK所需要的依赖程序，因为在Docker中的系统都是比较精简的，所以很多程序都需要自己安装。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">WORKDIR</span><span class="bash"> /root</span></div><div class="line"><span class="keyword">COPY</span><span class="bash"> ./build_dpdk.sh /root/build_dpdk.sh</span></div><div class="line"><span class="keyword">COPY</span><span class="bash"> ./dpdk-profile.sh /etc/profile.d/</span></div></pre></td></tr></table></figure>
+<p>上面这段话是把Dockerfile同目录下<code>./build_dpdk.sh</code>,<code>./dpdk-profile.sh</code>拷贝到镜像里面去。</p>
+<p><code>CMD [&quot;/bin/bash&quot;]</code>:指定动作是打开一个bash。</p>
+<p>到此为止，一个可以用来安装DPDK的镜像就完成了。接下来就是打开它。</p>
+<h3 id="在Docker中安装DPDK"><a href="#在Docker中安装DPDK" class="headerlink" title="在Docker中安装DPDK"></a>在Docker中安装DPDK</h3><p>在shell中运行：<br><code>docker run -it --privileged -v /sys/bus/pci/devices:/sys/bus/pci/devices -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages -v /sys/devices/system/node:/sys/devices/system/node -v /dev:/dev xxx</code>（最后的xxx表示的是之前的镜像的名字）<br>在运行这个之前，需要将宿主机的DPDK环境都配置好。比如hugepage，以及转载好DPDK驱动的端口。之后运行docker run，</p>
+<blockquote>
+<p><code>--privileged -v /sys/bus/pci/devices:/sys/bus/pci/devices -v /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages -v /sys/devices/system/node:/sys/devices/system/node</code>  这段话的意思就是给Docker容器权限来使用宿主机的端口，hugepage等。</p>
+</blockquote>
+<p>之后我们进入到Docker的容器中。<br>在容器的<code>root</code>目录下可以看到之前拷贝的<code>./build_dpdk.sh</code>。内容如下：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/bin/bash</span></div><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  build_dpdk.sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#             - Build DPDK and pktgen-dpdk for </span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  Usage:     Adjust variables below before running, if necessary.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  MAINTAINER:  jeder@redhat.com</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line"></div><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line"><span class="comment">#  Define Global Variables and Functions</span></div><div class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">##</span></div><div class="line"></div><div class="line">URL=http:<span class="regexp">//</span>fast.dpdk.org/rel/dpdk<span class="number">-16.04</span>.tar.xz</div><div class="line">BASEDIR=/root</div><div class="line">VERSION=<span class="number">16.04</span></div><div class="line">PACKAGE=dpdk</div><div class="line">DPDKROOT=$BASEDIR/$PACKAGE-$VERSION</div><div class="line">CONFIG=x86_64-native-linuxapp-gcc</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Download/Build DPDK</span></div><div class="line">cd $BASEDIR</div><div class="line">wget $URL</div><div class="line">tar -xf $PACKAGE-$VERSION.tar.xz</div><div class="line">cd $DPDKROOT</div><div class="line"> sed -i <span class="string">'s/CONFIG_RTE_EAL_IGB_UIO=y/CONFIG_RTE_EAL_IGB_UIO=n/'</span> $&#123;DPDKROOT&#125;/config/common_linuxapp \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_LIBRTE_KNI=y/CONFIG_RTE_LIBRTE_KNI=n/'</span> $&#123;DPDKROOT&#125;/config/common_linuxapp \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_KNI_KMOD=y/CONFIG_RTE_KNI_KMOD=n/'</span> $&#123;DPDKROOT&#125;/config/common_linuxapp</div><div class="line"> </div><div class="line"><span class="comment"># don't build unnecessary stuff, can be reversed in dpdk_config.sh</span></div><div class="line">sed -i <span class="string">'s/CONFIG_RTE_APP_TEST=y/CONFIG_RTE_APP_TEST=n/'</span> $&#123;DPDKROOT&#125;/config/common_base \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_TEST_PMD=y/CONFIG_RTE_TEST_PMD=n/'</span> $&#123;DPDKROOT&#125;/config/common_base \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_EAL_IGB_UIO=y/CONFIG_RTE_EAL_IGB_UIO=n/'</span> $&#123;DPDKROOT&#125;/config/common_base \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_LIBRTE_IGB_PMD=y/CONFIG_RTE_LIBRTE_IGB_PMD=n/'</span> $&#123;DPDKROOT&#125;/config/common_base \</div><div class="line">  &amp;&amp; sed -i <span class="string">'s/CONFIG_RTE_LIBRTE_IXGBE_PMD=y/CONFIG_RTE_LIBRTE_IXGBE_PMD=n/'</span> $&#123;DPDKROOT&#125;/config/common_base \</div><div class="line">make config T=$CONFIG</div><div class="line">sed -ri <span class="string">'s,(PMD_PCAP=).*,\1y,'</span> build/.config</div><div class="line">make config T=$CONFIG install</div></pre></td></tr></table></figure></p>
+<p>这个文档来自<a href="[Redhat的DPDK_docker](https://github.com/redhat-performance/docker-dpdk)">^3</a>。我依照<code>DPDK 16.04</code>中的文档和博客[^2]来改造的。在博客[^2]中提到：</p>
+<blockquote>
+<p>One thing that is important is to not rely on kernel headers; doing so would be seriously non portable.  The uio and igb_uio kernel modules have to be built and installed by the host that will run the DPDK container. Therefore, we configure the SDK to not compile kernel modules, and therefore not require installing kernel headers on the build system.    </p>
+</blockquote>
+<p>就是说在Docker中，用到的网卡驱动是宿主机的驱动，所以不需要编译网卡内核驱动。在<code>./build_dpdk.sh</code>中，的两行sed语句就是在修改编译配置。</p>
+<p>手动运行完<code>./build_dpdk.sh</code>之后，就可以正常编译运行DPDK的程序了。<br>比如可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$:export RTE_SDK=/root/dpdk-16.04</div><div class="line">$:export RTE_TARGET=x86_64-native-linuxapp-gcc</div><div class="line">$:cd dpdk-16.04/example/helloworld</div><div class="line">$:make</div><div class="line">$:./build/helloworld</div></pre></td></tr></table></figure></p>
+<p>就可以看到helloworld正常的运行了。</p>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><p>这是修改完成之后的Docker的Dockerfile和两个sh文件。<a href="https://github.com/NachtZ/docker-dpdk" rel="external nofollow noopener noreferrer" target="_blank">NachtZ/docker-dpdk</a></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li>Jason的博客[^2]</li>
+<li>Redhat的dpdk_docker<a href="[Redhat的DPDK_docker](https://github.com/redhat-performance/docker-dpdk)">^3</a></li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[^2]:<a href="http://jason.digitalinertia.net/dockered-dpdk-packaging-open-vswitch/" rel="external nofollow noopener noreferrer" target="_blank">Jason 的博客</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/dpdk_docker.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-leetcode_weekly_contest8" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -740,6 +830,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
@@ -756,14 +854,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Snort</a>
               </li>
              
@@ -772,15 +862,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Resume</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面经</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>
