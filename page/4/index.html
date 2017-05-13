@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/12 | 一元硬币</title>
+  <title>一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="北邮本科信安，硕士软件。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/12/index.html">
+<meta property="og:url" content="http://nachtz.top/page/4/index.html">
 <meta property="og:site_name" content="一元硬币">
 <meta property="og:description" content="北邮本科信安，硕士软件。">
 <meta name="twitter:card" content="summary">
@@ -182,58 +182,74 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-dpdk_note" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/SDN_conclusion.html" class="archive-article-date">
-  	<time datetime="2016-12-18T05:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/SDN_conclusion.html">SDN综述</a>
+      <a class="article-title" href="/dpdk_note.html">DPDK杂记</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/dpdk_note.html" class="archive-article-date">
+  	<time datetime="2016-06-17T10:19:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DPDK编译动态库"><a href="#DPDK编译动态库" class="headerlink" title="DPDK编译动态库"></a>DPDK编译动态库</h3><p>将common_linuxapp中的CONFIG_RTE_BUILD_SHARED_LIB和<em>CONFIG_RTE_BUILD_COMBINE_LIBS</em>都改为y，重新编译。将生成的lib文件拷贝到linux的lib中。<br>（在dpdk16.04中，combine这个选项被取消了。邮件组中提到说是默认就是combine了。但是实际编译中发现不同的网卡驱动还是没有编译在一起。拷贝的时候都需要拷贝过去。）<br>之后就是修改Makefile.<br>将makefile中的<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="variable">$(</span>RTE_SDK)/mk/rteextapp.mk</div></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include $(RTE_SDK)/mk/rte<span class="selector-class">.extshared</span><span class="selector-class">.mk</span></div></pre></td></tr></table></figure></p>
+<p>把binary name中的app改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">SHARED</span> = yourname.so</div></pre></td></tr></table></figure></p>
+<p>最后再加上库：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LDLIBS += -L/home/nachtz/dpdk-<span class="number">2.2</span>.<span class="number">0</span>/x86_64-native-linuxapp-gcc/<span class="class"><span class="keyword">lib</span> -<span class="title">ldpdk</span> -<span class="title">lrt</span> -<span class="title">lm</span> -<span class="title">lgcc_s</span> -<span class="title">ldl</span></span></div></pre></td></tr></table></figure></p>
+<p>就行了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDN</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">DPDK</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/dpdk_note.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
+  
 
 
           </div>
@@ -255,9 +271,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

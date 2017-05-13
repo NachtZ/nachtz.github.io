@@ -6,17 +6,45 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://nachtz.top">
-  <title>Archives: 2016/12 | 一元硬币</title>
+  <title>几种脱机环境下安装依赖的方法 | 一元硬币</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="北邮本科信安，硕士软件。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一元硬币">
-<meta property="og:url" content="http://nachtz.top/archives/2016/12/index.html">
+  <meta name="description" content="前言昨天去CNCERT搭系统，碰到了天坑。晚上回来加早上半天，找了些解决方案。发个博客记录下来。
+应急中心的安全要求很高，限制非常严格。要求不能使用U盘，只能使用光盘来进行数据交互。而且机房不连通外网。所以在部署系统的时候程序的环境依赖就是个很大的问题了。
+找了下，大致有以下几种方案：
+
+内网源
+Remastersys
+DVD sources.
+利用cache制作临时源.
+aptoncd.
+Rsy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种脱机环境下安装依赖的方法">
+<meta property="og:url" content="http://nachtz.top/localsource.html">
 <meta property="og:site_name" content="一元硬币">
-<meta property="og:description" content="北邮本科信安，硕士软件。">
+<meta property="og:description" content="前言昨天去CNCERT搭系统，碰到了天坑。晚上回来加早上半天，找了些解决方案。发个博客记录下来。
+应急中心的安全要求很高，限制非常严格。要求不能使用U盘，只能使用光盘来进行数据交互。而且机房不连通外网。所以在部署系统的时候程序的环境依赖就是个很大的问题了。
+找了下，大致有以下几种方案：
+
+内网源
+Remastersys
+DVD sources.
+利用cache制作临时源.
+aptoncd.
+Rsy">
+<meta property="og:updated_time" content="2017-05-13T07:06:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一元硬币">
-<meta name="twitter:description" content="北邮本科信安，硕士软件。">
+<meta name="twitter:title" content="几种脱机环境下安装依赖的方法">
+<meta name="twitter:description" content="前言昨天去CNCERT搭系统，碰到了天坑。晚上回来加早上半天，找了些解决方案。发个博客记录下来。
+应急中心的安全要求很高，限制非常严格。要求不能使用U盘，只能使用光盘来进行数据交互。而且机房不连通外网。所以在部署系统的时候程序的环境依赖就是个很大的问题了。
+找了下，大致有以下几种方案：
+
+内网源
+Remastersys
+DVD sources.
+利用cache制作临时源.
+aptoncd.
+Rsy">
   
     <link rel="alternative" href="/atom.xml" title="一元硬币" type="application/atom+xml">
   
@@ -180,60 +208,178 @@
             <canvas data-colors="#eaeaea" data-sectionheight="100" data-contentid="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-localsource" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/SDN_conclusion.html" class="archive-article-date">
-  	<time datetime="2016-12-18T05:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/SDN_conclusion.html">SDN综述</a>
+    <h1 class="article-title" itemprop="name">
+      几种脱机环境下安装依赖的方法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/localsource.html" class="archive-article-date">
+  	<time datetime="2017-05-13T07:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del>昨天去CNCERT搭系统，碰到了天坑。晚上回来加早上半天，找了些解决方案。发个博客记录下来。</del></p>
+<p>应急中心的安全要求很高，限制非常严格。要求不能使用U盘，只能使用光盘来进行数据交互。而且机房不连通外网。所以在部署系统的时候程序的环境依赖就是个很大的问题了。</p>
+<p>找了下，大致有以下几种方案：</p>
+<ol>
+<li>内网源</li>
+<li>Remastersys</li>
+<li>DVD sources.</li>
+<li>利用cache制作临时源.</li>
+<li>aptoncd.</li>
+<li>Rsync.</li>
+</ol>
+<h2 id="内网源"><a href="#内网源" class="headerlink" title="内网源"></a>内网源</h2><p>内网源很简单，就是在内部网络中搭建一个Linux的更新源。这个方案适合一些内网有搭建更新服务器的地方。很遗憾问那边的博士，收到的答复是CNCERT没有。</p>
+<h2 id="Remastersys"><a href="#Remastersys" class="headerlink" title="Remastersys"></a>Remastersys</h2><p>remastersys 是一个将本机的系统到处为iso的一个程序。这个iso上可以带着你自己安装的软件。十分适合这个场景。<br>remastersys的教程很多，比如这个<a href="http://www.cnblogs.com/chenkun1/p/5532977.html" rel="external nofollow noopener noreferrer" target="_blank">lilnk</a>。可以自行搜索安装使用。需要注意的点有几个：</p>
+<ol>
+<li>不在ubuntu官方源，需要自己下载deb包。</li>
+<li>很多依赖新版本ubuntu已经废弃了。比如ubuntu16.04中，xresprobe已经无法apt安装了。出现这个情况的时候，可以根据屏幕的提示，去网上搜索deb包下载安装。那些需要ppa添加源的方案很多也已经过时了。deb包直接安装简单粗暴好用。</li>
+<li>有一个暗坑。ubuntu16.04制作iso的时候，出现了制作的光盘只有36k的情况。后面在这个页面上<a href="https://askubuntu.com/questions/732953/remastersys-creating-36k-iso-files-14-10-15-04-15-10" rel="external nofollow noopener noreferrer" target="_blank">link</a>发现，问题是缺少了两个包<code>syslilnux-utils</code>和<code>isolinux</code>。安装完这两个包就可以了。</li>
+</ol>
+<p>此外，在ubuntu上将导出的iso刻为可引导光驱也比较有难度。导师的建议是用brasero尝试一下。但是后面失败了。如果有条件的话，可以使用windows下的UltraISO。这个软件是我见过的刻启动盘成功率最高的软件了。</p>
+<p>Remastersys 整体而言是一个不算太好的解决方案。最大的原因是这个项目已经是一个不再维护的项目了。针对Ubuntu14.04以后版本的使用效果无法保证。这一点从安装的过程也可以看得出来，所使用的依赖包都无法正确自动安装，而且在使用时缺少依赖包也不能正确提示。</p>
+<h2 id="本地源"><a href="#本地源" class="headerlink" title="本地源"></a>本地源</h2><p>附一个教程的链接，这个教程介绍了如何制作DVD源，本地源和aptoncd：<a href="http://forum.ubuntu.org.cn/viewtopic.php?f=120&amp;t=53155" rel="external nofollow noopener noreferrer" target="_blank">link</a></p>
+<p>对于使用需求来看。这三种中，DVD源和本地源都可以解决问题。其中DVD源比较奢侈，需要耗费很多时间和很多光盘，而本地的源就比较直截了当。至于aptoncd，在安装时，就会产生一个问题，aptoncd在内网机中，使用时需要先安装，安装又成了新的问题。所以最后使用了利用<code>/etc/cache/apt/archives</code>来制作本地临时源的方案。具体步骤如上文教程所示。</p>
+<p>在使用过程中踩了两个坑：</p>
+<ol>
+<li><p>dpkg-scanpackages注意用相对路径不要用绝对路径。<br>是否正确可以查看生成的Packages.gz里的文件内容来判断。<br>正确：</p>
+ <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Filename:</span> archives/libnfsidmap2_0<span class="number">.25</span><span class="number">-5</span>_amd64.deb</div></pre></td></tr></table></figure>
+<p> 错误：</p>
+ <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Filename:</span> <span class="meta-keyword">/home/</span>kexin<span class="meta-keyword">/archives/</span>libnfsidmap2_0<span class="number">.25</span><span class="number">-5</span>_amd64.deb</div></pre></td></tr></table></figure>
+<p> 如果出现了这个错误，提示的错误内容如下：</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">Get:</span><span class="number">1</span> <span class="string">file:</span><span class="regexp">/home/</span>kexin archives/ libnfsidmap2 <span class="number">0.25</span><span class="number">-5</span> [<span class="number">32.2</span> kB]</div><div class="line"><span class="string">Err:</span><span class="number">1</span> <span class="string">file:</span><span class="regexp">/home/</span>kexin archives/ libnfsidmap2 <span class="number">0.25</span><span class="number">-5</span></div><div class="line">  File not found - <span class="regexp">/home/</span>kexin<span class="comment">//home/kexin/archives/libnfsidmap2_0.25-5_amd64.deb (2: No such file or directory)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>archives</code>的源机器所安装的系统版本要和使用的目的机器安装的系统版本号要一致。<br> 比如<code>ubuntu-16.04.2-desktop-amd64.iso</code>和<code>ubuntu-16.04.1-desktop-amd64.iso</code>就不一样，因为不同版本号的光盘可能自带的依赖不一样。在ubuntu-16.04.2上制作的archives包在ubuntu16.04.1的镜像上安装<code>libssl-dev</code>时会出现软件版本号不对和依赖缺失的问题。<br> 这个问题还是比较恶心的。此外，在ubuntu-16.04.2中编译dpdk也出现了类似的问题，最后切换到ubuntu-16.04.1才能成功编译。</p>
+</li>
+</ol>
+<p>附带一个使用的小脚本。脚本默认你把deb包放在<code>archives</code>这个目录下，并压缩成了<code>archives.tar.gz</code>.只要把打包好的<code>archives.tar.gz</code>和这个脚本放在一个目录下。然后修改脚本中需要安装的依赖程序即可。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash -<span class="keyword">e</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Check user now!"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"$UID"</span> -eq <span class="number">0</span> ]</div><div class="line">then </div><div class="line">    <span class="keyword">echo</span> <span class="string">"You are root now!"</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="keyword">echo</span> <span class="string">"You are not root user, please run as root."</span></div><div class="line">    <span class="keyword">exit</span> <span class="number">1</span></div><div class="line">fi</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Compress the deb sources now."</span></div><div class="line"></div><div class="line">tar -zxvf archives.tar.gz</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Compress done!"</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Update ubuntu sources now."</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"deb file://$PWD archives/"</span> &gt; /etc/apt/sources.<span class="keyword">list</span></div><div class="line"></div><div class="line">apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Now install base dependence now."</span></div><div class="line"></div><div class="line">apt-<span class="built_in">get</span> install -<span class="keyword">y</span> --allow-unauthenticated build-essential libpcap-dev libpcre3-dev libdumbnet-dev bison flex zlib1g-dev</div><div class="line">apt-<span class="built_in">get</span> install -<span class="keyword">y</span> --allow-unauthenticated libluajit-<span class="number">5.1</span>-dev pkg-config</div><div class="line">apt-<span class="built_in">get</span> install -<span class="keyword">y</span> --allow-unauthenticated libssl-dev liblzma-dev libmysqlclient-dev</div><div class="line">apt-<span class="built_in">get</span> install -<span class="keyword">y</span> --allow-unauthenticated libpcap-dev nfs-common</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"Basic dependence install done!"</span></div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDN</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://nachtz.top/localsource.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/interview_bdhw.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">百度华为实习生面试经历</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://nachtz.top/localsource.html", 
+    sourceId: "localsource",
+    productKey: "3b4d3214ec3840cca3d97daa9ff0df2d",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -256,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
